@@ -1,4 +1,4 @@
-
+/* photo d'arrière plan  */
   body {
     background-image: url("lyonbynight.jpeg");
     background-size: 1800px 1000%;
@@ -19,7 +19,7 @@ header {
 }
 
 
-/* Logo */
+/* Logo omnesmyskills */
 .logo img {
   height: 50px;
   margin-right: 10px;
@@ -76,4 +76,23 @@ nav a {
 
 .user-box {
 	position: relative
+}
+
+/* Pour l'encadré droit d'auteur en bas de la page  */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Style pour l'encadré de droits d'auteur */
+.footer-copyright {
+  font-weight: bold;
 }

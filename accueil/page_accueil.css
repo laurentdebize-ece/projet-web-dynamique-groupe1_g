@@ -6,7 +6,8 @@
     background-repeat: no-repeat;
   }
   
-  /* Barre de navigation */
+
+/* Barre de navigation */
 header {
   background-color: #ffffff;
   color: #060606;
@@ -40,4 +41,39 @@ nav a {
   color: #000000;
   text-decoration: none;
   font-weight: bold;
+}
+
+/* Zone de connexion */
+.login-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 350px;
+	padding: 40px;
+	background: rgba(255, 255, 255, 0.8);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0,0,0,.5);
+	border-radius: 10px;
+	opacity: 1;
+}
+.user-box label {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.login-box h2 {
+	margin: 0 0 30px;
+	padding: 0;
+	color: #3f3434;
+	text-align: center;
+}
+.login-box h2 {
+  font-family: Arial, sans-serif;
+}
+
+.user-box {
+	position: relative
 }

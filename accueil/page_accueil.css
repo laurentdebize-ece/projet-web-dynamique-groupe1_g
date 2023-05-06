@@ -1,0 +1,43 @@
+
+  body {
+    background-image: url("lyonbynight.jpeg");
+    background-size: 1800px 1000%;
+    background-position: cente ;
+    background-repeat: no-repeat;
+  }
+  
+  /* Barre de navigation */
+header {
+  background-color: #ffffff;
+  color: #060606;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+
+/* Logo */
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Menu */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}

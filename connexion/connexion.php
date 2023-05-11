@@ -1,9 +1,8 @@
 
 <?php
-
 try
 {
-$bdd = new PDO('mysql:host=localhost;dbname=ma_base;
+$bdd = new PDO('mysql:host=localhost;dbname=omnesmyskillsnew;
 charset=utf8', 'root', '');
 }
 catch (Exception $e)
@@ -11,22 +10,22 @@ catch (Exception $e)
 die('Erreur : ' . $e->getMessage())	;
 }
 
-if(isset($_POST['login'], $_POST['pwd'])){
-	$login = htmlspecialchars($_POST['login']);
-	$login = htmlspecialchars($_POST['pwd']);
+if(isset($_POST['username'], $_POST['password'])){
+	$username = htmlspecialchars($_POST['username']);
+	$password = htmlspecialchars($_POST['password']);
 
-	$reponse = $bdd->prepare('SELECT * FROM Person WHERE login = :login AND pwd = :pwd');
+	$reponse = $bdd->prepare('SELECT * FROM admin WHERE username = :username AND password = :password');
 	$reponse->execute(array(
-	'pwd'=> $pwd,
-	'login'=> $login
+	'password'=> $password,
+	'username'=> $username
 	));
 
 	var_dump($reponse);
 	while ($donnes = $reponse->fetch()){
 	?>
 	<p> 
-		Nom : <?php echo $donnees['lastname']; ?>,<br>
-		Prénom : <?php echo $donnees['firstname']; ?>
+		Nom : <?php echo $donnees['password']; ?>,<br>
+		Prénom : <?php echo $donnees['username']; ?>
 	</p>
 	<?php
 

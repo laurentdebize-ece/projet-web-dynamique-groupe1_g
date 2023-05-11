@@ -1,0 +1,98 @@
+/* photo d'arrière plan  */
+  body {
+    background-image: url("lyonbynight.jpeg");
+    background-size: 1800px 1000%;
+    background-position: cente ;
+    background-repeat: no-repeat;
+  }
+  
+
+/* Barre de navigation */
+header {
+  background-color: #ffffff;
+  color: #060606;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+
+/* Logo omnesmyskills */
+.logo img {
+  height: 70px;
+  margin-right: 10px;
+}
+
+/* Menu */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Zone de connexion */
+.login-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 350px;
+	padding: 40px;
+	background: rgba(255, 255, 255, 0.8);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0,0,0,.5);
+	border-radius: 10px;
+	opacity: 1;
+}
+.user-box label {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.login-box h2 {
+	margin: 0 0 30px;
+	padding: 0;
+	color: #3f3434;
+	text-align: center;
+}
+.login-box h2 {
+  font-family: Arial, sans-serif;
+}
+
+.user-box {
+	position: relative
+}
+
+/* Pour l'encadré droit d'auteur en bas de la page  */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Style pour l'encadré de droits d'auteur */
+.footer-copyright {
+  font-weight: bold;
+}

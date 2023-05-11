@@ -96,3 +96,7 @@ footer {
 .footer-copyright {
   font-weight: bold;
 }
+
+nav ul li a {
+  font-family: "Arial", sans-serif;
+}

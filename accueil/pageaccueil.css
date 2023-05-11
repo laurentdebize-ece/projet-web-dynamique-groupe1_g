@@ -4,12 +4,12 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #333;
+    color: #281838;
   }
   
   /* Style pour le header */
   header {
-    background-color: #545050;
+    background-color: #552d48;
     color: #fff;
     padding: 20px;
     display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
@@ -29,7 +29,7 @@ body {
   }
   
   nav ul li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
   }
   
@@ -71,8 +71,8 @@ body {
   
   /* Style pour le pied de page */
   footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #552d48;
+    color: #ffffff;
     padding: 10px;
     text-align: center;
   }

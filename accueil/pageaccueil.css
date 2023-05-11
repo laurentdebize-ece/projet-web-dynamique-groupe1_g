@@ -5,12 +5,11 @@ body {
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #333;
-    background-color: #54505027;
   }
   
   /* Style pour le header */
   header {
-    background-color: #545050;
+    background-color: #433940;
     color: #fff;
     padding: 20px;
     display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
@@ -39,7 +38,7 @@ border : 1px solid black ;
 
   
   nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
   }
   
@@ -149,7 +148,7 @@ li {
 }
   
   /* Style pour le pied de page */
-footer {
+  footer {
     background-color: #333;
     color: #fff;
     padding: 10px;

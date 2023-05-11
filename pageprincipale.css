@@ -9,7 +9,7 @@ body {
   
   /* Style pour le header */
   header {
-    background-color: #333;
+    background-color: #545050;
     color: #fff;
     padding: 20px;
     display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
@@ -35,6 +35,9 @@ body {
   
   nav ul li a:hover {
     text-decoration: underline;
+  }
+  nav ul li.right {
+    margin-left: auto;
   }
   
   

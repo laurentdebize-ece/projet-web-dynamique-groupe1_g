@@ -14,10 +14,9 @@ if (isset($_POST['submit'])) {
 
     echo 'username : ' . $username . ' pwd : ' . $password . '<br>';
 
-    $query = "SELECT * FROM admin "; //WHERE email = '" . $username . "' AND mdp = '" . $password. "'";
+    $query = "SELECT * FROM admin WHERE email = '$username' AND mdp = '$password'";
     $result = mysqli_query($conn, $query);
-    printf("Select a retourné %d lignes.\n", $result->num_rows);
-    var_dump($result);
+
 
     // Vérifier si la requête s'est exécutée avec succès
     if ($result) {

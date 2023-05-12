@@ -1,12 +1,12 @@
 const slides = document.querySelectorAll(".slide");
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector("#prev");
+const nextBtn = document.querySelector("#next");
 
 let slideIndex = 0;
 
 function showSlide() {
   slides.forEach(slide => slide.classList.remove("active"));
-  slides[slideIndex].classList.add("slide");
+  slides[slideIndex].classList.add("active");
 }
 
 function prevSlide() {

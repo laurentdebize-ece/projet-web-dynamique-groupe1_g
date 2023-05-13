@@ -3,8 +3,10 @@
 // Connexion à la base de données
 $host = 'localhost';
 $user = 'root';
-$pass = 'root';
-$dbname = 'omnesmyskills';
+$pass = '';
+//$pass = 'root';
+$dbname = 'omnesmyskillsfinal';
+//$dbname = 'omnesmyskills';
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 
 // Vérification des identifiants de connexion
@@ -12,7 +14,7 @@ if (isset($_POST['submit'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars( $_POST['password']);
 
-    echo 'username : ' . $username . ' pwd : ' . $password . '<br>';
+    //echo 'username : ' . $username . ' pwd : ' . $password . '<br>';
 
     $query = "SELECT * FROM admin WHERE email = '$username' AND mdp = '$password'";
     $result = mysqli_query($conn, $query);

@@ -1,10 +1,10 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-$pass = '';
-//$pass = 'root';
+$pass = 'root';
+//$pass = 'root pour mac et rien pour les autres ';
 $dbname = 'omnesmyskillsfinal';
-//$dbname = 'omnesmyskills';
+
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 
 // Vérification des identifiants de connexion

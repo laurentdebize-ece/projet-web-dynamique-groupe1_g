@@ -109,16 +109,16 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `prenom` varchar(255) NOT NULL,
   `emaileleve` varchar(255) NOT NULL,
   `mot de passe` varchar(255) NOT NULL,
-  `numéro de la classe` int(50) NOT NULL,
+  `numerodelaclasse` int(50) NOT NULL,
   PRIMARY KEY (`emaileleve`),
-  KEY `fk_numeroclasse` (`numéro de la classe`)
+  KEY `fk_numeroclasse` (`numerodelaclasse`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `mot de passe`, `numéro de la classe`) VALUES
+INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `mot de passe`, `numerodelaclasse`) VALUES
 ('Nometudiant1', 'prenometudiant1', 'etudiant1@edu.ece.fr', 'motdepasseetudiant1', 1);
 
 -- --------------------------------------------------------
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `matieres` (
 --
 
 INSERT INTO `matieres` (`nom`, `numeromatiere`, `volume horaire`) VALUES
-('Mathématiques', 1, 10),
+('Mathematiques', 1, 10),
 ('Informatique', 2, 12);
 
 -- --------------------------------------------------------
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `professeur` (
   `emailprof` varchar(255) NOT NULL,
   `mot de passe` varchar(255) NOT NULL,
   `Nom` varchar(255) NOT NULL,
-  `prénom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
   PRIMARY KEY (`emailprof`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -183,8 +183,8 @@ INSERT INTO `professeur` (`emailprof`, `mot de passe`, `Nom`, `prénom`) VALUES
 -- Structure de la table `évaluations`
 --
 
-DROP TABLE IF EXISTS `évaluations`;
-CREATE TABLE IF NOT EXISTS `évaluations` (
+DROP TABLE IF EXISTS `evaluations`;
+CREATE TABLE IF NOT EXISTS `evaluations` (
   `numeval` int(50) NOT NULL,
   `emaileleve` varchar(200) NOT NULL,
   `numniveval` int(50) NOT NULL,
@@ -207,18 +207,18 @@ CREATE TABLE IF NOT EXISTS `évaluations` (
 ALTER TABLE `enseigner`
   ADD CONSTRAINT `fk_emailprof` FOREIGN KEY (`emailproff`) REFERENCES `professeur` (`emailprof`),
   ADD CONSTRAINT `fk_numeromatiere` FOREIGN KEY (`numeromatiere`) REFERENCES `matieres` (`numeromatiere`),
-  ADD CONSTRAINT `fk_numéroclasse` FOREIGN KEY (`numeroclasse`) REFERENCES `classe` (`numeroclasse`);
+  ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numeroclasse`) REFERENCES `classe` (`numeroclasse`);
 
 --
 -- Contraintes pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
-  ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numéro de la classe`) REFERENCES `classe` (`numeroclasse`);
+  ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numerodelaclasse`) REFERENCES `classe` (`numeroclasse`);
 
 --
 -- Contraintes pour la table `évaluations`
 --
-ALTER TABLE `évaluations`
+ALTER TABLE `evaluations`
   ADD CONSTRAINT `fk_emailduprof` FOREIGN KEY (`email du prof`) REFERENCES `professeur` (`emailprof`),
   ADD CONSTRAINT `fk_emaileleve` FOREIGN KEY (`emaileleve`) REFERENCES `etudiant` (`emaileleve`),
   ADD CONSTRAINT `fk_id` FOREIGN KEY (`id`) REFERENCES `competences` (`id`),

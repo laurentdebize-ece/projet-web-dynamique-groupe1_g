@@ -1,6 +1,4 @@
-
 <?php
-// Connexion à la base de données
 $host = 'localhost';
 $user = 'root';
 $pass = '';
@@ -12,26 +10,35 @@ $conn = mysqli_connect($host, $user, $pass, $dbname);
 // Vérification des identifiants de connexion
 if (isset($_POST['submit'])) {
     $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars( $_POST['password']);
+    $password = htmlspecialchars($_POST['password']);
 
-    //echo 'username : ' . $username . ' pwd : ' . $password . '<br>';
+    // Requête pour vérifier les identifiants dans la table "admin"
+    $query_admin = "SELECT * FROM admin WHERE email = '$username' AND mdp = '$password'";
+    $result_admin = mysqli_query($conn, $query_admin);
 
-    $query = "SELECT * FROM admin WHERE email = '$username' AND mdp = '$password'";
-    $result = mysqli_query($conn, $query);
+    // Requête pour vérifier les identifiants dans la table "etudiant"
+    $query_etudiant = "SELECT * FROM etudiant WHERE emaileleve = '$username' AND `mot de passe` = '$password'";
+    $result_etudiant = mysqli_query($conn, $query_etudiant);
 
+    // Requête pour vérifier les identifiants dans la table "professeur"
+    $query_professeur = "SELECT * FROM professeur WHERE emailprof = '$username' AND `mot de passe` = '$password'";
+    $result_professeur = mysqli_query($conn, $query_professeur);
 
-    // Vérifier si la requête s'est exécutée avec succès
-    if ($result) {
-        if (mysqli_num_rows($result) == 1) {
-            // Redirection vers la page d'accueil après connexion réussie
-            header("Location: ../accueil/pageaccueil.html");
-            //echo "Email ou mot de passe correct";
-            exit;
-        } else {
-            echo "Email ou mot de passe incorrect";
-        }
+    // Vérification si la connexion est réussie pour l'une des tables
+    if ($result_admin && mysqli_num_rows($result_admin) == 1) {
+        // Redirection vers la page d'accueil après connexion réussie pour l'administrateur
+        header("Location: ../accueil/pageaccueil.html");
+        exit;
+    } elseif ($result_etudiant && mysqli_num_rows($result_etudiant) == 1) {
+        // Redirection vers la page d'accueil après connexion réussie pour l'étudiant
+        header("Location: ../accueil/pageaccueil.html");
+        exit;
+    } elseif ($result_professeur && mysqli_num_rows($result_professeur) == 1) {
+        // Redirection vers la page d'accueil après connexion réussie pour le professeur
+        header("Location: ../accueil/pageaccueil.html");
+        exit;
     } else {
-        echo "Erreur lors de l'exécution de la requête : " . mysqli_error($conn);
+        echo "Email ou mot de passe incorrect";
     }
 }
 

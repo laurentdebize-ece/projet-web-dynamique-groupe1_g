@@ -5,7 +5,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   color: #333333f4;
-  background-color: rgba(197, 183, 168, 0.793);
+ background-color: #333333f4;
 }
 
 /* Style pour le header */
@@ -83,7 +83,7 @@ table{
 /* Style pour le contenu principal */
 main {
   max-width: 800px;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px;
 }
 

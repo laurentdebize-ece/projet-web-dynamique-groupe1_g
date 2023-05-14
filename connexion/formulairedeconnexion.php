@@ -27,15 +27,16 @@ if (isset($_POST['submit'])) {
     // Vérification si la connexion est réussie pour l'une des tables
     if ($result_admin && mysqli_num_rows($result_admin) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour l'administrateur
-        header("Location: ../accueil/pageaccueil.html");
+        header("Location: ../accueil/accueiladmin/pageaccueiladmin.html");
+       
         exit;
     } elseif ($result_etudiant && mysqli_num_rows($result_etudiant) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour l'étudiant
-        header("Location: ../accueil/pageaccueil.html");
+        header("Location: ../accueil/accueiletudiant/pageaccueiletudiant.html");
         exit;
     } elseif ($result_professeur && mysqli_num_rows($result_professeur) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour le professeur
-        header("Location: ../accueil/pageaccueil.html");
+        header("Location: ../accueil/accueilprof/pageaccueilprof.html");
         exit;
     } else {
         echo "Email ou mot de passe incorrect";

@@ -1,8 +1,7 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-//$pass = 'root';
-//$pass = 'root pour mac et rien pour les autres ';
+$pass = 'root';
 $dbname = 'omnesmyskillsfinal';
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
@@ -45,3 +44,5 @@ if (isset($_POST['submit'])) {
 
 mysqli_close($conn);
 ?>
+
+

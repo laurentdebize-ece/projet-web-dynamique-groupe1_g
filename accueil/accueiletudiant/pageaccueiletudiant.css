@@ -184,3 +184,15 @@ footer {
   padding: 10px;
   text-align: center;
 }
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+nav ul li.right {
+  margin-left: auto;
+}

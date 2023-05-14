@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : sam. 13 mai 2023 à 13:29
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Hôte : localhost:8889
+-- Généré le : dim. 14 mai 2023 à 18:18
+-- Version du serveur : 5.7.39
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,13 +27,11 @@ SET time_zone = "+00:00";
 -- Structure de la table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`email`)
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -49,11 +47,9 @@ INSERT INTO `admin` (`nom`, `prenom`, `mdp`, `email`) VALUES
 -- Structure de la table `classe`
 --
 
-DROP TABLE IF EXISTS `classe`;
-CREATE TABLE IF NOT EXISTS `classe` (
+CREATE TABLE `classe` (
   `numeroclasse` int(50) NOT NULL,
-  `promo` int(50) NOT NULL,
-  PRIMARY KEY (`numeroclasse`)
+  `promo` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -68,15 +64,88 @@ INSERT INTO `classe` (`numeroclasse`, `promo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `competences`
+--
+
+CREATE TABLE `competences` (
+  `id` int(50) NOT NULL,
+  `nom` varchar(200) NOT NULL,
+  `date de creation` int(50) NOT NULL,
+  `date limite` int(50) NOT NULL,
+  `statut` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `competences_matieres`
+--
+
+CREATE TABLE `competences_matieres` (
+  `numeromatiere` int(50) DEFAULT NULL,
+  `id` int(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `enseigner`
+--
+
+CREATE TABLE `enseigner` (
+  `emailprof` varchar(255) NOT NULL,
+  `numeroclasse` int(50) NOT NULL,
+  `numeromatiere` int(50) NOT NULL,
+  `emaileleve` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etudiant`
+--
+
+CREATE TABLE `etudiant` (
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `emaileleve` varchar(255) NOT NULL,
+  `mot de passe` varchar(255) NOT NULL,
+  `numeroclasse` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `mot de passe`, `numeroclasse`) VALUES
+('Nometudiant1', 'prenometudiant1', 'etudiant1@edu.ece.fr', 'motdepasseetudiant1', 0),
+('b', 'lena', 'lena.blampain@edu.ece.fr', '1', 0),
+('b', 'margaux', 'margaux.b@edu.ece.fr', '2', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evaluations`
+--
+
+CREATE TABLE `evaluations` (
+  `numeval` int(50) NOT NULL,
+  `emaileleve` varchar(200) NOT NULL,
+  `numniveval` int(50) NOT NULL,
+  `email du prof` varchar(255) NOT NULL,
+  `id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `matieres`
 --
 
-DROP TABLE IF EXISTS `matieres`;
-CREATE TABLE IF NOT EXISTS `matieres` (
+CREATE TABLE `matieres` (
   `nom` varchar(200) NOT NULL,
   `numeromatiere` int(50) NOT NULL,
-  `volume horaire` int(50) NOT NULL,
-  PRIMARY KEY (`numeromatiere`)
+  `volume horaire` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -88,17 +157,26 @@ INSERT INTO `matieres` (`nom`, `numeromatiere`, `volume horaire`) VALUES
 ('Informatique', 2, 12);
 
 -- --------------------------------------------------------
+
+--
+-- Structure de la table `niveval`
+--
+
+CREATE TABLE `niveval` (
+  `numeval` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Structure de la table `professeur`
 --
 
-DROP TABLE IF EXISTS `professeur`;
-CREATE TABLE IF NOT EXISTS `professeur` (
+CREATE TABLE `professeur` (
   `emailprof` varchar(255) NOT NULL,
   `mot de passe` varchar(255) NOT NULL,
   `Nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  PRIMARY KEY (`emailprof`)
+  `prenom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -108,119 +186,97 @@ CREATE TABLE IF NOT EXISTS `professeur` (
 INSERT INTO `professeur` (`emailprof`, `mot de passe`, `Nom`, `prenom`) VALUES
 ('prof@edu.ece.fr', 'motdepasseprof', 'Nomprof', 'prenomprof');
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `competences`
+-- Index pour les tables déchargées
 --
 
-DROP TABLE IF EXISTS `competences`;
-CREATE TABLE IF NOT EXISTS `competences` (
-  `id` int(50) NOT NULL,
-  `nom` varchar(200) NOT NULL,
-  `date de creation` int(50) NOT NULL,
-  `date limite` int(50) NOT NULL,
-  `statut` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+--
+-- Index pour la table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`email`);
 
 --
--- Structure de la table `niveval`
+-- Index pour la table `classe`
 --
-
-DROP TABLE IF EXISTS `niveval`;
-CREATE TABLE IF NOT EXISTS `niveval` (
-  `numeval` int(50) NOT NULL,
-  PRIMARY KEY (`numeval`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
---
--- Structure de la table `etudiant`
---
-
-DROP TABLE IF EXISTS `etudiant`;
-CREATE TABLE IF NOT EXISTS `etudiant` (
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  `emaileleve` varchar(255) NOT NULL,
-  `mot de passe` varchar(255) NOT NULL,
-  `numerodelaclasse` int(50) NOT NULL,
-  PRIMARY KEY (`emaileleve`),
-  KEY `fk_numeroclasse` (`numerodelaclasse`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `classe`
+  ADD PRIMARY KEY (`numeroclasse`);
 
 --
--- Déchargement des données de la table `etudiant`
+-- Index pour la table `competences`
 --
+ALTER TABLE `competences`
+  ADD PRIMARY KEY (`id`);
 
-INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `mot de passe`, `numerodelaclasse`) VALUES
-('Nometudiant1', 'prenometudiant1', 'etudiant1@edu.ece.fr', 'motdepasseetudiant1', 1);
-
--- --------------------------------------------------------
 --
--- Structure de la table `évaluations`
+-- Index pour la table `competences_matieres`
 --
+ALTER TABLE `competences_matieres`
+  ADD KEY `numeromatiere` (`numeromatiere`),
+  ADD KEY `id` (`id`);
 
-DROP TABLE IF EXISTS `evaluations`;
-CREATE TABLE IF NOT EXISTS `evaluations` (
-  `numeval` int(50) NOT NULL,
-  `emaileleve` varchar(200) NOT NULL,
-  `numniveval` int(50) NOT NULL,
-  `email du prof` varchar(255) NOT NULL,
-  `id` int(50) NOT NULL,
-  PRIMARY KEY (`numeval`),
-  KEY `fk_emaileleve` (`emaileleve`),
-  KEY `fk_numniveval` (`numniveval`),
-  KEY `fk_id` (`id`),
-  KEY `fk_emailduprof` (`email du prof`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- Structure de la table `enseigner`
 --
+-- Index pour la table `enseigner`
+--
+ALTER TABLE `enseigner`
+  ADD KEY `fk_numeroclasse` (`numeroclasse`),
+  ADD KEY `fk_numeromatiere` (`numeromatiere`),
+  ADD KEY `fk_emailprof` (`emailprof`),
+  ADD KEY `fk_emaileleve` (`emaileleve`);
 
-DROP TABLE IF EXISTS `enseigner`;
-CREATE TABLE IF NOT EXISTS `enseigner` (
-  `emailprof` varchar(255) NOT NULL,
-  `numeroclasse` int(50) NOT NULL,
-  `numeromatiere` int(50) NOT NULL,
-  KEY `fk_numeroclasse` (`numeroclasse`),
-  KEY `fk_numeromatiere` (`numeromatiere`),
-  CONSTRAINT `fk_emailprof` FOREIGN KEY (`emailprof`) REFERENCES `professeur` (`emailprof`),
-  CONSTRAINT `fk_numeromatiere` FOREIGN KEY (`numeromatiere`) REFERENCES `matieres` (`numeromatiere`),
-  CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numeroclasse`) REFERENCES `classe` (`numeroclasse`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- Index pour la table `etudiant`
+--
+ALTER TABLE `etudiant`
+  ADD PRIMARY KEY (`emaileleve`);
 
--- --------------------------------------------------------
+--
+-- Index pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  ADD PRIMARY KEY (`numeval`),
+  ADD KEY `fk_emaileleve` (`emaileleve`),
+  ADD KEY `fk_numniveval` (`numniveval`),
+  ADD KEY `fk_id` (`id`),
+  ADD KEY `fk_emailduprof` (`email du prof`);
+
+--
+-- Index pour la table `matieres`
+--
+ALTER TABLE `matieres`
+  ADD PRIMARY KEY (`numeromatiere`);
+
+--
+-- Index pour la table `niveval`
+--
+ALTER TABLE `niveval`
+  ADD PRIMARY KEY (`numeval`);
+
+--
+-- Index pour la table `professeur`
+--
+ALTER TABLE `professeur`
+  ADD PRIMARY KEY (`emailprof`);
+
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
+-- Contraintes pour la table `competences_matieres`
+--
+ALTER TABLE `competences_matieres`
+  ADD CONSTRAINT `competences_matieres_ibfk_1` FOREIGN KEY (`numeromatiere`) REFERENCES `matieres` (`numeromatiere`),
+  ADD CONSTRAINT `competences_matieres_ibfk_2` FOREIGN KEY (`id`) REFERENCES `competences` (`id`);
+
+--
 -- Contraintes pour la table `enseigner`
 --
 ALTER TABLE `enseigner`
-  ADD CONSTRAINT `fk_emailprof` FOREIGN KEY (`emailprof`) REFERENCES `professeur` (`emailprof`),
-  ADD CONSTRAINT `fk_numeromatiere` FOREIGN KEY (`numeromatiere`) REFERENCES `matieres` (`numeromatiere`),
-  ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numeroclasse`) REFERENCES `classe` (`numeroclasse`);
-
---
--- Contraintes pour la table `etudiant`
---
-ALTER TABLE `etudiant`
-  ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numerodelaclasse`) REFERENCES `classe` (`numeroclasse`);
-
---
--- Contraintes pour la table `évaluations`
---
-ALTER TABLE `evaluations`
-  ADD CONSTRAINT `fk_emailduprof` FOREIGN KEY (`emailduprof`) REFERENCES `professeur` (`emailprof`),
   ADD CONSTRAINT `fk_emaileleve` FOREIGN KEY (`emaileleve`) REFERENCES `etudiant` (`emaileleve`),
-  ADD CONSTRAINT `fk_id` FOREIGN KEY (`id`) REFERENCES `competences` (`id`),
-  ADD CONSTRAINT `fk_numniveval` FOREIGN KEY (`numniveval`) REFERENCES `niveval` (`numeval`);
+  ADD CONSTRAINT `fk_emailprof` FOREIGN KEY (`emailprof`) REFERENCES `professeur` (`emailprof`),
+  ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numeroclasse`) REFERENCES `classe` (`numeroclasse`),
+  ADD CONSTRAINT `fk_numeromatiere` FOREIGN KEY (`numeromatiere`) REFERENCES `matieres` (`numeromatiere`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

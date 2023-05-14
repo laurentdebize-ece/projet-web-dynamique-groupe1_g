@@ -4,7 +4,8 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #333;
+    color: #333333f4;
+    background-color: rgba(210, 178, 144, 0.793);
   }
   
   /* Style pour le header */
@@ -17,39 +18,68 @@ body {
     align-items: center; /* Centre verticalement les éléments */
   }
   
-  nav ul {
+  .flex-container {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex; /* Utilise la flexbox pour afficher les éléments en ligne */
   }
   
-  nav ul li {
+  .flex-container > div {
     margin-right: 20px;
   }
 
-table{
-border-collapse : collapse ;
-}
-td
-{
-border : 1px solid black ;
-}
 
   
-  nav ul li a {
+.flex-container> div a {
     color: #fff;
     text-decoration: none;
   }
   
-  nav ul li a:hover {
+  .flex-container> div a:hover {
     text-decoration: underline;
   }
-  nav ul li.right {
+  .flex-container> div.right  {
     margin-left: auto;
   }
+
+
+
+  .flex-container1{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: end;
+  }
   
+    
+  .flex-container1 > div {
+    margin-right: 20px;
+  }
+
+
   
+.flex-container1> div a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .flex-container1> div a:hover {
+    text-decoration: underline;
+  }
+  .flex-container1> div.right {
+    margin-left: auto;
+  }
+
+  table{
+    border-collapse : collapse ;
+    }
+    td
+    {
+    border : 1px solid black ;
+    }
+    
   /* Style pour le contenu principal */
   main {
     max-width: 800px;
@@ -65,14 +95,14 @@ border : 1px solid black ;
 
  
   .carousel {
-    width: 100%;
-    height: 400px;
+    width: 2000px;
+    height: 500px;
     overflow: hidden;
     position: relative;
   }
   
   .slide {
-    width: 100%;
+    width: 1000px;
     height: 100%;
     position: absolute;
     top: 0;

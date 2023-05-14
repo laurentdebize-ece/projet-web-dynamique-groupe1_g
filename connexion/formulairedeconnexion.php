@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-$pass = 'root';
+//$pass = 'root';
 //$pass = 'root pour mac et rien pour les autres ';
 $dbname = 'omnesmyskillsfinal';
 

@@ -4,13 +4,13 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #333;
+    color: #262626;
   }
   
   /* Style pour le header */
   header {
     background-color: #433940;
-    color: #fff;
+    color: #ffffff;
     padding: 20px;
     display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
     justify-content: space-between; /* Aligne les éléments horizontalement en les espaçant */
@@ -38,7 +38,7 @@ border : 1px solid black ;
 
   
   nav ul li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
   }
   
@@ -97,7 +97,7 @@ border : 1px solid black ;
 
 .controls span {
   font-size: 30px;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }

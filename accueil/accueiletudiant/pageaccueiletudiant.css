@@ -4,13 +4,13 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #333333f4;
+    color: #373737f4;
     background-color: rgba(210, 178, 144, 0.793);
   }
   
   /* Style pour le header */
   header {
-    background-color: #433940;
+    background-color: #443d42;
     color: #fff;
     padding: 20px;
     display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
@@ -127,7 +127,7 @@ body {
 
 .controls span {
   font-size: 30px;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
@@ -151,6 +151,18 @@ body {
   100% {
     opacity: 1;
   }
+} 
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+nav ul li.right {
+  margin-left: auto;
 }
   
 

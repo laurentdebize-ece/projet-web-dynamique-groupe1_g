@@ -109,7 +109,7 @@ CREATE TABLE `etudiant` (
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `emaileleve` varchar(255) NOT NULL,
-  `mot de passe` varchar(255) NOT NULL,
+  `motdepasse` varchar(255) NOT NULL,
   `numeroclasse` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -117,7 +117,7 @@ CREATE TABLE `etudiant` (
 -- Déchargement des données de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `mot de passe`, `numeroclasse`) VALUES
+INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `motdepasse`, `numeroclasse`) VALUES
 ('Nometudiant1', 'prenometudiant1', 'etudiant1@edu.ece.fr', 'motdepasseetudiant1', 0),
 ('b', 'lena', 'lena.blampain@edu.ece.fr', '1', 0),
 ('b', 'margaux', 'margaux.b@edu.ece.fr', '2', 0);
@@ -174,7 +174,7 @@ CREATE TABLE `niveval` (
 
 CREATE TABLE `professeur` (
   `emailprof` varchar(255) NOT NULL,
-  `mot de passe` varchar(255) NOT NULL,
+  `motdepasse` varchar(255) NOT NULL,
   `Nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -183,7 +183,7 @@ CREATE TABLE `professeur` (
 -- Déchargement des données de la table `professeur`
 --
 
-INSERT INTO `professeur` (`emailprof`, `mot de passe`, `Nom`, `prenom`) VALUES
+INSERT INTO `professeur` (`emailprof`, `motdepasse`, `Nom`, `prenom`) VALUES
 ('prof@edu.ece.fr', 'motdepasseprof', 'Nomprof', 'prenomprof');
 
 --

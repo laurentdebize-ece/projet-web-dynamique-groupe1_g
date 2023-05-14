@@ -16,11 +16,11 @@ if (isset($_POST['submit'])) {
     $result_admin = mysqli_query($conn, $query_admin);
 
     // Requête pour vérifier les identifiants dans la table "etudiant"
-    $query_etudiant = "SELECT * FROM etudiant WHERE emaileleve = '$username' AND `mot de passe` = '$password'";
+    $query_etudiant = "SELECT * FROM etudiant WHERE emaileleve = '$username' AND `motdepasse` = '$password'";
     $result_etudiant = mysqli_query($conn, $query_etudiant);
 
     // Requête pour vérifier les identifiants dans la table "professeur"
-    $query_professeur = "SELECT * FROM professeur WHERE emailprof = '$username' AND `mot de passe` = '$password'";
+    $query_professeur = "SELECT * FROM professeur WHERE emailprof = '$username' AND `motdepasse` = '$password'";
     $result_professeur = mysqli_query($conn, $query_professeur);
 
     // Vérification si la connexion est réussie pour l'une des tables

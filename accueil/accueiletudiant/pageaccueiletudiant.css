@@ -11,7 +11,7 @@ body {
 /* Style pour le header */
 header {
   background-color: #433940;
-  color: #fff;
+  color: #ffffff;
   padding: 30px;
   display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
   justify-content: space-between; /* Aligne les éléments horizontalement en les espaçant */
@@ -29,12 +29,19 @@ header {
   margin-right: 20px;
 }
 
+/*couleur accueil matiere competences ... */
 
-
-.flex-container> div a {
-  color: #fff;
+.flex-container > div a {
+  color: #ffffff; /* Couleur blanche */
   text-decoration: none;
 }
+
+.flex-container1 > div a {
+  color: #ffffff; /* Couleur blanche */
+  text-decoration: none;
+}
+
+
 
 .flex-container> div a:hover {
   text-decoration: underline;
@@ -59,11 +66,6 @@ header {
 }
 
 
-
-.flex-container1> div a {
-  color: #fff;
-  text-decoration: none;
-}
 
 .flex-container1> div a:hover {
   text-decoration: underline;
@@ -127,7 +129,7 @@ justify-content: space-between;
 
 .controls span {
   font-size: 30px;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
@@ -180,21 +182,10 @@ li {
 /* Style pour le pied de page */
 footer {
   background-color: #333;
-  color: #fff;
+  color: #ffffff;
   padding: 10px;
   text-align: center;
 }
 
-nav ul li a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-}
-nav ul li.right {
-  margin-left: auto;
-} 
 
 

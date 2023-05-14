@@ -1,33 +1,33 @@
 /* Style pour le corps de la page */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #333333f4;
-    background-color: rgba(238, 214, 189, 0.793);
-  }
-  
-  /* Style pour le header */
-  header {
-    background-color: #433940;
-    color: #fff;
-    padding: 20px;
-    display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
-    justify-content: space-between; /* Aligne les éléments horizontalement en les espaçant */
-    align-items: center; /* Centre verticalement les éléments */
-  }
-  
-  .flex-container {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex; /* Utilise la flexbox pour afficher les éléments en ligne */
-  }
-  
-  .flex-container > div {
-    margin-right: 20px;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333333f4;
+  background-color: rgba(197, 183, 168, 0.793);
+}
+
+/* Style pour le header */
+header {
+  background-color: #433940;
+  color: #fff;
+  padding: 30px;
+  display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
+  justify-content: space-between; /* Aligne les éléments horizontalement en les espaçant */
+  align-items: center; /* Centre verticalement les éléments */
+}
+
+.flex-container {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex; /* Utilise la flexbox pour afficher les éléments en ligne */
+}
+
+.flex-container > div {
+  margin-right: 20px;
+}
 
 
 
@@ -83,7 +83,7 @@ table{
 /* Style pour le contenu principal */
 main {
   max-width: 800px;
-  margin: 0 auto;
+  margin: auto;
   padding: 20px;
 }
 

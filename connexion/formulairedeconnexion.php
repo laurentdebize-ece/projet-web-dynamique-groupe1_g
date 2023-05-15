@@ -31,11 +31,11 @@ if (isset($_POST['submit'])) {
         exit;
     } elseif ($result_etudiant && mysqli_num_rows($result_etudiant) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour l'étudiant
-        header("Location: http://127.0.0.1:3000/accueil/accueiletudiant/pageaccueiletudiant.html");
+        header("Location: ../accueil/accueiletudiant/pageaccueiletudiant.html");
         exit;
     } elseif ($result_professeur && mysqli_num_rows($result_professeur) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour le professeur
-        header("Location: http://127.0.0.1:3000/accueil/accueilprofesseur/pageaccueilprof.html");
+        header("Location: ../accueil/accueilprofesseur/pageaccueilprof.html");
         exit;
     } else {
         echo "Email ou mot de passe incorrect";

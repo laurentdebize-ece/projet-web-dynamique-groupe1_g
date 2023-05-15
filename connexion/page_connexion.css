@@ -20,9 +20,10 @@ header {
 
 
 /* Logo omnesmyskills */
-.logo img {
+img.logo {
   height: 70px;
   margin-right: 10px;
+ 
 }
 
 /* Menu */

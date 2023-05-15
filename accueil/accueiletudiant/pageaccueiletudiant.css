@@ -74,6 +74,10 @@ header {
   margin-left: auto;
 }
 
+.php{
+  background-color: #5a4444a2;
+
+}
 table{
   border-collapse : collapse ;
   }

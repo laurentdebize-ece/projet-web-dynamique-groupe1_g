@@ -1,18 +1,17 @@
 <?php
-
 $host = 'localhost';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $dbname = 'omnesmyskillsfinal';
-// ATTENTION lena tu dois mettre 'root'
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 
-$competences = $bdd->query(’SELECT nom FROM competences’);
+$competences = $conn->query('SELECT nom FROM competences');
 
-<p>
-Nom : <?php echo $competences[’Nom’]; ?>,<br>
-</p>
+while ($row = $competences->fetch_assoc()) {
+    echo '<p>Nom : ' . $row['nom'] . ',<br></p>';
+}
 
-$competences->closeCursor();
+$competences->free_result();
+$conn->close();
 ?>

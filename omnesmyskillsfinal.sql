@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : dim. 14 mai 2023 à 18:18
+-- Généré le : lun. 15 mai 2023 à 19:44
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -75,6 +75,15 @@ CREATE TABLE `competences` (
   `statut` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `competences`
+--
+
+INSERT INTO `competences` (`id`, `nom`, `date de creation`, `date limite`, `statut`) VALUES
+(1, 'chercher', 2020, 2022, 'non acquis'),
+(2, 'modeliser', 2045, 2050, 'non acquis'),
+(3, 'raisonner', 1034, 1400, 'non acquis');
+
 -- --------------------------------------------------------
 
 --
@@ -118,9 +127,10 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `motdepasse`, `numeroclasse`) VALUES
-('Nometudiant1', 'prenometudiant1', 'etudiant1@edu.ece.fr', 'motdepasseetudiant1', 0),
-('b', 'lena', 'lena.blampain@edu.ece.fr', '1', 0),
-('b', 'margaux', 'margaux.b@edu.ece.fr', '2', 0);
+('Lefeuvre', 'Aurelien', 'aurelien.lefeuvre@edu.ece.fr', '4', 1),
+('Jacquot', 'Clara', 'clara.jacquot@edu.ece.fr', '2', 3),
+('Blampain', 'Lena', 'lena.blampain@edu.ece.fr', '1', 1),
+('Berdjah', 'Margaux', 'margaux.berdjah@edu.ece.fr', '3', 2);
 
 -- --------------------------------------------------------
 
@@ -154,7 +164,8 @@ CREATE TABLE `matieres` (
 
 INSERT INTO `matieres` (`nom`, `numeromatiere`, `volume horaire`) VALUES
 ('Mathematiques', 1, 10),
-('Informatique', 2, 12);
+('Informatique', 2, 12),
+('Physique', 3, 6);
 
 -- --------------------------------------------------------
 
@@ -184,6 +195,9 @@ CREATE TABLE `professeur` (
 --
 
 INSERT INTO `professeur` (`emailprof`, `motdepasse`, `Nom`, `prenom`) VALUES
+('bianchi@edu.ece.fr', 'frfr', 'Bianchi', 'Celine'),
+('debize@edu.ece.fr', 'blabla', 'Debize', 'Laurent'),
+('Dedecker@edu.ece.fr', 'roro', 'Dedecker', 'Samira'),
 ('prof@edu.ece.fr', 'motdepasseprof', 'Nomprof', 'prenomprof');
 
 --

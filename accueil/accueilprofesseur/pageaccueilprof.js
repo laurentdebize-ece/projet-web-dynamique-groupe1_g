@@ -29,3 +29,17 @@ prevBtn.addEventListener("click", prevSlide);
 nextBtn.addEventListener("click", nextSlide);
 
 setInterval(nextSlide, 5000);
+// JavaScript pour afficher le pop-up
+document.addEventListener("DOMContentLoaded", function() {
+  var popupOverlay = document.querySelector(".popup-overlay");
+  var openPopupButton = document.querySelector("#open-popup");
+  var closePopupButton = document.querySelector("#close-popup");
+
+  openPopupButton.addEventListener("click", function() {
+    popupOverlay.style.display = "flex";
+  });
+
+  closePopupButton.addEventListener("click", function() {
+    popupOverlay.style.display = "none";
+  });
+});

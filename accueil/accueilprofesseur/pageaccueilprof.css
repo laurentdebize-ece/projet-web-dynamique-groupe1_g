@@ -184,3 +184,22 @@ footer {
   padding: 10px;
   text-align: center;
 }
+/* Style du pop-up */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 180%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color:#545050;
+  padding: 1%;
+}
+.texte-color {
+  color: white;
+}

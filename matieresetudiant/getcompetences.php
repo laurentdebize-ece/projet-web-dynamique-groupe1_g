@@ -18,10 +18,6 @@ if (isset($_GET['matiere'])) {
 
     // Requête pour récupérer les compétences associées à la matière
     $query = "SELECT c.nom FROM competences c INNER JOIN competences_matieres cm ON c.id = cm.id INNER JOIN matieres m ON cm.numeromatiere = m.numeromatiere WHERE m.nom = '$matiere'";
-
-    // Affichage de la requête SQL pour le débogage
-    echo "Requête SQL : $query<br>";
-
     $result = mysqli_query($conn, $query);
 
     // Vérification si la requête s'est exécutée avec succès
@@ -40,7 +36,6 @@ if (isset($_GET['matiere'])) {
             echo "Aucune compétence trouvée pour la matière : $matiere";
         }
     } else {
-        // Affichage de l'erreur de requête SQL pour le débogage
         echo "Erreur lors de l'exécution de la requête : " . mysqli_error($conn);
     }
 } else {

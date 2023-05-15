@@ -2,7 +2,7 @@
 // Connexion à la base de données
 $host = 'localhost';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $dbname = 'omnesmyskillsfinal';
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 
@@ -17,7 +17,11 @@ if (isset($_GET['matiere'])) {
     $matiere = $_GET['matiere'];
 
     // Requête pour récupérer les compétences associées à la matière
-    $query = "SELECT competence FROM matieres WHERE nom = '$matiere'";
+    $query = "SELECT c.nom FROM competences c INNER JOIN competences_matieres cm ON c.id = cm.id INNER JOIN matieres m ON cm.numeromatiere = m.numeromatiere WHERE m.nom = '$matiere'";
+
+    // Affichage de la requête SQL pour le débogage
+    echo "Requête SQL : $query<br>";
+
     $result = mysqli_query($conn, $query);
 
     // Vérification si la requête s'est exécutée avec succès
@@ -28,7 +32,7 @@ if (isset($_GET['matiere'])) {
             echo "<ul>";
             // Parcours des compétences et affichage
             while ($row = mysqli_fetch_assoc($result)) {
-                $competence = $row['competence'];
+                $competence = $row['nom'];
                 echo "<li>$competence</li>";
             }
             echo "</ul>";
@@ -36,6 +40,7 @@ if (isset($_GET['matiere'])) {
             echo "Aucune compétence trouvée pour la matière : $matiere";
         }
     } else {
+        // Affichage de l'erreur de requête SQL pour le débogage
         echo "Erreur lors de l'exécution de la requête : " . mysqli_error($conn);
     }
 } else {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 15 mai 2023 à 19:44
+-- Généré le : lun. 15 mai 2023 à 20:45
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -94,6 +94,15 @@ CREATE TABLE `competences_matieres` (
   `numeromatiere` int(50) DEFAULT NULL,
   `id` int(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `competences_matieres`
+--
+
+INSERT INTO `competences_matieres` (`numeromatiere`, `id`) VALUES
+(1, 3),
+(3, 2),
+(2, 1);
 
 -- --------------------------------------------------------
 

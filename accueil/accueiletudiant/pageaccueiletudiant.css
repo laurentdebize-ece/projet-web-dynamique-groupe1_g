@@ -5,7 +5,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   color: #333333f4;
-  background-color: rgba(197, 183, 168, 0.793);
+  background-color: #5a4444a2;
 }
 
 /* Style pour le header */
@@ -97,14 +97,14 @@ h1 {
 
 
 .carousel {
-  width: 100%;
+  width: 1000px;
   height: 500px;
   overflow: hidden;
   position: relative;
 }
 
 .slide {
-  width: 1000px;
+  width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -128,10 +128,10 @@ justify-content: space-between;
 }
 
 .controls span {
-  font-size: 30px;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+font-size: 30px;
+color: white;
+cursor: pointer;
+transition: transform 0.2s ease-in-out;
 }
 
 .controls span:hover {
@@ -147,14 +147,14 @@ margin-right: 20px;
 }
 
 @keyframes carousel {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+0% {
+  opacity: 0;
 }
-  
+100% {
+  opacity: 1;
+}
+}
+
 
 h2 {
   font-size: 24px;
@@ -182,10 +182,7 @@ li {
 /* Style pour le pied de page */
 footer {
   background-color: #333;
-  color: #ffffff;
+  color: #fff;
   padding: 10px;
   text-align: center;
 }
-
-
-

@@ -1,0 +1,78 @@
+/* Style pour le corps de la page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Style pour le header */
+  header {
+    background-color: #545050;
+    color: #fff;
+    padding: 20px;
+    display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
+    justify-content: space-between; /* Aligne les éléments horizontalement en les espaçant */
+    align-items: center; /* Centre verticalement les éléments */
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex; /* Utilise la flexbox pour afficher les éléments en ligne */
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+  nav ul li.right {
+    margin-left: auto;
+  }
+  
+  
+  /* Style pour le contenu principal */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Style pour le pied de page */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }

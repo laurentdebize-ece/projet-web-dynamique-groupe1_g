@@ -191,13 +191,13 @@ footer {
   left: 0;
   width: 180%;
   height: 20%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
 
 .popup-content {
-  background-color:#545050;
+  background-color:#433940;
   padding: 1%;
 }
 .texte-color {

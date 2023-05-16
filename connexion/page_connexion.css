@@ -1,7 +1,7 @@
 /* photo d'arrière plan  */
   body {
     background-image: url("lyonbynight.jpeg");
-    background-size: 1800px 1000%;
+    background-size: 1800px 800%;
     background-position: cente ;
     background-repeat: no-repeat;
   }
@@ -14,7 +14,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   width: 100%;
 }
 

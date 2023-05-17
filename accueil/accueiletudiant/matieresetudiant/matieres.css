@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("image.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative; /* Ajoute une position relative à l'élément body */
+  }
+  
+  body::before {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background-image: url("image.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.2; /* Transparence à 20% */
+    z-index: -1; /* Place le pseudo-élément derrière le contenu */
+  }
+  
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    font-family: "Arial", sans-serif;
+    text-transform: uppercase;
+    text-decoration: underline ;
+    color: #3a393a;
+  }
+  
+
+form {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#competences {
+    margin-top: 50px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("image.jpeg");
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    justify-content: flex-start;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    text-align: center;
+    margin-top: 470px;
+}
+
+#competences {
+    margin-top: 50px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}

@@ -1,13 +1,3 @@
-<?php
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
-$dbname = 'omnesmyskillsfinal';
-
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-$requete = mysqli_query($conn,' SELECT nom FROM competences ');
-    
-?>
 <!DOCTYPE html>
 <html>
 
@@ -58,14 +48,14 @@ require_once '../../BDD/init.php';
     <h2> Ici, vous pouvez trouver les différentes compétences pour vous améliorer</h2>
     <h3>Compétences populaires</h3>
     
-     <table>
-         <th>Noms des compétences:</th>
+      <table>
+        <label>Nom de la compétence:</label>
         <?php while ($donnees= mysqli_fetch_assoc($requete)){
          ?>
-            <th> 
+            <tr> 
                 <td> 
                     <?php echo $donnees['nom']; ?> </td>
-        </th> 
+        </tr>
         <?php } ?>
         </table>
         

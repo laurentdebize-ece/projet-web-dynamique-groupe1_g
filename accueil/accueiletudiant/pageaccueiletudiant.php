@@ -8,22 +8,24 @@
   
 </head>
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$dbname = 'omnesmyskillsfinal';
-
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-$requete = mysqli_query($conn,' SELECT nom FROM competences ');
-    
+require_once '../../BDD/init.php';
+//session_start();
+// Vérification si l'utilisateur est connecté et s'il est administrateur
+//if (isset($_SESSION['utilisateur']) && $_SESSION['utilisateur'] == 'username') {
+    // Utilisateur connecté en tant qu'administrateur
+   // echo "Vous êtes connecté en tant qu'administrateur.";
+//} else {
+    // Utilisateur non connecté ou non administrateur
+    //echo "Vous n'êtes pas autorisé à accéder à cette page.";
+    //exit;
+//}
 ?>
 <body>
   <header>
-  
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-      <div><a href="http://localhost:8000/laurentdebize-ece/projet-web-dynamique-groupe1_g/accueil/accueiletudiant/matieresetudiant/matieres.html">Matière</a></div>
-      <div><a href="http://localhost:8000/laurentdebize-ece/projet-web-dynamique-groupe1_g/accueil/accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
+      <div><a href="../matieresetudiant/matieres.html">Matière</a></div>
+      <div><a href="">Mes Compétences</a></div>
       <div><a href="#">Compétences Transverses</a></div>
       <div><a href=" ../toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
     </div>
@@ -87,9 +89,6 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
   
   <script src="pageaccueiletudiant.js"></script>
 </body>
-<?php    
-
-$requete->closeCursor(); ?>
 
 </html>
 

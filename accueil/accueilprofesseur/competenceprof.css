@@ -1,0 +1,21 @@
+body {
+    background-color: #eeeeee;
+    }
+    h2 {
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 20px;
+    width: 600px;
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
+    }
+    table {
+    width: 660px;
+    margin: auto;
+    background-color: #9999EE;
+    }
+    input {
+    background-color: #6699EE;
+    }
+    

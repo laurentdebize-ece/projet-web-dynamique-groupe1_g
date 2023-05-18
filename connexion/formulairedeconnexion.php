@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
         exit;
     } elseif ($result_etudiant && mysqli_num_rows($result_etudiant) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour l'étudiant
-        header("Location: ../accueil/accueiletudiant/pageaccueiletudiant.html");
+        header("Location: ../accueil/accueiletudiant/pageaccueiletudiant.php");
         exit;
     } elseif ($result_professeur && mysqli_num_rows($result_professeur) == 1) {
         // Redirection vers la page d'accueil après connexion réussie pour le professeur

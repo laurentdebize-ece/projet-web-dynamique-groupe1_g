@@ -29,3 +29,6 @@ prevBtn.addEventListener("click", prevSlide);
 nextBtn.addEventListener("click", nextSlide);
 
 setInterval(nextSlide, 5000);
+
+
+

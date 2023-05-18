@@ -8,8 +8,8 @@ echo "<link rel='stylesheet' type='text/css' href='$fichierCSS'>";
 //saisir les données du formulaire
 $id = isset($_POST["id"]) ? $_POST["id"] : "";
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$date_c = isset($_POST["date_c"]) ? $_POST["date_c"] : "";
-$date_l = isset($_POST["date_l"]) ? $_POST["date_l"] : "";
+$datedecreation = isset($_POST["datedecreation"]) ? $_POST["datedecreation"] : "";
+$datelimite = isset($_POST["datelimite"]) ? $_POST["datelimite"] : "";
 $statut = isset($_POST["statut"]) ? $_POST["statut"] : "";
 
 
@@ -67,34 +67,37 @@ if (isset($_POST["button2"])) {
     if ($id != "") {
         $sql .= " WHERE id LIKE '%$id%'";
     }
-    $result = mysqli_query($db_handle, $sql);
+    $result = mysqli_query($conn, $sql);
     //regarder s'il y a de resultat
     if (mysqli_num_rows($result) != 0) {
         echo "<p>La compétence existe déjà.</p>";
     } else {
         //on ajoute ce livre
-        $sql = "INSERT INTO competences(id, nom, date_c, date_l, statut)
-     VALUES('$id', '$nom', '$date_c', '$date_l', '$statut')";
-        $result = mysqli_query($db_handle, $sql);
-        echo "<p>Add successful.</p>";
+        $sql = "INSERT INTO competences(id, nom, datedecreation, datelimite, statut)
+     VALUES('$id', '$nom', '$datedecreation', '$datelimite', '$statut')";
+        $result = mysqli_query($conn, $sql);
         //on affiche le nouveau livre ajouté
         $sql = "SELECT * FROM competences";
-        $result = mysqli_query($db_handle, $sql);
+        $result = mysqli_query($conn, $sql);
+        if (!$result) {
+            echo "Erreur lors de l'insertion : " . mysqli_error($conn);
+        }
+        
         echo "<h2>" . "Informations sur la nouvelle compétence ajoutée:" . "</h2>";
         echo "<table border='1'>";
         echo "<tr>";
         echo "<th>" . "id" . "</th>";
         echo "<th>" . "nom" . "</th>";
-        echo "<th>" . "date_c" . "</th>";
-        echo "<th>" . "date_c" . "</th>";
+        echo "<th>" . "datedecreation" . "</th>";
+        echo "<th>" . "datelimite" . "</th>";
         echo "<th>" . "statut" . "</th>";
         //afficher le resultat
         while ($data = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . $data['id'] . "</td>";
             echo "<td>" . $data['nom'] . "</td>";
-            echo "<td>" . $data['date_c'] . "</td>";
-            echo "<td>" . $data['date_l'] . "</td>";
+            echo "<td>" . $data['datedecreation'] . "</td>";
+            echo "<td>" . $data['datelimite'] . "</td>";
             echo "<td>" . $data['statut'] . "</td>";
         }
         echo "</table>";
@@ -161,4 +164,4 @@ if (isset($_POST["button3"])) {
 }
 
 //fermer la connexion
-mysqli_close($db_handle);
+mysqli_close($conn);

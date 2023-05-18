@@ -24,13 +24,8 @@ require_once '../../BDD/init.php';
   <header>
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-<<<<<<< HEAD
       <div><a href="../accueiletudiant/matieresetudiant/matieres.html">Matière</a></div>
       <div><a href="../accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
-=======
-      <div><a href="../matieresetudiant/matieres.html">Matière</a></div>
-      <div><a href="">Mes Compétences</a></div>
->>>>>>> a5ca209d3eb634901d9c970c6c02b6823f85b7dd
       <div><a href="#">Compétences Transverses</a></div>
       <div><a href="../accueiletudiant/toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
     </div>

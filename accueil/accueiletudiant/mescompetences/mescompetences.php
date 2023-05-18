@@ -15,29 +15,38 @@ $tri = isset($_GET['tri']) ? $_GET['tri'] : 'nom';
 $ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
 
 // Construction de la requête SQL en fonction des paramètres de tri
-$sql = "SELECT nom, datedecreation, datelimite, statut FROM competences ORDER BY $tri $ordre";
+$sql = "SELECT c.nom, c.datedecreation, c.datelimite, c.statut, m.nom AS matiere
+        FROM competences AS c
+        JOIN competences_matieres AS cm ON c.id = cm.id
+        JOIN matieres AS m ON cm.numeromatiere = m.numeromatiere
+        ORDER BY $tri $ordre";
+
 $result = $conn->query($sql);
 
-// Tableau pour stocker les compétences
-$competences = array();
-
 if ($result->num_rows > 0) {
+    // Parcours des résultats et stockage des compétences dans un tableau
+    $competences = array();
+
     while ($row = $result->fetch_assoc()) {
         $competence = array(
             'nom' => $row['nom'],
             'datedecreation' => $row['datedecreation'],
             'datelimite' => $row['datelimite'],
-            'statut' => $row['statut']
+            'statut' => $row['statut'],
+            'matiere' => $row['matiere']
         );
         $competences[] = $competence;
     }
-}
 
-// Renvoyer les compétences au format JSON
-header('Content-Type: application/json');
-echo json_encode($competences);
+    // Renvoyer les compétences au format JSON
+    header('Content-Type: application/json');
+    echo json_encode($competences);
+} else {
+    echo "Aucune compétence trouvée.";
+}
 
 // Fermer la connexion à la base de données
 $conn->close();
 ?>
+
 

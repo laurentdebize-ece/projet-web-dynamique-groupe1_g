@@ -3,8 +3,8 @@ body {
     }
     h2 {
     text-align: center;
-    color: white;
-    background-color: black;
+    color: rgb(18, 12, 12);
+    background-color: rgb(157, 129, 162);
     padding: 20px;
     width: 600px;
     margin: 0 auto 20px auto;
@@ -13,9 +13,9 @@ body {
     table {
     width: 660px;
     margin: auto;
-    background-color: #9999EE;
+    background-color: #ae91bc;
     }
     input {
-    background-color: #6699EE;
+    background-color: #eef2f8;
     }
     

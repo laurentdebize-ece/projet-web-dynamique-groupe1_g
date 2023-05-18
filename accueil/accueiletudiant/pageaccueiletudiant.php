@@ -20,7 +20,7 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
 <?php
 $host = 'localhost';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $dbname = 'omnesmyskillsfinal';
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
@@ -32,10 +32,10 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
   
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-      <div><a href="../matieresetudiant/matieres.html">Matière</a></div>
-      <div><a href="http://localhost:8000/laurentdebize-ece/projet-web-dynamique-groupe1_g/accueil/accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
+      <div><a href="../accueiletudiant/matieresetudiant/matieres.html">Matière</a></div>
+      <div><a href="../accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
       <div><a href="#">Compétences Transverses</a></div>
-      <div><a href=" ../toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
+      <div><a href="../accueiletudiant/toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
     </div>
     <div class="flex-container1">
       <div class="right"><a href="#">Mon Compte étudiant</a></div>

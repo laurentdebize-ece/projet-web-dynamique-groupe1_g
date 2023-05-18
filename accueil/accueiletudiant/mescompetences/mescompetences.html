@@ -1,11 +1,68 @@
-<!DOCTYPE html >
-<html lang= "fr">
-<head >
-	<title >Le titre de ma page </title >
-	<meta charset= "UTF-8">
-	<link rel= " stylesheet " href= " mescompetences.css ">
-</head >
-</body >
-	<h10> TEST COMPETENCES </h10>
-</body >
-</html >
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de compétences</title>
+    <!-- Inclure les liens vers les fichiers CSS et autres scripts nécessaires -->
+    <link rel="stylesheet" href="mescompetences.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Tableau de competences</h1>
+
+    <table id="competences-table">
+        <thead>
+            <tr>
+                <th>Nom</th> 
+                <th>Date de creation </th>
+                <th>Date limite</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les données seront ajoutées dynamiquement ici -->
+        </tbody>
+    </table>
+
+    <!-- Inclure ici d'autres éléments HTML de votre page -->
+
+    <script>
+        // Insérer le code JavaScript ici
+        $(document).ready(function() {
+    // Fonction pour charger les compétences depuis le serveur
+    function chargerCompetences() {
+        $.ajax({
+            url: 'mescompetences.php', // Chemin vers le script PHP qui récupère les compétences depuis la base de données
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Appelé lorsque les données sont récupérées avec succès
+
+                // Supprimer les anciennes données du tableau
+                $('#competences-table tbody').empty();
+
+                // Parcourir les données et les ajouter au tableau
+                for (var i = 0; i < data.length; i++) {
+                    var competence = data[i];
+                    var row = '<tr>' +
+                        '<td>' + competence.nom + '</td>' +
+                        '<td>' + competence.datedecreation + '</td>' +
+                        '<td>' + competence.datelimite + '</td>' +
+                        '<td>' + competence.statut + '</td>' +
+                        '</tr>';
+                    $('#competences-table tbody').append(row);
+                }
+            },
+            error: function() {
+                // Appelé en cas d'erreur lors de la récupération des données
+                console.log('Erreur lors du chargement des compétences.');
+            }
+        });
+    }
+
+    // Appeler la fonction pour charger les compétences au chargement de la page
+    chargerCompetences();
+});
+
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 15 mai 2023 à 20:45
+-- Généré le : jeu. 18 mai 2023 à 15:43
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -70,8 +70,8 @@ INSERT INTO `classe` (`numeroclasse`, `promo`) VALUES
 CREATE TABLE `competences` (
   `id` int(50) NOT NULL,
   `nom` varchar(200) NOT NULL,
-  `date de creation` int(50) NOT NULL,
-  `date limite` int(50) NOT NULL,
+  `datedecreation` int(50) NOT NULL,
+  `datelimite` int(50) NOT NULL,
   `statut` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -79,7 +79,7 @@ CREATE TABLE `competences` (
 -- Déchargement des données de la table `competences`
 --
 
-INSERT INTO `competences` (`id`, `nom`, `date de creation`, `date limite`, `statut`) VALUES
+INSERT INTO `competences` (`id`, `nom`, `datedecreation`, `datelimite`, `statut`) VALUES
 (1, 'chercher', 2020, 2022, 'non acquis'),
 (2, 'modeliser', 2045, 2050, 'non acquis'),
 (3, 'raisonner', 1034, 1400, 'non acquis');

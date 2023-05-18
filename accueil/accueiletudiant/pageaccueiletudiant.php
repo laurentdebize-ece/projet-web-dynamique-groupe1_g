@@ -1,3 +1,13 @@
+<?php
+$host = 'localhost';
+$user = 'root';
+$pass = 'root';
+$dbname = 'omnesmyskillsfinal';
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+$requete = mysqli_query($conn,' SELECT nom FROM competences ');
+    
+?>
 <!DOCTYPE html>
 <html>
 
@@ -15,8 +25,8 @@ $dbname = 'omnesmyskillsfinal';
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 $requete = mysqli_query($conn,' SELECT nom FROM competences ');
+    
 ?>
-
 <body>
   <header>
   
@@ -87,9 +97,6 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
   
   <script src="pageaccueiletudiant.js"></script>
 </body>
-<?php    
-
-$requete->closeCursor(); ?>
 
 </html>
 

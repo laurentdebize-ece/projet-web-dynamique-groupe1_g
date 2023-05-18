@@ -9,6 +9,8 @@
 </head>
 <?php
 require_once '../../BDD/init.php';
+$requete = mysqli_query($conn,' SELECT nom FROM competences ');
+
 //session_start();
 // Vérification si l'utilisateur est connecté et s'il est administrateur
 //if (isset($_SESSION['utilisateur']) && $_SESSION['utilisateur'] == 'username') {

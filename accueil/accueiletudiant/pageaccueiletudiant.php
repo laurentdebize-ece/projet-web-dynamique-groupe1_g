@@ -15,14 +15,14 @@ $dbname = 'omnesmyskillsfinal';
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 $requete = mysqli_query($conn,' SELECT nom FROM competences ');
-    
 ?>
+
 <body>
   <header>
   
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-      <div><a href="http://localhost:8000/laurentdebize-ece/projet-web-dynamique-groupe1_g/accueil/accueiletudiant/matieresetudiant/matieres.html">Matière</a></div>
+      <div><a href="../matieresetudiant/matieres.html">Matière</a></div>
       <div><a href="http://localhost:8000/laurentdebize-ece/projet-web-dynamique-groupe1_g/accueil/accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
       <div><a href="#">Compétences Transverses</a></div>
       <div><a href=" ../toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
@@ -46,14 +46,14 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
     <h2> Ici, vous pouvez trouver les différentes compétences pour vous améliorer</h2>
     <h3>Compétences populaires</h3>
     
-      <table>
-        <label>Nom de la compétence:</label>
+     <table>
+         <th>Noms des compétences:</th>
         <?php while ($donnees= mysqli_fetch_assoc($requete)){
          ?>
-            <tr> 
+            <th> 
                 <td> 
                     <?php echo $donnees['nom']; ?> </td>
-        </tr>
+        </th> 
         <?php } ?>
         </table>
         

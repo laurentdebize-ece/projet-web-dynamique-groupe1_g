@@ -2,7 +2,7 @@
 // Connexion à la base de données
 $host = 'localhost';
 $user = 'root';
-$pass = 'root';
+$pass = '';
 $dbname = 'omnesmyskillsfinal';
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 

@@ -3,13 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 18 mai 2023 à 15:43
+-- Généré le : jeu. 18 mai 2023 à 17:59
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -79,9 +80,14 @@ CREATE TABLE `competences` (
 --
 
 INSERT INTO `competences` (`id`, `nom`, `datedecreation`, `datelimite`, `statut`) VALUES
-(1, 'chercher', 2020, 2022, 'non acquis'),
-(2, 'modeliser', 2045, 2050, 'non acquis'),
-(3, 'raisonner', 1034, 1400, 'non acquis');
+(1, 'reflexion sur un probleme mathematique', 2018, 2024, 'non acquis'),
+(2, 'creer un site web', 2015, 2023, 'non acquis'),
+(3, 'modeliser des systemes', 2020, 2025, 'non acquis'),
+(4, 'comprendre le vhdl', 2019, 2026, 'non acquis'),
+(5, 'maitriser algebre', 2020, 2024, 'non acquis'),
+(6, 'theorie des graphes', 2018, 2026, 'non acquis'),
+(7, 'notions electromag', 2018, 2026, 'non acquis'),
+(8, 'systemes boucles', 2018, 2024, 'non acquis');
 
 -- --------------------------------------------------------
 
@@ -99,9 +105,14 @@ CREATE TABLE `competences_matieres` (
 --
 
 INSERT INTO `competences_matieres` (`numeromatiere`, `id`) VALUES
-(1, 3),
-(3, 2),
-(2, 1);
+(1, 5),
+(1, 1),
+(2, 2),
+(2, 6),
+(3, 3),
+(3, 7),
+(4, 4),
+(4, 8);
 
 -- --------------------------------------------------------
 
@@ -115,6 +126,28 @@ CREATE TABLE `enseigner` (
   `numeromatiere` int(50) NOT NULL,
   `emaileleve` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `enseigner`
+--
+
+INSERT INTO `enseigner` (`emailprof`, `numeroclasse`, `numeromatiere`, `emaileleve`) VALUES
+('bianchi@edu.ece.fr', 1, 1, 'aurelien.lefeuvre@edu.ece.fr'),
+('bianchi@edu.ece.fr', 1, 1, 'lena.blampain@edu.ece.fr'),
+('bianchi@edu.ece.fr', 2, 1, 'margaux.berdjah@edu.ece.fr'),
+('bianchi@edu.ece.fr', 3, 1, 'clara.jacquot@edu.ece.fr'),
+('debize@edu.ece.fr', 1, 2, 'aurelien.lefeuvre@edu.ece.fr'),
+('debize@edu.ece.fr', 1, 2, 'lena.blampain@edu.ece.fr'),
+('debize@edu.ece.fr', 2, 2, 'margaux.berdjah@edu.ece.fr'),
+('debize@edu.ece.fr', 3, 2, 'clara.jacquot@edu.ece.fr'),
+('Dedecker@edu.ece.fr', 1, 3, 'lena.blampain@edu.ece.fr'),
+('Dedecker@edu.ece.fr', 1, 3, 'aurelien.lefeuvre@edu.ece.fr'),
+('Dedecker@edu.ece.fr', 3, 3, 'clara.jacquot@edu.ece.fr'),
+('Dedecker@edu.ece.fr', 2, 3, 'margaux.berdjah@edu.ece.fr'),
+('mazioua@edu.ece.fr', 1, 4, 'aurelien.lefeuvre@edu.ece.fr'),
+('mazioua@edu.ece.fr', 1, 4, 'lena.blampain@edu.ece.fr'),
+('mazioua@edu.ece.fr', 2, 4, 'margaux.berdjah@edu.ece.fr'),
+('mazioua@edu.ece.fr', 3, 4, 'clara.jacquot@edu.ece.fr');
 
 -- --------------------------------------------------------
 
@@ -173,7 +206,8 @@ CREATE TABLE `matieres` (
 INSERT INTO `matieres` (`nom`, `numeromatiere`, `volume horaire`) VALUES
 ('Mathematiques', 1, 10),
 ('Informatique', 2, 12),
-('Physique', 3, 6);
+('Physique', 3, 6),
+('electronique', 4, 10);
 
 -- --------------------------------------------------------
 
@@ -206,7 +240,7 @@ INSERT INTO `professeur` (`emailprof`, `motdepasse`, `Nom`, `prenom`) VALUES
 ('bianchi@edu.ece.fr', 'frfr', 'Bianchi', 'Celine'),
 ('debize@edu.ece.fr', 'blabla', 'Debize', 'Laurent'),
 ('Dedecker@edu.ece.fr', 'roro', 'Dedecker', 'Samira'),
-('prof@edu.ece.fr', 'motdepasseprof', 'Nomprof', 'prenomprof');
+('mazioua@edu.ece.fr', 'baba', 'mazioua', 'amirouche');
 
 --
 -- Index pour les tables déchargées

@@ -9,11 +9,29 @@
 <body>
     <h1>Tableau de competences</h1>
 
+    <form id="tri-form">
+        <label for="tri-select">Trier par :</label>
+        <select id="tri-select" name="tri">
+            <option value="nom">ordre alphabetique</option>
+            <option value="datedecreation">Date de creation</option>
+            <option value="datelimite">Date limite</option>
+            <option value="statut">Statut</option>
+        </select>
+
+        <label for="ordre-select">Ordre :</label>
+        <select id="ordre-select" name="ordre">
+            <option value="asc">Croissant</option>
+            <option value="desc">Decroissant</option>
+        </select>
+
+        <input type="submit" value="Trier">
+    </form>
+
     <table id="competences-table">
         <thead>
             <tr>
-                <th>Nom</th> 
-                <th>Date de creation </th>
+                <th>Nom</th>
+                <th>Date de creation</th>
                 <th>Date limite</th>
                 <th>Statut</th>
             </tr>
@@ -23,46 +41,53 @@
         </tbody>
     </table>
 
-    <!-- Inclure ici d'autres éléments HTML de votre page -->
-
     <script>
-        // Insérer le code JavaScript ici
         $(document).ready(function() {
-    // Fonction pour charger les compétences depuis le serveur
-    function chargerCompetences() {
-        $.ajax({
-            url: 'mescompetences.php', // Chemin vers le script PHP qui récupère les compétences depuis la base de données
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Appelé lorsque les données sont récupérées avec succès
+            // Fonction pour charger les compétences depuis le serveur
+            function chargerCompetences(tri, ordre) {
+                $.ajax({
+                    url: 'mescompetences.php',
+                    method: 'GET',
+                    data: {
+                        tri: tri,
+                        ordre: ordre
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Supprimer les anciennes données du tableau
+                        $('#competences-table tbody').empty();
 
-                // Supprimer les anciennes données du tableau
-                $('#competences-table tbody').empty();
-
-                // Parcourir les données et les ajouter au tableau
-                for (var i = 0; i < data.length; i++) {
-                    var competence = data[i];
-                    var row = '<tr>' +
-                        '<td>' + competence.nom + '</td>' +
-                        '<td>' + competence.datedecreation + '</td>' +
-                        '<td>' + competence.datelimite + '</td>' +
-                        '<td>' + competence.statut + '</td>' +
-                        '</tr>';
-                    $('#competences-table tbody').append(row);
-                }
-            },
-            error: function() {
-                // Appelé en cas d'erreur lors de la récupération des données
-                console.log('Erreur lors du chargement des compétences.');
+                        // Parcourir les données et les ajouter au tableau
+                        for (var i = 0; i < data.length; i++) {
+                            var competence = data[i];
+                            var row = '<tr>' +
+                                '<td>' + competence.nom + '</td>' +
+                                '<td>' + competence.datedecreation + '</td>' +
+                                '<td>' + competence.datelimite + '</td>' +
+                                '<td>' + competence.statut + '</td>' +
+                                '</tr>';
+                            $('#competences-table tbody').append(row);
+                        }
+                    },
+                    error: function() {
+                        console.log('Erreur lors du chargement des compétences.');
+                    }
+                });
             }
+
+            // Soumettre le formulaire de tri
+            $('#tri-form').submit(function(e) {
+                e.preventDefault();
+                var tri = $('#tri-select').val();
+                var ordre = $('#ordre-select').val();
+                chargerCompetences(tri, ordre);
+            });
+
+            // Charger les compétences initiales au chargement de la page (tri par défaut)
+            chargerCompetences('nom', 'asc');
         });
-    }
-
-    // Appeler la fonction pour charger les compétences au chargement de la page
-    chargerCompetences();
-});
-
     </script>
 </body>
 </html>
+
+

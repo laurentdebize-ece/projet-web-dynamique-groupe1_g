@@ -10,8 +10,12 @@ if ($conn->connect_error) {
     die('Erreur de connexion à la base de données : ' . $conn->connect_error);
 }
 
-// Requête SQL pour récupérer les compétences
-$sql = 'SELECT nom, datedecreation, datelimite, statut FROM competences';
+// Récupérer les paramètres de tri (s'ils sont présents)
+$tri = isset($_GET['tri']) ? $_GET['tri'] : 'nom';
+$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
+
+// Construction de la requête SQL en fonction des paramètres de tri
+$sql = "SELECT nom, datedecreation, datelimite, statut FROM competences ORDER BY $tri $ordre";
 $result = $conn->query($sql);
 
 // Tableau pour stocker les compétences
@@ -36,3 +40,4 @@ echo json_encode($competences);
 // Fermer la connexion à la base de données
 $conn->close();
 ?>
+

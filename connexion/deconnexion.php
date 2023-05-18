@@ -9,10 +9,11 @@ if (isset($_POST['logout'])) {
 
     // Destruction de la session
     session_destroy();
-    echo "Vous avez été déconnecté avec succès.";
+    //echo "Vous avez été déconnecté avec succès.";
     // Redirection vers la page de connexion
-    //header("Location:../connexion/page_connexion.html");
-    exit;
+    header("Location: page_connexion.html");
+
+    //exit;2
 }
 ?>
 

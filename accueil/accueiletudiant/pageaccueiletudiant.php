@@ -1,13 +1,3 @@
-<?php
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
-$dbname = 'omnesmyskillsfinal';
-
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-$requete = mysqli_query($conn,' SELECT nom FROM competences ');
-    
-?>
 <!DOCTYPE html>
 <html>
 
@@ -18,14 +8,17 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
   
 </head>
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
-$dbname = 'omnesmyskillsfinal';
-
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-$requete = mysqli_query($conn,' SELECT nom FROM competences ');
-    
+require_once '../../BDD/init.php';
+//session_start();
+// Vérification si l'utilisateur est connecté et s'il est administrateur
+//if (isset($_SESSION['utilisateur']) && $_SESSION['utilisateur'] == 'username') {
+    // Utilisateur connecté en tant qu'administrateur
+   // echo "Vous êtes connecté en tant qu'administrateur.";
+//} else {
+    // Utilisateur non connecté ou non administrateur
+    //echo "Vous n'êtes pas autorisé à accéder à cette page.";
+    //exit;
+//}
 ?>
 <body>
   <header>

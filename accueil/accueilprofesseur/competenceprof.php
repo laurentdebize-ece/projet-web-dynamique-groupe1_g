@@ -61,50 +61,56 @@ if (isset($_POST["button1"])) {
 //***********************************
 //si le bouton2 (Ajouter) est cliqué
 if (isset($_POST["button2"])) {
-    //on cherche le livre
-    $sql = "SELECT * FROM competences";
-    //avec son titre et auteur
-    if ($id != "") {
-        $sql .= " WHERE id LIKE '%$id%'";
-    }
-    $result = mysqli_query($conn, $sql);
-    //regarder s'il y a de resultat
-    if (mysqli_num_rows($result) != 0) {
-        echo "<p>La compétence existe déjà.</p>";
+    if ($conn) {
+        $sql = "SELECT * FROM competences WHERE id ='$id'";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) != 0) {
+            echo "<p> La compétence existe déjà.</p>";
+        } else {
+
+            $sql = "INSERT INTO competences(id, nom, datedecreation, datelimite, statut)
+            VALUES('$id', '$nom', '$datedecreation', '$datelimite', '$statut')";
+            
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                echo "<p> Voici la compétence que vous avez ajouté</p>";
+                
+                $sql = "SELECT * FROM competences WHERE id='$id'";
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) != 0) {
+                    echo "<h2>" . "Informations sur la nouvelle compétence ajoutée:" . "</h2>";
+                    echo "<table border='1'>";
+                    echo "<tr>";
+                    echo "<th>" . "id" . "</th>";
+                    echo "<th>" . "nom" . "</th>";
+                    echo "<th>" . "datedecreation" . "</th>";
+                    echo "<th>" . "datelimite" . "</th>";
+                    echo "<th>" . "statut" . "</th>";
+                    // afficher le resultat
+                    while ($data = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $data['id'] . "</td>";
+                        echo "<td>" . $data['nom'] . "</td>";
+                        echo "<td>" . $data['datedecreation'] . "</td>";
+                        echo "<td>" . $data['datelimite'] . "</td>";
+                        echo "<td>" . $data['statut'] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                }
+            } else {
+                echo "<p>Erreur. Veuillez resaisir une compétence.</p>";
+            }
+        }
     } else {
-        //on ajoute ce livre
-        $sql = "INSERT INTO competences(id, nom, datedecreation, datelimite, statut)
-     VALUES('$id', '$nom', '$datedecreation', '$datelimite', '$statut')";
-        $result = mysqli_query($conn, $sql);
-        //on affiche le nouveau livre ajouté
-        $sql = "SELECT * FROM competences";
-        $result = mysqli_query($conn, $sql);
-        if (!$result) {
-            echo "Erreur lors de l'insertion : " . mysqli_error($conn);
-        }
-        
-        echo "<h2>" . "Informations sur la nouvelle compétence ajoutée:" . "</h2>";
-        echo "<table border='1'>";
-        echo "<tr>";
-        echo "<th>" . "id" . "</th>";
-        echo "<th>" . "nom" . "</th>";
-        echo "<th>" . "datedecreation" . "</th>";
-        echo "<th>" . "datelimite" . "</th>";
-        echo "<th>" . "statut" . "</th>";
-        //afficher le resultat
-        while ($data = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $data['id'] . "</td>";
-            echo "<td>" . $data['nom'] . "</td>";
-            echo "<td>" . $data['datedecreation'] . "</td>";
-            echo "<td>" . $data['datelimite'] . "</td>";
-            echo "<td>" . $data['statut'] . "</td>";
-        }
-        echo "</table>";
+        echo "<p> Base de donées introuvable.</p>";
     }
-} else {
-    echo "<p>Database not found.</p>";
 }
+
+
 
 //*************************************
 //si le bouton3 (Supprimer) est cliqué

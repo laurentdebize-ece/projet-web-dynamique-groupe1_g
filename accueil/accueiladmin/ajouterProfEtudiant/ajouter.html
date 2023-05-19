@@ -1,29 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Affichage des compétences par matière</title>
-    <link rel="stylesheet" type="text/css" href="matieres.css">
+  <title>Modification</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 0 auto 20px auto;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 600px;
+      margin: auto;
+      background-color: #fff;
+      border-collapse: collapse;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      text-align: left;
+      background-color: #f9f9f9;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <h1>Affichage des compétences par matière</h1>
-
-    <form method="GET" action="getcompetences.php">
-        <label for="matiere">Sélectionnez une matière :</label>
-        <select name="matiere" id="matiere">
-            <option value="Mathematiques">Mathématiques</option>
-            <option value="Informatique">Informatique</option>
-            <option value="Physique">Physique</option>
-        </select>
-        <button type="submit">Afficher les compétences</button>
-    </form>
-
-    <div id="competences">
-        <!-- Les compétences seront affichées ici -->
-    </div>
-
-    <footer>
-        <p>&copy; 2023 Omnes MySkills.</p>
-    </footer>
+<h2>Étudiant</h2>
+<form action="ajouter.php" method="post">
+  <table>
+    <tr>
+      <th>Nom</th>
+      <td><input type="text" name="nom"></td>
+    </tr>
+    <tr>
+      <th>Prénom</th>
+      <td><input type="text" name="prenom"></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><input type="text" name="emaileleve"></td>
+    </tr>
+    <tr>
+      <th>Mot de passe</th>
+      <td><input type="password" name="motdepasse"></td>
+    </tr>
+    <tr>
+      <th>Numéro de classe</th>
+      <td><input type="text" name="numeroclasse"></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" name="modifier" value="Modifier">
+        <input type="submit" name="ajouter" value="Ajouter">
+        <input type="submit" name="supprimer" value="Supprimer">
+      </td>
+    </tr>
+  </table>
+</form>
 </body>
 </html>

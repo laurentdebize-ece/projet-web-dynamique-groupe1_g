@@ -8,7 +8,7 @@ echo "<link rel='stylesheet' type='text/css' href='$fichierCSS'>";
 //saisir les données du formulaire
 $id = isset($_POST["id"]) ? $_POST["id"] : "";
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$datedecreation = isset($_POST["datedecreation"]) ? $_POST["datedecreation"] : "";
+$datedecreation = isset($_POST["datecreation"]) ? $_POST["datecreation"] : "";
 $datelimite = isset($_POST["datelimite"]) ? $_POST["datelimite"] : "";
 $statut = isset($_POST["statut"]) ? $_POST["statut"] : "";
 
@@ -69,8 +69,8 @@ if (isset($_POST["button2"])) {
             echo "<p> La compétence existe déjà.</p>";
         } else {
 
-            $sql = "INSERT INTO competences(id, nom, datedecreation, datelimite, statut)
-            VALUES('$id', '$nom', '$datedecreation', '$datelimite', '$statut')";
+            $sql = "INSERT INTO competences(id, nom, datecreation, datelimite, statut)
+            VALUES('$id', '$nom', '$datecreation', '$datelimite', '$statut')";
             
             $result = mysqli_query($conn, $sql);
 
@@ -86,7 +86,7 @@ if (isset($_POST["button2"])) {
                     echo "<tr>";
                     echo "<th>" . "id" . "</th>";
                     echo "<th>" . "nom" . "</th>";
-                    echo "<th>" . "datedecreation" . "</th>";
+                    echo "<th>" . "datecreation" . "</th>";
                     echo "<th>" . "datelimite" . "</th>";
                     echo "<th>" . "statut" . "</th>";
                     // afficher le resultat
@@ -94,7 +94,7 @@ if (isset($_POST["button2"])) {
                         echo "<tr>";
                         echo "<td>" . $data['id'] . "</td>";
                         echo "<td>" . $data['nom'] . "</td>";
-                        echo "<td>" . $data['datedecreation'] . "</td>";
+                        echo "<td>" . $data['datecreation'] . "</td>";
                         echo "<td>" . $data['datelimite'] . "</td>";
                         echo "<td>" . $data['statut'] . "</td>";
                         echo "</tr>";

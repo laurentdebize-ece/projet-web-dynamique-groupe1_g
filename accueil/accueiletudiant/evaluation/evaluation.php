@@ -25,17 +25,32 @@
             }
 
             // Récupérer les compétences depuis la base de données
-            $query = "SELECT id, nom FROM competences";
-            $result = $conn->query($query);
+            $queryCompetences = "SELECT id, nom FROM competences";
+            $resultCompetences = $conn->query($queryCompetences);
 
             // Vérifier s'il y a des résultats
-            if ($result->num_rows > 0) {
+            if ($resultCompetences->num_rows > 0) {
                 // Afficher les options de compétences
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $resultCompetences->fetch_assoc()) {
                     echo '<option value="' . $row["id"] . '">' . $row["nom"] . '</option>';
                 }
             } else {
                 echo '<option value="">Aucune compétence trouvée.</option>';
+            }
+
+            // Récupérer les professeurs depuis la base de données
+            $queryProfesseur = "SELECT id, nom FROM professeur";
+            $resultProfesseur = $conn->query($queryProfesseur);
+
+            // Vérifier s'il y a des résultats
+            if ($resultProfesseur->num_rows > 0) {
+                echo '</select><br><br><label for="professeur">Choisissez un professeur :</label><select name="professeur" id="professeur">';
+                // Afficher les options des professeurs
+                while ($row = $resultProfesseur->fetch_assoc()) {
+                    echo '<option value="' . $row["id"] . '">' . $row["nom"] . '</option>';
+                }
+            } else {
+                echo '<option value="">Aucun professeur trouvé.</option>';
             }
 
             // Fermer la connexion à la base de données
@@ -58,7 +73,6 @@
     </form>
 </body>
 </html>
-
 
 
 

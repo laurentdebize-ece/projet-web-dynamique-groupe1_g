@@ -8,7 +8,7 @@ echo "<link rel='stylesheet' type='text/css' href='$fichierCSS'>";
 //saisir les données du formulaire
 $id = isset($_POST["id"]) ? $_POST["id"] : "";
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$datedecreation = isset($_POST["datecreation"]) ? $_POST["datecreation"] : "";
+$datecreation = isset($_POST["datecreation"]) ? $_POST["datecreation"] : "";
 $datelimite = isset($_POST["datelimite"]) ? $_POST["datelimite"] : "";
 $statut = isset($_POST["statut"]) ? $_POST["statut"] : "";
 

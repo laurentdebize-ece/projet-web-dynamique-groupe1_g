@@ -13,13 +13,17 @@ if ($conn->connect_error) {
 // Récupérer les paramètres de tri (s'ils sont présents)
 $tri = isset($_GET['tri']) ? $_GET['tri'] : 'nom';
 $ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
+$ecole = isset($_GET['ecole']) ? $_GET['ecole'] : 'ECE'; // Valeur par défaut : 'ECE'
 
 // Construction de la requête SQL en fonction des paramètres de tri
+
 $sql = "SELECT c.nom, c.datecreation, c.datelimite, c.statut, m.nom AS matiere
         FROM competences AS c
         JOIN competences_matieres AS cm ON c.id = cm.id
         JOIN matieres AS m ON cm.numeromatiere = m.numeromatiere
+        WHERE c.ecole = '$ecole'
         ORDER BY $tri $ordre";
+
 
 $result = $conn->query($sql);
 

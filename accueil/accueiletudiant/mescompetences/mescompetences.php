@@ -15,7 +15,7 @@ $tri = isset($_GET['tri']) ? $_GET['tri'] : 'nom';
 $ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
 
 // Construction de la requête SQL en fonction des paramètres de tri
-$sql = "SELECT c.nom, c.datedecreation, c.datelimite, c.statut, m.nom AS matiere
+$sql = "SELECT c.nom, c.datecreation, c.datelimite, c.statut, m.nom AS matiere
         FROM competences AS c
         JOIN competences_matieres AS cm ON c.id = cm.id
         JOIN matieres AS m ON cm.numeromatiere = m.numeromatiere
@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $competence = array(
             'nom' => $row['nom'],
-            'datedecreation' => $row['datedecreation'],
+            'datecreation' => $row['datecreation'],
             'datelimite' => $row['datelimite'],
             'statut' => $row['statut'],
             'matiere' => $row['matiere']

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultats des autoévaluations</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'fetch_autoevaluations.php', // Assurez-vous d'ajuster le chemin du fichier PHP si nécessaire
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.length > 0) {
+                        response.forEach(function(row) {
+                            var html = '<tr>';
+                            html += '<td>' + row.etudiant + '</td>';
+                            html += '<td>' + row.competence1 + '</td>';
+                            // Ajoutez d'autres colonnes selon vos compétences
+                            html += '</tr>';
+                            $('#tableAutoevaluations').append(html);
+                        });
+                    } else {
+                        var html = '<tr><td colspan="2">Aucun résultat trouvé.</td></tr>';
+                        $('#tableAutoevaluations').append(html);
+                    }
+                },
+                error: function() {
+                    alert('Une erreur s\'est produite lors de la récupération des autoévaluations.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Résultats des autoévaluations</h1>
+
+    <table id="tableAutoevaluations">
+        <tr>
+            <th>Étudiant</th>
+            <th>Compétence 1</th>
+            <!-- Ajoutez d'autres compétences selon vos besoins -->
+        </tr>
+    </table>
+
+</body>
+</html>
+
+
+

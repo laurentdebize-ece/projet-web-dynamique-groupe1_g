@@ -30,6 +30,7 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
       <div><a href="../accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
       <div><a href="#">Compétences Transverses</a></div>
       <div><a href="../accueiletudiant/toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
+      <div><a href="../accueiletudiant/evaluation/evaluation.php">Evaluation</a></div>
     </div>
     <div class="flex-container1">
       <div class="right"><a href="#">Mon Compte étudiant</a></div>

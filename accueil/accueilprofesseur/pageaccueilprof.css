@@ -5,7 +5,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   color: #333333f4;
-  background-color:#5a4444a2;
+  background-color:#6c5c5ca2;
 }
 
 /* Style pour le header */
@@ -102,7 +102,7 @@ h1 {
 }
 
 .slide {
-  width: 100% ;
+  width: 2000px ;
   height: 100%;
   position: absolute;
   top: 0;
@@ -179,7 +179,7 @@ li {
 
 /* Style pour le pied de page */
 footer {
-  background-color: #333;
+  background-color: #4b4848;
   color: #fff;
   padding: 10px;
   text-align: center;
@@ -196,10 +196,11 @@ footer {
   align-items: center;
 }
 
-.popup-content {
-  background-color:#433940;
-  padding: 1%;
-}
 .texte-color {
   color: white;
+}
+
+.popup-content {
+  background-color: #ada5a5; /* Fond gris */
+  padding: 1%;
 }

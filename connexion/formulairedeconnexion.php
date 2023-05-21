@@ -32,8 +32,15 @@ if (isset($_POST['submit'])) {
             header("Location: ../accueil/accueiletudiant/pageaccueiletudiant.php");
             exit;
         } elseif ($result_professeur && mysqli_num_rows($result_professeur) == 1) {
+            // Récupération de l'e-mail du professeur
+            $row_professeur = mysqli_fetch_assoc($result_professeur);
+            $emailProfesseur = $row_professeur['emailprof'];
+
+            // Stockage de l'e-mail dans la variable de session
+            $_SESSION['emailprof'] = $emailProfesseur;
+
             // Redirection vers la page d'accueil après connexion réussie pour le professeur
-            header("Location: ../accueil/accueilprofesseur/pageaccueilprof.html");
+            header("Location: ../accueil/accueilprofesseur/pageaccueilprof.php");
             exit;
         }
     } else {

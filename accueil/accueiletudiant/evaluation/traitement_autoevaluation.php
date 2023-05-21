@@ -1,14 +1,24 @@
 <?php
+session_start();
+
 // Informations de connexion à la base de données
 $servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "omnesmyskillsfinal";
 
+// Vérifier si l'utilisateur est connecté et si son e-mail est disponible dans $_SESSION
+if (!isset($_SESSION['email'])) {
+    echo "Erreur : L'email de l'utilisateur n'est pas disponible.";
+    exit;
+}
+
+// Récupérer l'e-mail de l'utilisateur à partir de $_SESSION
+$emailEleve = $_SESSION['email'];
+
 // Récupérer les données du formulaire
 $idCompetence = $_POST['id'];
 $evaluation = $_POST['evaluation'];
-$emailEleve = $_POST['emaileleve'];
 $destinataire = $_POST['destinataire'];
 
 // Créer une connexion à la base de données

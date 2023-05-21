@@ -19,6 +19,7 @@ $requeteProfesseur = $connexion->prepare("SELECT Nom, prenom FROM professeur WHE
 $requeteProfesseur->bindParam(":emailprof", $_SESSION['emailprof']);
 $requeteProfesseur->execute();
 
+
 // Vérification de la réussite de la requête
 if ($requete->rowCount() > 0) {
     // Récupération de l'e-mail du professeur
@@ -54,7 +55,7 @@ $connexion = null;
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueilprof.css">
+  <link rel="stylesheet" type="text/css" href="pageaccueilprof1.css">
 </head>
 <body>
   <header>
@@ -123,7 +124,7 @@ $connexion = null;
   <script src="pageaccueilprof.js"></script>
   <div class="popup-overlay">
     <div class="popup-content">
-      <h2><span class="texte-color">Mon Compte</span></h2>
+      <h2><span class="texte-color">Mon Compte Professeur</span></h2>
       <p>
         <ul>
           <li><span class="texte-color">Nom:</span> <?php echo $_SESSION['nomProfesseur']; ?></li>

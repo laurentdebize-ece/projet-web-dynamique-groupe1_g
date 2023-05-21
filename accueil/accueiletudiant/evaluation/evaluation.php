@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 // Préparer et exécuter la requête de sélection
 $stmt = $conn->prepare("SELECT * FROM evaluation WHERE destinataire = ?");
-$stmt->bind_param("s", $emailProfesseur);
+$stmt->bind_param("s", $emailProf);
 $stmt->execute();
 
 // Récupérer les résultats de la requête

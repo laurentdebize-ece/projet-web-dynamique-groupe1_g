@@ -1,27 +1,61 @@
+<?php
+session_start();
+
+// Connexion à la base de données
+$host = "localhost"; // Remplacez par l'adresse de votre serveur de base de données
+$utilisateur = "root"; // Remplacez par votre nom d'utilisateur
+$motDePasse = "root"; // Remplacez par votre mot de passe
+$nomBaseDeDonnees = "omnesmyskillsfinal"; // Remplacez par le nom de votre base de données
+
+$connexion = new PDO("mysql:host=$host;dbname=$nomBaseDeDonnees;charset=utf8", $utilisateur, $motDePasse);
+
+// Requête SQL pour récupérer l'e-mail du professeur
+$requete = $connexion->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = :emaileleve");
+$requete->bindParam(":emaileleve", $_SESSION['emaileleve']);
+$requete->execute();
+
+// Requête SQL pour récupérer le nom et le prénom du professeur
+$requeteEtudiant = $connexion->prepare("SELECT nom, prenom FROM etudiant WHERE emaileleve = :emaileleve");
+$requeteEtudiant->bindParam(":emaileleve", $_SESSION['emaileleve']);
+$requeteEtudiant->execute();
+
+// Vérification de la réussite de la requête
+if ($requete->rowCount() > 0) {
+    // Récupération de l'e-mail de l'étudiant
+    $donneesEtudiant = $requete->fetch(PDO::FETCH_ASSOC);
+
+    // Stockage de l'e-mail dans la variable de session
+    $_SESSION['emaileleve'] = $donneesEtudiant['emaileleve'];
+} else {
+    // Gestion de l'erreur si aucun étudiant n'est trouvé
+    $_SESSION['emaileleve'] = '';
+}
+
+// Vérification de la réussite de la requête pour le nom et le prénom de l'étudiant
+if ($requeteEtudiant->rowCount() > 0) {
+    // Récupération du nom et du prénom de l'étudiant
+    $donneesEtudiant = $requeteEtudiant->fetch(PDO::FETCH_ASSOC);
+
+    // Stockage du nom et du prénom dans les variables de session
+    $_SESSION['nomEtudiant'] = $donneesEtudiant['nom'];
+    $_SESSION['prenomEtudiant'] = $donneesEtudiant['prenom'];
+} else {
+    // Gestion de l'erreur si aucun étudiant n'est trouvé
+    $_SESSION['nomEtudiant'] = '';
+    $_SESSION['prenomEtudiant'] = '';
+}
+
+// Fermeture de la connexion à la base de données
+$connexion = null;
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueiletudiant.css">
-  
+  <link rel="stylesheet" type="text/css" href="pageaccueil4.css">
 </head>
-<?php
-require_once '../../BDD/init.php';
-$requete = mysqli_query($conn,' SELECT nom FROM competences ');
-
-//session_start();
-// Vérification si l'utilisateur est connecté et s'il est administrateur
-//if (isset($_SESSION['utilisateur']) && $_SESSION['utilisateur'] == 'username') {
-    // Utilisateur connecté en tant qu'administrateur
-   // echo "Vous êtes connecté en tant qu'administrateur.";
-//} else {
-    // Utilisateur non connecté ou non administrateur
-    //echo "Vous n'êtes pas autorisé à accéder à cette page.";
-    //exit;
-//}
-?>
 <body>
   <header>
     <div class="flex-container">
@@ -33,9 +67,10 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
       <div><a href="../accueiletudiant/evaluation/evaluation.php">Evaluation</a></div>
     </div>
     <div class="flex-container1">
-      <div class="right"><a href="#">Mon Compte étudiant</a></div>
+      <div><button id="open-popup">Mon Compte Etudiant</button></div>
     </div>
   </header>
+  
   <main>
     <h1>Bienvenue sur Omnes MySkills</h1>
     <div class="carousel">
@@ -52,15 +87,8 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
     <h3>Compétences populaires</h3>
     
      <table>
-         <th>Noms des compétences:</th>
-        <?php while ($donnees= mysqli_fetch_assoc($requete)){
-         ?>
-            <th> 
-                <td> 
-                    <?php echo $donnees['nom']; ?> </td>
-        </th> 
-        <?php } ?>
-        </table>
+       <th>Noms des compétences:</th>
+     </table>
         
     <h3>Dernières compétences ajoutées</h3>
 
@@ -69,13 +97,11 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
         <td> Compétence 4</td>
         <td> vvbfb </td>
         <td> vfbrbr </td>
-
       </tr>
       <tr>
         <td> Compétence 5 </td>
         <td> bbrbrfe </td>
         <td> grvefe </td>
-
       </tr>
       <tr>
         <td> Compétence 6 </td>
@@ -84,15 +110,31 @@ $requete = mysqli_query($conn,' SELECT nom FROM competences ');
       </tr>
     </table>
   </main>
-
-
-  <footer>
-    <p>Copyright © 2023 Omnes MySkills.</p>
-  </footer>
   
-  <script src="pageaccueiletudiant.js"></script>
-</body>
+  <div class="popup-overlay">
+    <div class="popup-content">
+      <h2><span class="texte-color">Mon Compte Etudiant</span></h2>
+      <p>
+        <ul>
+          <li><span class="texte-color">Nom:</span> <?php echo $_SESSION['nomEtudiant']; ?></li>
+          <li><span class="texte-color">Prénom:</span> <?php echo $_SESSION['prenomEtudiant']; ?></li>
+          <li><span class="texte-color">E-mail:</span> <?php echo $_SESSION['emaileleve']; ?></li>
+        </ul>
+      </p>
+      <button id="close-popup">Fermer</button>
+      <form method="post" action="deconnexion.php">
+        <button type="submit" name="logout">Se déconnecter</button>
+      </form>
+    </div>
+  </div>
+  
+  <footer>
+    <p>© 2023 Omnes MySkills. Tous droits réservés.</p>
+  </footer>
 
+  <script src="pageaccueiletudiant1.js"></script>
+</body>
 </html>
+
 
 

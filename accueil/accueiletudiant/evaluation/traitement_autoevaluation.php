@@ -5,6 +5,12 @@ $username = "root";
 $password = "root";
 $dbname = "omnesmyskillsfinal";
 
+// Récupérer les données du formulaire
+$idCompetence = $_POST['id'];
+$evaluation = $_POST['evaluation'];
+$emailEleve = $_POST['emaileleve'];
+$destinataire = $_POST['destinataire'];
+
 // Créer une connexion à la base de données
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,39 +19,21 @@ if ($conn->connect_error) {
     die("Erreur de connexion à la base de données : " . $conn->connect_error);
 }
 
-// Récupérer les valeurs du formulaire
-$competence = $_POST['competence'];
-$professeur = $_POST['professeur'];
+// Préparer et exécuter la requête d'insertion
+$stmt = $conn->prepare("INSERT INTO evaluations (id, evaluation, emaileleve, emailprof) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("isss", $idCompetence, $evaluation, $emailEleve, $destinataire);
 
-// Requête pour récupérer les informations du compte professeur associé à la compétence sélectionnée
-$query = "SELECT professeur.emailprof, professeur.nom FROM professeur
-          JOIN enseigner ON professeur.emailprof = enseigner.emailprof
-          WHERE enseigner.numeromatiere = '$competence'";
-
-$result = $conn->query($query);
-
-if ($result->num_rows > 0) {
-    // Récupérer les informations du compte professeur
-    $row = $result->fetch_assoc();
-    $emailProfesseur = $row['emailprof'];
-    $nomProfesseur = $row['nom'];
-
-    // Envoyer les données à l'email du professeur ou effectuer d'autres actions souhaitées
-    // Par exemple, envoi d'un e-mail
-    $to = $emailProfesseur;
-    $subject = "Autoévaluation : $competence";
-    $message = "Un étudiant a effectué une autoévaluation pour la compétence $competence.";
-    $headers = "From: votre_adresse_email@example.com";
-
-    if (mail($to, $subject, $message, $headers)) {
-        echo "Autoévaluation envoyée au professeur $nomProfesseur.";
-    } else {
-        echo "Erreur lors de l'envoi de l'autoévaluation.";
-    }
+if ($stmt->execute()) {
+    echo "L'évaluation a été enregistrée avec succès.";
 } else {
-    echo "Aucun compte professeur trouvé pour la compétence et le professeur sélectionnés.";
+    echo "Erreur lors de l'enregistrement de l'évaluation : " . $stmt->error;
 }
 
-// Fermer la connexion à la base de données
+$stmt->close();
 $conn->close();
 ?>
+
+
+
+
+

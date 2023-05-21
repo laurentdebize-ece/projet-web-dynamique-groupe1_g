@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : sam. 20 mai 2023 à 17:30
+-- Généré le : dim. 21 mai 2023 à 16:50
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -74,7 +74,7 @@ CREATE TABLE `competences` (
   `statut` varchar(200) NOT NULL,
   `datecreation` date DEFAULT NULL,
   `datelimite` date DEFAULT NULL,
-  `ecole` varchar(255) NOT NULL DEFAULT ''
+  `ecole` varchar(255) NOT NULL DEFAULT 'ECE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -185,11 +185,12 @@ INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `motdepasse`, `numeroclas
 --
 
 CREATE TABLE `evaluations` (
-  `numeval` int(50) NOT NULL,
+  `numeval` int(11) NOT NULL DEFAULT '0',
   `emaileleve` varchar(200) NOT NULL,
-  `numniveval` int(50) NOT NULL,
-  `email du prof` varchar(255) NOT NULL,
-  `id` int(50) NOT NULL
+  `numniveval` int(50) DEFAULT NULL,
+  `id` int(50) NOT NULL,
+  `evaluation` varchar(255) DEFAULT NULL,
+  `emailprof` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -300,7 +301,7 @@ ALTER TABLE `evaluations`
   ADD KEY `fk_emaileleve` (`emaileleve`),
   ADD KEY `fk_numniveval` (`numniveval`),
   ADD KEY `fk_id` (`id`),
-  ADD KEY `fk_emailduprof` (`email du prof`);
+  ADD KEY `fk_emailprof` (`emailprof`);
 
 --
 -- Index pour la table `matieres`
@@ -336,9 +337,14 @@ ALTER TABLE `competences_matieres`
 --
 ALTER TABLE `enseigner`
   ADD CONSTRAINT `fk_emaileleve` FOREIGN KEY (`emaileleve`) REFERENCES `etudiant` (`emaileleve`),
-  ADD CONSTRAINT `fk_emailprof` FOREIGN KEY (`emailprof`) REFERENCES `professeur` (`emailprof`),
   ADD CONSTRAINT `fk_numeroclasse` FOREIGN KEY (`numeroclasse`) REFERENCES `classe` (`numeroclasse`),
   ADD CONSTRAINT `fk_numeromatiere` FOREIGN KEY (`numeromatiere`) REFERENCES `matieres` (`numeromatiere`);
+
+--
+-- Contraintes pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  ADD CONSTRAINT `fk_emailprof` FOREIGN KEY (`emailprof`) REFERENCES `professeur` (`emailprof`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

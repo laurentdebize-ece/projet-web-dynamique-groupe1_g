@@ -1,35 +1,50 @@
 <?php
-// Connexion à la base de données
+session_start();
+
+// Informations de connexion à la base de données
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$database = "omnesmyskillsfinal";
+$dbname = "omnesmyskillsfinal";
 
-$conn = new mysqli($servername, $username, $password, $database);
+// Créer une connexion à la base de données
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Vérifier la connexion
 if ($conn->connect_error) {
-    die("La connexion a échoué : " . $conn->connect_error);
+    die("Erreur de connexion à la base de données : " . $conn->connect_error);
 }
 
-// Requête pour récupérer les résultats des autoévaluations
-$query = "SELECT * FROM autoevaluations";
+// Récupérer le mail de l'utilisateur
+if (isset($_SESSION['email'])) {
+    $emailProfesseur = $_SESSION['email'];
+} else {
+    echo "Erreur : L'email de l'utilisateur n'est pas disponible.";
+    exit;
+}
 
-$result = $conn->query($query);
+// Préparer et exécuter la requête pour récupérer les données
+$stmt = $conn->prepare("SELECT * FROM evaluation WHERE destinataire = ?");
+$stmt->bind_param("s", $emailProfesseur);
+$stmt->execute();
+$result = $stmt->get_result();
 
-$rows = [];
-if ($result->num_rows > 0) {
+// Vérifier si des résultats ont été retournés
+if ($result) {
+    // Parcourir les résultats et afficher les données
     while ($row = $result->fetch_assoc()) {
-        $rows[] = $row;
+        // Accéder aux données par leurs noms de colonnes
+        $idCompetence = $row['id'];
+        $evaluation = $row['evaluation'];
+        $emailEleve = $row['email_eleve'];
+        
+        // Faire quelque chose avec les données récupérées
+        // ...
     }
+} else {
+    echo "Aucune donnée trouvée.";
 }
 
-// Fermer la connexion à la base de données
+$stmt->close();
 $conn->close();
-
-// Renvoyer les données des autoévaluations sous forme de JSON
-header('Content-Type: application/json');
-echo json_encode($rows);
 ?>
-
-

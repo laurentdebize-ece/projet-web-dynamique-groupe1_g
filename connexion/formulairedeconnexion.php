@@ -27,7 +27,6 @@ if (isset($_POST['submit'])) {
             // Redirection vers la page d'accueil après connexion réussie pour l'administrateur
             header("Location: ../accueil/accueiladmin/pageaccueiladmin.html");
             exit;
-
         } elseif ($result_etudiant && mysqli_num_rows($result_etudiant) == 1) {
             // Récupération des données de l'étudiant
             $row_etudiant = mysqli_fetch_assoc($result_etudiant);
@@ -41,9 +40,6 @@ if (isset($_POST['submit'])) {
             // Redirection vers la page d'accueil après connexion réussie pour l'étudiant
             header("Location: ../accueil/accueiletudiant/pageaccueiletudiant.php");
             exit;
-        }
-        
-            
         } elseif ($result_professeur && mysqli_num_rows($result_professeur) == 1) {
             // Récupération de l'e-mail du professeur
             $row_professeur = mysqli_fetch_assoc($result_professeur);
@@ -59,7 +55,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Email ou mot de passe incorrect";
     }
-
+}
 
 mysqli_close($conn);
 ?>

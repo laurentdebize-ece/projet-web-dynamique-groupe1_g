@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : dim. 21 mai 2023 à 16:50
+-- Généré le : dim. 21 mai 2023 à 23:18
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -185,13 +185,22 @@ INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `motdepasse`, `numeroclas
 --
 
 CREATE TABLE `evaluations` (
-  `numeval` int(11) NOT NULL DEFAULT '0',
   `emaileleve` varchar(200) NOT NULL,
   `numniveval` int(50) DEFAULT NULL,
   `id` int(50) NOT NULL,
   `evaluation` varchar(255) DEFAULT NULL,
-  `emailprof` varchar(255) DEFAULT NULL
+  `emailprof` varchar(255) DEFAULT NULL,
+  `avis_prof` varchar(255) DEFAULT NULL,
+  `numeval` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `evaluations`
+--
+
+INSERT INTO `evaluations` (`emaileleve`, `numniveval`, `id`, `evaluation`, `emailprof`, `avis_prof`, `numeval`) VALUES
+('lena.blampain@edu.ece.fr', NULL, 1, 'acquis', 'bianchi@edu.ece.fr', NULL, 1),
+('lena.blampain@edu.ece.fr', NULL, 1, 'acquis', 'bianchi@edu.ece.fr', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -320,6 +329,16 @@ ALTER TABLE `niveval`
 --
 ALTER TABLE `professeur`
   ADD PRIMARY KEY (`emailprof`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  MODIFY `numeval` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

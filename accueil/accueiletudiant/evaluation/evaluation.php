@@ -1,42 +1,106 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "omnesmyskillsfinal";
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autoévaluation</title>
+</head>
+<body>
+    <h1>Autoévaluation</h1>
 
-// Créer une connexion à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
+    <form action="traitement_autoevaluation.php" method="POST">
+        <label for="competence">Choisissez une compétence :</label>
+        <select name="id" id="competence">
+            <?php
+            // Informations de connexion à la base de données
+            $servername = "localhost";
+            $username = "root";
+            $password = "root";
+            $dbname = "omnesmyskillsfinal";
 
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Erreur de connexion à la base de données : " . $conn->connect_error);
-}
-?>
-<?php
-// Supposons que vous avez déjà récupéré l'e-mail du professeur dans une variable $emailProfesseur
+            // Créer une connexion à la base de données
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Préparer et exécuter la requête de sélection
-$stmt = $conn->prepare("SELECT * FROM evaluation WHERE destinataire = ?");
-$stmt->bind_param("s", $emailProf);
-$stmt->execute();
+            // Vérifier la connexion
+            if ($conn->connect_error) {
+                die("Erreur de connexion à la base de données : " . $conn->connect_error);
+            }
 
-// Récupérer les résultats de la requête
-$result = $stmt->get_result();
+            // Récupérer les compétences depuis la base de données
+            $queryCompetences = "SELECT id, nom FROM competences";
+            $resultCompetences = $conn->query($queryCompetences);
 
-// Parcourir les résultats et afficher les données
-while ($row = $result->fetch_assoc()) {
-    // Afficher les données comme vous le souhaitez
-    echo "ID : " . $row['id'] . "<br>";
-    echo "Évaluation : " . $row['evaluation'] . "<br>";
-    echo "E-mail de l'élève : " . $row['email_eleve'] . "<br>";
-    echo "Destinataire : " . $row['destinataire'] . "<br>";
-    echo "<br>";
-}
+            // Vérifier s'il y a des résultats
+            if ($resultCompetences->num_rows > 0) {
+                // Afficher les options de compétences
+                while ($row = $resultCompetences->fetch_assoc()) {
+                    echo '<option value="' . $row["id"] . '">' . $row["nom"] . '</option>';
+                }
+            } else {
+                echo '<option value="">Aucune compétence trouvée.</option>';
+            }
+            ?>
+        </select>
 
-$stmt->close();
-$conn->close();
-?>
+        <!-- Champ caché pour l'ID de la compétence -->
+        <input type="hidden" name="competence_id" value="">
 
+        <br><br>
+
+        <label for="evaluation">Évaluation :</label>
+        <select name="evaluation" id="evaluation">
+            <option value="acquis">Acquis</option>
+            <option value="non_acquis">Non acquis</option>
+            <option value="en_cours">En cours d'acquisition</option>
+        </select>
+
+        <br><br>
+
+        <label for="emaileleve">Adresse e-mail de l'étudiant :</label>
+        <input type="email" name="emaileleve" id="emaileleve" required>
+
+        <br><br>
+
+        <label for="destinataire">Choisissez un destinataire :</label>
+        <select name="destinataire" id="destinataire">
+            <?php
+            // Requête pour récupérer les professeurs depuis la base de données
+            $queryProfesseur = "SELECT emailprof, Nom FROM professeur";
+            $resultProfesseur = $conn->query($queryProfesseur);
+
+            // Vérifier s'il y a des résultats
+            if ($resultProfesseur->num_rows > 0) {
+                // Afficher les options des professeurs
+                while ($row = $resultProfesseur->fetch_assoc()) {
+                    echo '<option value="' . $row["emailprof"] . '">' . $row["Nom"] . '</option>';
+                }
+            } else {
+                echo '<option value="">Aucun professeur trouvé.</option>';
+            }
+            ?>
+        </select>
+
+        <br><br>
+        <label for="avis_prof">Avis du professeur :</label>
+        <textarea name="avis_prof" id="avis_prof"></textarea>
+
+
+        <input type="submit" value="Envoyer">
+    </form>
+
+    <?php
+    // Vérifier si l'évaluation a été enregistrée avec succès
+    if (isset($_GET['success'])) {
+        echo "<p>L'évaluation a été enregistrée avec succès.</p>";
+    }
+
+    // Vérifier si une erreur s'est produite lors de l'enregistrement de l'évaluation
+    if (isset($_GET['error'])) {
+        echo "<p>Erreur lors de l'enregistrement de l'évaluation : " . $_GET['error'] . "</p>";
+    }
+
+    $conn->close();
+    ?>
+</body>
+</html>
 
 
 

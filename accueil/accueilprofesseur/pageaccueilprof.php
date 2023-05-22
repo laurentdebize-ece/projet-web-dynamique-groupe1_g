@@ -61,7 +61,7 @@ $connexion = null;
   <header>
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-      <div><a href="competenceprof.html">Compétence</a></div>
+      <div><a href="competenceprof.html">Compétences</a></div>
       <div><a href="validation_auto_eval/autoevaluation.php">Auto évaluation</a></div>
     </div>
     <div class="flex-container1">

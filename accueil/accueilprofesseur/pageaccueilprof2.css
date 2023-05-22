@@ -4,49 +4,45 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #333333f4;
-    background-color: #5a4444a2;
+    color: #333333;
+    background-color: #f5f3f8;
   }
   
   /* Style pour le header */
   header {
-    background-color: #433940;
+    background-color: #74599b;
     color: #ffffff;
     padding: 30px;
-    display: flex; /* Permet d'utiliser la flexbox pour aligner les éléments */
-    justify-content: space-between; /* Aligne les éléments horizontalement en les espaçant */
-    align-items: center; /* Centre verticalement les éléments */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .flex-container {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: flex; /* Utilise la flexbox pour afficher les éléments en ligne */
+    display: flex;
   }
   
   .flex-container > div {
     margin-right: 20px;
   }
   
-  /*couleur accueil matiere competences ... */
-  
   .flex-container > div a {
-    color: #ffffff; /* Couleur blanche */
+    color: #ffffff;
     text-decoration: none;
   }
   
-  
-  .flex-container> div a:hover {
+  .flex-container > div a:hover {
     text-decoration: underline;
   }
-  .flex-container> div.right  {
+  
+  .flex-container > div.right {
     margin-left: auto;
   }
   
-  
-  
-  .flex-container1{
+  .flex-container1 {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -55,21 +51,19 @@ body {
   }
   
   .flex-container1 > div a {
-    color: #ffffff; /* Couleur blanche */
+    color: #ffffff;
     text-decoration: none;
   }
   
-    
   .flex-container1 > div {
     margin-right: 20px;
   }
   
-  
-  
-  .flex-container1> div a:hover {
+  .flex-container1 > div a:hover {
     text-decoration: underline;
   }
-  .flex-container1> div.right {
+  
+  .flex-container1 > div.right {
     margin-left: auto;
   }
   
@@ -78,7 +72,8 @@ body {
     border-collapse: collapse;
   }
   
-  table th, table td {
+  table th,
+  table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -97,7 +92,6 @@ body {
     background-color: #f5f5f5;
   }
   
-  
   /* Style pour le contenu principal */
   main {
     max-width: 800px;
@@ -110,7 +104,6 @@ body {
     margin-bottom: 20px;
     text-align: center;
   }
-  
   
   .carousel {
     width: 1000px;
@@ -133,36 +126,34 @@ body {
     opacity: 1;
   }
   
-  
   .controls {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   
   .controls span {
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+    font-size: 30px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
   }
   
   .controls span:hover {
-  transform: scale(1.2);
+    transform: scale(1.2);
   }
   
   .prev {
-  margin-left: 20px;
+    margin-left: 20px;
   }
   
   .next {
-  margin-right: 20px;
+    margin-right: 20px;
   }
-
-
+  
   h2 {
     font-size: 24px;
     margin-top: 40px;
@@ -170,9 +161,9 @@ body {
   }
   
   h3 {
-  font-size: 15px;
-  margin-top: 40px;
-  margin-bottom: 20px;
+    font-size: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
   
   ul {
@@ -188,30 +179,30 @@ body {
   
   /* Style pour le pied de page */
   footer {
-    background-color: #333;
+    background-color: #614882;
     color: #fff;
     padding: 10px;
     text-align: center;
   }
   
   /* Style du pop-up */
-.popup-overlay {
+  .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 180%;
-    height: 20%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
     align-items: center;
   }
   
   .texte-color {
-    color: rgb(178, 153, 153);
+    color: #b678bb;
   }
   
   .popup-content {
-    background-color: #666262; /* Fond gris */
+    background-color: #ffffff;
     padding: 1%;
   }
-  

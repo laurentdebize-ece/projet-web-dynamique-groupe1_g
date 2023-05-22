@@ -56,7 +56,7 @@ mysqli_close($conn);
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueilprof1.css">
+  <link rel="stylesheet" type="text/css" href="pageaccueilprof2.css">
 </head>
 <body>
   <header>

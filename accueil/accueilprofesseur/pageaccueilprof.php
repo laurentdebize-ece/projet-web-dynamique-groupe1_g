@@ -1,53 +1,54 @@
 <?php
 session_start();
 
-// Connexion à la base de données
-$host = "localhost"; // Remplacez par l'adresse de votre serveur de base de données
-$utilisateur = "root"; // Remplacez par votre nom d'utilisateur
-$motDePasse = ""; // Remplacez par votre mot de passe
-$nomBaseDeDonnees = "omnesmyskillsfinal"; // Remplacez par le nom de votre base de données
-
-$connexion = new PDO("mysql:host=$host;dbname=$nomBaseDeDonnees;charset=utf8", $utilisateur, $motDePasse);
-
+require_once '../../BDD/init.php';
 // Requête SQL pour récupérer l'e-mail du professeur
-$requete = $connexion->prepare("SELECT emailprof FROM professeur WHERE emailprof = :emailprof");
-$requete->bindParam(":emailprof", $_SESSION['emailprof']);
+$requete = $conn->prepare("SELECT emailprof FROM professeur WHERE emailprof = ?");
+$requete->bind_param("s", $_SESSION['emailprof']);
 $requete->execute();
+$requete->store_result();
 
 // Requête SQL pour récupérer le nom et le prénom du professeur
-$requeteProfesseur = $connexion->prepare("SELECT Nom, prenom FROM professeur WHERE emailprof = :emailprof");
-$requeteProfesseur->bindParam(":emailprof", $_SESSION['emailprof']);
+$requeteProfesseur = $conn->prepare("SELECT Nom, prenom FROM professeur WHERE emailprof = ?");
+$requeteProfesseur->bind_param("s", $_SESSION['emailprof']);
 $requeteProfesseur->execute();
-
+$requeteProfesseur->store_result();
 
 // Vérification de la réussite de la requête
-if ($requete->rowCount() > 0) {
+if ($requete->num_rows > 0) {
     // Récupération de l'e-mail du professeur
-    $donneesProfesseur = $requete->fetch(PDO::FETCH_ASSOC);
+    $requete->bind_result($emailprof);
+    $requete->fetch();
 
     // Stockage de l'e-mail dans la variable de session
-    $_SESSION['emailprof'] = $donneesProfesseur['emailprof'];
+    $_SESSION['emailprof'] = $emailprof;
 } else {
     // Gestion de l'erreur si aucun professeur n'est trouvé
     $_SESSION['emailprof'] = '';
 }
 
 // Vérification de la réussite de la requête pour le nom et le prénom du professeur
-if ($requeteProfesseur->rowCount() > 0) {
+if ($requeteProfesseur->num_rows > 0) {
     // Récupération du nom et du prénom du professeur
-    $donneesProfesseur = $requeteProfesseur->fetch(PDO::FETCH_ASSOC);
+    $requeteProfesseur->bind_result($nom, $prenom);
+    $requeteProfesseur->fetch();
 
     // Stockage du nom et du prénom dans les variables de session
-    $_SESSION['nomProfesseur'] = $donneesProfesseur['Nom'];
-    $_SESSION['prenomProfesseur'] = $donneesProfesseur['prenom'];
+    $_SESSION['nomProfesseur'] = $nom;
+    $_SESSION['prenomProfesseur'] = $prenom;
 } else {
     // Gestion de l'erreur si aucun professeur n'est trouvé
     $_SESSION['nomProfesseur'] = '';
     $_SESSION['prenomProfesseur'] = '';
 }
 
+// Fermeture de la requête
+$requete->close();
+$requeteProfesseur->close();
+
 // Fermeture de la connexion à la base de données
-$connexion = null;
+mysqli_close($conn);
+
 ?>
 
 <!DOCTYPE html>
@@ -55,13 +56,13 @@ $connexion = null;
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueilprof1.css">
+  <link rel="stylesheet" type="text/css" href="pageaccueilprof2.css">
 </head>
 <body>
   <header>
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-      <div><a href="competenceprof.html">Compétence</a></div>
+      <div><a href="competenceprof.html">Compétences</a></div>
       <div><a href="validation_auto_eval/autoevaluation.php">Auto évaluation</a></div>
     </div>
     <div class="flex-container1">
@@ -140,10 +141,3 @@ $connexion = null;
   </div>
 </body>
 </html>
-
-
-
-
-
-
-

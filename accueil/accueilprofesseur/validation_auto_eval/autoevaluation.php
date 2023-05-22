@@ -7,14 +7,7 @@ if (!isset($_SESSION['emailprof'])) {
     exit;
 }
 
-// Informations de connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "omnesmyskillsfinal";
-
-// Créer une connexion à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once '../../../BDD/init.php';
 
 // Vérifier la connexion
 if ($conn->connect_error) {
@@ -39,14 +32,14 @@ if ($result && $result->num_rows > 0) {
         $numNiveauEval = $row['numniveval'];
         $idCompetence = $row['id'];
         $evaluation = $row['evaluation'];
-        
+       
         // Afficher les données de l'évaluation
         echo "Numéro d'évaluation: $numEval<br>";
         echo "Email de l'élève: $emailEleve<br>";
         echo "Numéro de niveau d'évaluation: $numNiveauEval<br>";
         echo "ID de compétence: $idCompetence<br>";
         echo "Évaluation: $evaluation<br>";
-        
+       
         // Formulaire pour l'avis du professeur
         echo '<form action="evaluation.php" method="post">';
         echo '<input type="hidden" name="numEval" value="' . $numEval . '">';
@@ -58,7 +51,7 @@ if ($result && $result->num_rows > 0) {
         echo '</select>';
         echo '<input type="submit" name="submit" value="Envoyer">';
         echo '</form>';
-        
+       
         echo '<hr>';
     }
 } else {
@@ -68,4 +61,3 @@ if ($result && $result->num_rows > 0) {
 $stmt->close();
 $conn->close();
 ?>
-

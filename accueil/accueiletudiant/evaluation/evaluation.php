@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Autoévaluation</title>
+    <title>Auto-évaluation</title>
+    <link rel="stylesheet" type="text/css" href="evaluation.css">
 </head>
 <body>
     <h1>Autoévaluation</h1>
@@ -10,14 +11,7 @@
         <label for="competence">Choisissez une compétence :</label>
         <select name="id" id="competence">
             <?php
-            // Informations de connexion à la base de données
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "omnesmyskillsfinal";
-
-            // Créer une connexion à la base de données
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            require_once '../../../BDD/init.php';
 
             // Vérifier la connexion
             if ($conn->connect_error) {

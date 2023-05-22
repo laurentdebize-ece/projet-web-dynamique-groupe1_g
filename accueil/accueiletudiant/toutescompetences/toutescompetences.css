@@ -1,0 +1,45 @@
+/* Style pour le corps de la page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333333;
+    background-color: #f4f1f7;
+  }
+  
+  /* Style pour le titre */
+  h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    color: #6b3e8f;
+  }
+  
+  /* Style pour la liste des compétences */
+  ul#competencesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul#competencesList li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #f0e8f4;
+    color: #6b3e8f;
+    border-radius: 4px;
+  }
+  
+  /* Style pour le texte dans les compétences */
+  ul#competencesList li span {
+    color: #8a63a9;
+  }
+  
+  /* Style pour l'effet de survol */
+  ul#competencesList li:hover {
+    background-color: #dcd0e6;
+    cursor: pointer;
+  }
+  

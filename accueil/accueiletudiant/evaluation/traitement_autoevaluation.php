@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-// Informations de connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "omnesmyskillsfinal";
+require_once '../../../BDD/init.php';
 
 // Vérifier si l'utilisateur est connecté et si son e-mail est disponible dans $_SESSION
 if (!isset($_SESSION['emaileleve'])) {
@@ -21,8 +17,6 @@ $idCompetence = $_POST['id'];
 $evaluation = $_POST['evaluation'];
 $destinataire = $_POST['destinataire'];
 
-// Créer une connexion à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Vérifier la connexion
 if ($conn->connect_error) {

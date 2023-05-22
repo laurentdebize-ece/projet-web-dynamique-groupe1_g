@@ -41,3 +41,44 @@ if (isset($_GET['matiere'])) {
 // Fermeture de la connexion à la base de données
 mysqli_close($conn);
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compétences par matière</title>
+    <style>
+        h3 {
+  text-align: center;
+  font-size: 24px;
+  color: #6b3e8f;
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+ul li {
+  font-size: 18px;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 18px;
+  color: #ff0000;
+  margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <?php
+    // Votre code PHP ici pour afficher les compétences par matière
+    ?>
+</body>
+</html>

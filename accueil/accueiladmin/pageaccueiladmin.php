@@ -2,76 +2,79 @@
 session_start();
 
 require_once '../../BDD/init.php';
-// Requête SQL pour récupérer l'e-mail de l'étudiant
-$requete = $conn->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = ?");
-$requete->bind_param("s", $_SESSION['emaileleve']);
+// Requête SQL pour récupérer l'e-mail de l'admin
+$requete = $conn->prepare("SELECT email FROM admin WHERE email = ?");
+$requete->bind_param("s", $_SESSION['email']);
 $requete->execute();
 $requete->store_result();
 
 // Requête SQL pour récupérer le nom et le prénom de l'étudiant
-$requeteEtudiant = $conn->prepare("SELECT nom, prenom FROM etudiant WHERE emaileleve = ?");
-$requeteEtudiant->bind_param("s", $_SESSION['emaileleve']);
-$requeteEtudiant->execute();
-$requeteEtudiant->store_result();
+$requeteAdmin = $conn->prepare("SELECT nom, prenom FROM admin WHERE email = ?");
+$requeteAdmin->bind_param("s", $_SESSION['email']);
+$requeteAdmin->execute();
+$requeteAdmin->store_result();
 
 // Vérification de la réussite de la requête
 if ($requete->num_rows > 0) {
     // Récupération de l'e-mail de l'étudiant
-    $requete->bind_result($emaileleve);
+    $requete->bind_result($email);
     $requete->fetch();
 
     // Stockage de l'e-mail dans la variable de session
-    $_SESSION['emaileleve'] = $emaileleve;
+    $_SESSION['email'] = $email;
 } else {
     // Gestion de l'erreur si aucun étudiant n'est trouvé
-    $_SESSION['emaileleve'] = '';
+    $_SESSION['email'] = '';
 }
 
 // Vérification de la réussite de la requête pour le nom et le prénom de l'étudiant
-if ($requeteEtudiant->num_rows > 0) {
+if ($requeteAdmin->num_rows > 0) {
     // Récupération du nom et du prénom de l'étudiant
-    $requeteEtudiant->bind_result($nom, $prenom);
-    $requeteEtudiant->fetch();
+    $requeteAdmin->bind_result($nom, $prenom);
+    $requeteAdmin->fetch();
 
     // Stockage du nom et du prénom dans les variables de session
-    $_SESSION['nomEtudiant'] = $nom;
-    $_SESSION['prenomEtudiant'] = $prenom;
+    $_SESSION['nomAdmin'] = $nom;
+    $_SESSION['prenomAdmin'] = $prenom;
 } else {
     // Gestion de l'erreur si aucun étudiant n'est trouvé
-    $_SESSION['nomEtudiant'] = '';
-    $_SESSION['prenomEtudiant'] = '';
+    $_SESSION['nomAdmin'] = '';
+    $_SESSION['prenomAdmin'] = '';
 }
 
 // Fermeture de la requête
 $requete->close();
-$requeteEtudiant->close();
+$requeteAdmin->close();
 
 // Fermeture de la connexion à la base de données
 mysqli_close($conn);
 ?>
 
+
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueiletudiant5.css">
+  <link rel="stylesheet" type="text/css" href="pageaccueiladmin2.css">
+  
 </head>
+
 <body>
   <header>
-    <div class="flex-container">
-      <div><a href="#">Accueil</a></div>
-      <div><a href="../accueiletudiant/matieresetudiant/matieres.html">Matière</a></div>
-      <div><a href="../accueiletudiant/mescompetences/mescompetences.html">Mes Compétences</a></div>
-      <div><a href="#">Compétences Transverses</a></div>
-      <div><a href="../accueiletudiant/toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
-      <div><a href="../accueiletudiant/evaluation/evaluation.php">Evaluation</a></div>
-    </div>
+    
+      <div class="flex-container">
+        <div><a href="#">Accueil</a></div>
+        <div><a href="#">Matières</a></div>
+        <div><a href="#">Etudiants</a></div>
+        <div><a href="#">Compétences</a></div>
+        <div><a href="./ajouterProfEtudiant/ajouter.html">ajouter Professeurs et Etudiants</a></div>
+      </div>
     <div class="flex-container1">
-      <div><button id="open-popup">Mon Compte Etudiant</button></div>
+      <div><button id="open-popup">Mon compte admin </button>
     </div>
   </header>
-  
   <main>
     <h1>Bienvenue sur Omnes MySkills</h1>
     <div class="carousel">
@@ -86,18 +89,27 @@ mysqli_close($conn);
 
     <h2> Ici, vous pouvez trouver les différentes compétences pour vous améliorer</h2>
     <h3>Compétences populaires</h3>
-    
-     <table>
-       <th>Noms des compétences:</th>
-       <?php while ($donnees= mysqli_fetch_assoc($requete)){
-         ?>
-            <th> 
-                <td> 
-                    <?php echo $donnees['nom']; ?> </td>
-        </th> 
-        <?php } ?>
-     </table>
-        
+
+    <table>
+      <tr>
+        <td> Compétence1</td>
+        <td> vvbfb </td>
+        <td> vfbrbr </td>
+
+      </tr>
+      <tr>
+        <td> Compétence 2 </td>
+        <td> bbrbrfe </td>
+        <td> grvefe </td>
+
+      </tr>
+      <tr>
+        <td> Compétence 3 </td>
+        <td> feefev </td>
+        <td> vrvrrb </td>
+      </tr>
+    </table>
+
     <h3>Dernières compétences ajoutées</h3>
 
     <table>
@@ -105,11 +117,13 @@ mysqli_close($conn);
         <td> Compétence 4</td>
         <td> vvbfb </td>
         <td> vfbrbr </td>
+
       </tr>
       <tr>
         <td> Compétence 5 </td>
         <td> bbrbrfe </td>
         <td> grvefe </td>
+
       </tr>
       <tr>
         <td> Compétence 6 </td>
@@ -118,15 +132,15 @@ mysqli_close($conn);
       </tr>
     </table>
   </main>
-  
+
   <div class="popup-overlay">
     <div class="popup-content">
-      <h2><span class="texte-color">Mon Compte Etudiant</span></h2>
+      <h2><span class="texte-color">Mon Compte Admin</span></h2>
       <p>
         <ul>
-          <li><p class="texte-color">Nom:<?php echo $_SESSION['nomEtudiant']; ?></p></li>
-          <li><p class="texte-color">Prénom: <?php echo $_SESSION['prenomEtudiant']; ?></p></li>
-          <li><p class="texte-color">E-mail:<?php  echo $_SESSION['emaileleve']; ?></p></li>
+          <li><span class="texte-color">Nom:</span> <?php echo $_SESSION['nomAdmin']; ?></li>
+          <li><span class="texte-color">Prénom:</span> <?php echo $_SESSION['prenomAdmin']; ?></li>
+          <li><span class="texte-color">E-mail:</span> <?php echo $_SESSION['email']; ?></li>
         </ul>
       </p>
       <button id="close-popup">Fermer</button>
@@ -135,11 +149,13 @@ mysqli_close($conn);
       </form>
     </div>
   </div>
-  
-  <footer>
-    <p>© 2023 Omnes MySkills. Tous droits réservés.</p>
-  </footer>
 
-  <script src="pageaccueiletudiant1.js"></script>
+
+  <footer>
+    <p>Copyright © 2023 Omnes MySkills.</p>
+  </footer>
+  
+  <script src="pageaccueiladmin1.js"></script>
+ 
 </body>
 </html>

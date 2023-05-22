@@ -1,0 +1,90 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  body {
+    background-color: #f6f2ff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  h1 {
+    text-align: center;
+    padding: 20px;
+    font-family: "Arial", sans-serif;
+    text-transform: uppercase;
+    color: #6b3e8f;
+    margin-top: 0;
+  }
+  
+  form {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  form label {
+    font-size: 18px;
+    color: #6b3e8f;
+  }
+  
+  form select {
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #6b3e8f;
+    border: 1px solid #6b3e8f;
+    background-color: #f0e8f4;
+  }
+  
+  form input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #6b3e8f;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #competences-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #competences-table thead th {
+    padding: 12px;
+    font-size: 18px;
+    text-align: left;
+    color: #6b3e8f;
+    background-color: #f0e8f4;
+    border-bottom: 2px solid #6b3e8f;
+  }
+  
+  #competences-table tbody td {
+    padding: 12px;
+    font-size: 16px;
+    color: #333333;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  footer {
+    background-color: #6b3e8f;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+  }
+  
+
+  

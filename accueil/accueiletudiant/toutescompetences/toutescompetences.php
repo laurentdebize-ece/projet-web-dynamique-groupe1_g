@@ -1,11 +1,5 @@
 <?php
-// Connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$database = "omnesmyskillsfinal";
-
-$conn = new mysqli($servername, $username, $password, $database);
+require_once '../../../BDD/init.php';
 
 // Vérifier la connexion
 if ($conn->connect_error) {

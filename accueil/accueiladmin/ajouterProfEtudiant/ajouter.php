@@ -168,4 +168,78 @@ if (isset($_POST["ajouter3"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+// POUR ETUDIANT
+if (isset($_POST["supprimer1"])) {
+    if ($conn) {
+        // Vérifier si l'étudiant existe dans la base de données
+        $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) != 0) {
+            // Supprimer l'étudiant de la base de données
+            $sql = "DELETE FROM etudiant WHERE emaileleve = '$emaileleve'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                echo "<p>Suppression réussie.</p>";
+            } else {
+                echo "<p>Une erreur est survenue lors de la suppression de l'étudiant.</p>";
+            }
+        } else {
+            echo "<p>L'étudiant n'existe pas.</p>";
+        }
+    } else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
+
+// POUR PROF
+if (isset($_POST["supprimer2"])) {
+    if ($conn) {
+        // Vérifier si le professeur existe dans la base de données
+        $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) != 0) {
+            // Supprimer le professeur de la base de données
+            $sql = "DELETE FROM professeur WHERE emailprof = '$emailprof'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                echo "<p>Suppression réussie.</p>";
+            } else {
+                echo "<p>Une erreur est survenue lors de la suppression du professeur.</p>";
+            }
+        } else {
+            echo "<p>Le professeur n'existe pas.</p>";
+        }
+    } else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
+
+// POUR MATIERES
+if (isset($_POST["supprimer3"])) {
+    if ($conn) {
+        // Vérifier si la matière existe dans la base de données
+        $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) != 0) {
+            // Supprimer la matière de la base de données
+            $sql = "DELETE FROM matieres WHERE numeromatiere = '$numeromatiere'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                echo "<p>Suppression réussie.</p>";
+            } else {
+                echo "<p>Une erreur est survenue lors de la suppression de la matière.</p>";
+            }
+        } else {
+            echo "<p>La matière n'existe pas.</p>";
+        }
+    } else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
+
 ?>

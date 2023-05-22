@@ -2,9 +2,10 @@
 session_start();
 
 require_once '../../BDD/init.php';
-// Requête SQL pour récupérer l'e-mail de l'étudiant
-$requete = $conn->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = ?");
-$requete->bind_param("s", $_SESSION['emaileleve']);
+
+// Requête SQL pour récupérer l'e-mail du professeur
+$requete = $connexion->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = :emaileleve");
+$requete->bindParam(":emaileleve", $_SESSION['emaileleve']);
 $requete->execute();
 $requete->store_result();
 

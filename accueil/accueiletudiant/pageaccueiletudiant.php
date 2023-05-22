@@ -2,10 +2,9 @@
 session_start();
 
 require_once '../../BDD/init.php';
-
-// Requête SQL pour récupérer l'e-mail du professeur
-$requete = $connexion->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = :emaileleve");
-$requete->bindParam(":emaileleve", $_SESSION['emaileleve']);
+// Requête SQL pour récupérer l'e-mail de l'étudiant
+$requete = $conn->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = ?");
+$requete->bind_param("s", $_SESSION['emaileleve']);
 $requete->execute();
 $requete->store_result();
 
@@ -56,7 +55,7 @@ mysqli_close($conn);
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueiletudiant5.css">
+  <link rel="stylesheet" type="text/css" href="pageaccueil4.css">
 </head>
 <body>
   <header>
@@ -137,6 +136,3 @@ mysqli_close($conn);
   <script src="pageaccueiletudiant1.js"></script>
 </body>
 </html>
-
-
-

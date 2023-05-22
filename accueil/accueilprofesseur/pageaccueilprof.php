@@ -128,9 +128,9 @@ mysqli_close($conn);
       <h2><span class="texte-color">Mon Compte Professeur</span></h2>
       <p>
         <ul>
-          <li><span class="texte-color">Nom:</span> <?php echo $_SESSION['nomProfesseur']; ?></li>
-          <li><span class="texte-color">Prénom:</span> <?php echo $_SESSION['prenomProfesseur']; ?></li>
-          <li><span class="texte-color">E-mail:</span> <?php echo $_SESSION['emailprof']; ?></li>
+          <li><p class="texte-color">Nom:<?php echo $_SESSION['nomProfesseur']; ?></p></li>
+          <li><p class="texte-color">Prénom:<?php echo $_SESSION['prenomProfesseur']; ?></p></li>
+          <li><p class="texte-color">E-mail<?php echo $_SESSION['emailprof']; ?></p></li>
         </ul>
       </p>
       <button id="close-popup">Fermer</button>

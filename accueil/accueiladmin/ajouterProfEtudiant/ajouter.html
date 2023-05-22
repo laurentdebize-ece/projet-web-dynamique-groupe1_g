@@ -5,59 +5,68 @@
   <meta charset="utf-8">
   <style type="text/css">
     body {
-      background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
-    }
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f5f5fa;
+  color: #333;
+}
 
-    h2 {
-      text-align: center;
-      color: #333;
-      background-color: #f9f9f9;
-      padding: 20px;
-      margin: 0 auto 20px auto;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
+h2 {
+  margin-bottom: 10px;
+  color: #6c63ff;
+}
 
-    table {
-      width: 600px;
-      margin: auto;
-      background-color: #fff;
-      border-collapse: collapse;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-    th {
-      text-align: left;
-      background-color: #f9f9f9;
-    }
+tr:hover {
+  background-color: #f5f5f5;
+}
 
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
+.btn {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    input[type="submit"] {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+.btn:hover {
+  background-color: #544ce6;
+}
 
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
+.btn-danger {
+  background-color: #f44336;
+}
+
+.btn-danger:hover {
+  background-color: #e53935;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+}
+
+
   </style>
 </head>
 <body>
@@ -85,17 +94,21 @@
       <td><input type="text" name="numeroclasse"></td>
     </tr>
     <tr>
+      <th>ecole</th>
+      <td><input type="text" name="ecole"></td>
+    </tr>
+    <tr>
       <td colspan="2" align="center">
-        <input type="submit" name="modifier" value="Modifier">
-        <input type="submit" name="ajouter" value="Ajouter">
-        <input type="submit" name="supprimer" value="Supprimer">
+        <input type="submit" name="modifier1" value="Modifier">
+        <input type="submit" name="ajouter1" value="Ajouter">
+        <input type="submit" name="supprimer1" value="Supprimer">
       </td>
     </tr>
   </table>
 </form>
 
 <h2>Professeur</h2>
-<form action="ajouter_professeur.php" method="post">
+<form action="ajouter.php" method="post">
   <table>
     <tr>
       <th>Nom</th>
@@ -115,20 +128,20 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <input type="submit" name="modifier" value="Modifier">
-        <input type="submit" name="ajouter" value="Ajouter">
-        <input type="submit" name="supprimer" value="Supprimer">
+        <input type="submit" name="modifier2" value="Modifier">
+        <input type="submit" name="ajouter2" value="Ajouter">
+        <input type="submit" name="supprimer2" value="Supprimer">
       </td>
     </tr>
   </table>
 </form>
 
 <h2>Matières</h2>
-<form action="ajouter_matiere.php" method="post">
+<form action="ajouter.php" method="post">
   <table>
     <tr>
       <th>Nom de la matière</th>
-      <td><input type="text" name="nommatiere"></td>
+      <td><input type="text" name="nom"></td>
     </tr>
     <tr>
       <th>numero de la matière</th>
@@ -140,9 +153,9 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <input type="submit" name="modifier" value="Modifier">
-        <input type="submit" name="ajouter" value="Ajouter">
-        <input type="submit" name="supprimer" value="Supprimer">
+        <input type="submit" name="modifier3" value="Modifier">
+        <input type="submit" name="ajouter3" value="Ajouter">
+        <input type="submit" name="supprimer3" value="Supprimer">
       </td>
     </tr>
   </table>

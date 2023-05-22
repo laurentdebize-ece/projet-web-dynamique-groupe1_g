@@ -4,29 +4,28 @@ require_once '../../../BDD/init.php';
 // Saisir les données du formulaire
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
-$email = isset($_POST["emaileleve"]) ? $_POST["emaileleve"] : "";
-$mot_de_passe = isset($_POST["motdepasse"]) ? $_POST["motdepasse"] : "";
-$numero_classe = isset($_POST["numeroclasse"]) ? $_POST["numeroclasse"] : "";
+$emaileleve = isset($_POST["emaileleve"]) ? $_POST["emaileleve"] : "";
+$motdepasse = isset($_POST["motdepasse"]) ? $_POST["motdepasse"] : "";
+$numeroclasse = isset($_POST["numeroclasse"]) ? $_POST["numeroclasse"] : "";
 
 if (isset($_POST["ajouter"])) {
     if ($conn) {
         // Vérifier si l'étudiant existe déjà dans la base de données
-        $sql = "SELECT * FROM etudiant WHERE emaileleve = '$email'";
+        $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
         $result = mysqli_query($conn, $sql);
-
         if (mysqli_num_rows($result) != 0) {
-            echo "<p>L'étudiant existe déjà. Les doublons ne sont pas autorisés.</p>";
+            echo "<p> l'éleve existe déjà.</p>";
         } else {
             // Ajouter l'étudiant à la base de données
             $sql = "INSERT INTO etudiant(nom, prenom, emaileleve, motdepasse, numeroclasse)
-              VALUES('$nom', '$prenom', '$email', '$mot_de_passe', '$numero_classe')";
+              VALUES('$nom', '$prenom', '$emaileleve', '$motdepasse', '$numeroclasse')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 echo "<p>Ajout réussi.</p>";
 
                 // Afficher les informations de l'étudiant ajouté
-                $sql = "SELECT * FROM etudiant WHERE emaileleve = '$email'";
+                $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) != 0) {

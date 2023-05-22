@@ -66,10 +66,7 @@ mysqli_close($conn);
     
       <div class="flex-container">
         <div><a href="#">Accueil</a></div>
-        <div><a href="#">Matières</a></div>
-        <div><a href="#">Etudiants</a></div>
-        <div><a href="#">Compétences</a></div>
-        <div><a href="./ajouterProfEtudiant/ajouter.html">ajouter Professeurs et Etudiants</a></div>
+        <div><a href="./ajouterProfEtudiant/ajouter.html"> Modification - Professeurs, Etudiants, Matieres </a></div>
       </div>
     <div class="flex-container1">
       <div><button id="open-popup">Mon compte admin </button>

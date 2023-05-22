@@ -10,14 +10,7 @@
         <label for="competence">Choisissez une compétence :</label>
         <select name="id" id="competence">
             <?php
-            // Informations de connexion à la base de données
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "omnesmyskillsfinal";
-
-            // Créer une connexion à la base de données
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            require_once '../../../BDD/init.php';
 
             // Vérifier la connexion
             if ($conn->connect_error) {

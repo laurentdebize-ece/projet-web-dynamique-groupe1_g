@@ -2,6 +2,7 @@
 session_start();
 
 require_once '../../BDD/init.php';
+$requete2 = mysqli_query($conn,' SELECT nom FROM competences ');
 // Requête SQL pour récupérer l'e-mail de l'étudiant
 $requete = $conn->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = ?");
 $requete->bind_param("s", $_SESSION['emaileleve']);
@@ -89,13 +90,14 @@ mysqli_close($conn);
     
      <table>
        <th>Noms des compétences:</th>
-       <?php while ($donnees= mysqli_fetch_assoc($requete)){
+       <?php while ($donnees= mysqli_fetch_assoc($requete2)){
          ?>
-            <th> 
+            <tr> 
                 <td> 
                     <?php echo $donnees['nom']; ?> </td>
-        </th> 
+        </tr>
         <?php } ?>
+      
      </table>
         
     <h3>Dernières compétences ajoutées</h3>

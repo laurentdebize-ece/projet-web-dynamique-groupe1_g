@@ -12,72 +12,38 @@ $statut = isset($_POST["statut"]) ? $_POST["statut"] : "";
 $ecole = isset($_POST["ecole"]) ? $_POST["ecole"] : "";
 
 
-
-echo "<h2>Voici les compétences actuelles afin que vous puissiez accéder aux id des compétences pour les supprimer</h2>";
-echo "<table border='1'>";
-echo "<tr>";
-echo "<th>id</th>";
-echo "<th>nom</th>";
-echo "<th>datecreation</th>";
-echo "<th>datelimite</th>";
-echo "<th>statut</th>";
-echo "<th>ecole</th>";
-// afficher le resultat
-while ($data = mysqli_fetch_assoc($result)) {
-    echo "<tr>";
-    echo "<td>" . $data['id'] . "</td>";
-    echo "<td>" . $data['nom'] . "</td>";
-    echo "<td>" . $data['datecreation'] . "</td>";
-    echo "<td>" . $data['datelimite'] . "</td>";
-    echo "<td>" . $data['statut'] . "</td>";
-    echo "<td>" . $data['ecole'] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
-
 //*************************************
 // si bouton1 est cliqué
-/*if (isset($_POST["button1"])) {
-    $sql = "SELECT * FROM book";
-    if ($titre != "") {
-        //on recherche le livre par son titre
-        $sql .= " WHERE Titre LIKE '%$titre%'";
-        //on cherche ce livre par son auteur aussi
-        if ($auteur != "") {
-            $sql .= " AND Auteur LIKE '%$auteur%'";
-        }
-    }
-    $result = mysqli_query($db_handle, $sql);
+if (isset($_POST["button1"])) {
+    $sql = "SELECT * FROM competences WHERE id='$id'";
+    $result = mysqli_query($conn, $sql);
     //regarder s'il y a des resultats
     if (mysqli_num_rows($result) == 0) {
-        echo "<p>Book not found.</p>";
+        echo "<p>La compétence n'a pas été trouvé.</p>";
     } else {
-        //on trouve le livre
         echo "<table border='1'>";
         echo "<tr>";
-        echo "<th>" . "ID" . "</th>";
-        echo "<th>" . "Titre" . "</th>";
-        echo "<th>" . "Auteur" . "</th>";
-        echo "<th>" . "Annee" . "</th>";
-        echo "<th>" . "Editeur" . "</th>";
-        echo "<th>" . "Couverture" . "</th>";
+        echo "<th>" . "id" . "</th>";
+        echo "<th>" . "nom" . "</th>";
+        echo "<th>" . "datecreation" . "</th>";
+        echo "<th>" . "datelimite" . "</th>";
+        echo "<th>" . "statut" . "</th>";
+        echo "<th>" . "ecole" . "</th>";
         //afficher le resultat
         while ($data = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . $data['ID'] . "</td>";
-            echo "<td>" . $data['Titre'] . "</td>";
-            echo "<td>" . $data['Auteur'] . "</td>";
-            echo "<td>" . $data['Annee'] . "</td>";
-            echo "<td>" . $data['Editeur'] . "</td>";
-            $image = $data['Couverture'];
-            echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>";
-            echo "</tr>";
+            echo "<td>" . $data['id'] . "</td>";
+            echo "<td>" . $data['nom'] . "</td>";
+            echo "<td>" . $data['datecreation'] . "</td>";
+            echo "<td>" . $data['datelimite'] . "</td>";
+            echo "<td>" . $data['statut'] . "</td>";
+            echo "<td>" . $data['ecole'] . "</td>";
         }
         echo "</table>";
     }
 } else {
-    echo "<p>Database not found.</p>";
-}*/
+    echo "<p>La compétence n'existe pas.</p>";
+}
 //end 
 //***********************************
 //si le bouton2 est cliqué
@@ -144,7 +110,7 @@ if (isset($_POST["button3"])) {
         } else {
             $sql = "DELETE FROM competences WHERE id = '$id'";
             $result = mysqli_query($conn, $sql);
-
+            
             if ($result) {
                 echo "Vous avez supprimé une compétences";
             } else {

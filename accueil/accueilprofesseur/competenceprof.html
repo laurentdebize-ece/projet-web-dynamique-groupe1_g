@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h2>Vous pouvez modifier des compétences</h2>
+    <h2>Vous pouvez modifier/ajouter/supprimer des compétences</h2>
     <form action="competenceprof.php" method="post">
         <table class="competences-table">
             <tr>
@@ -43,7 +43,34 @@
                 </td>
             </tr>
         </table>
-        
+        <?php
+        $sql= "SELECT * FROM competences";
+$result1= mysqli_query($conn, $sql1);
+
+if (mysqli_num_rows($result1) != 0) {
+    echo "<h2>Informations sur la nouvelle compétence ajoutée :</h2>";
+    echo "<table border='1'>";
+    echo "<tr>";
+    echo "<th>id</th>";
+    echo "<th>nom</th>";
+    echo "<th>datecreation</th>";
+    echo "<th>datelimite</th>";
+    echo "<th>statut</th>";
+    echo "<th>ecole</th>";
+    // afficher le resultat
+    while ($data = mysqli_fetch_assoc($result1)) {
+        echo "<tr>";
+        echo "<td>" . $data['id'] . "</td>";
+        echo "<td>" . $data['nom'] . "</td>";
+        echo "<td>" . $data['datecreation'] . "</td>";
+        echo "<td>" . $data['datelimite'] . "</td>";
+        echo "<td>" . $data['statut'] . "</td>";
+        echo "<td>" . $data['ecole'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+}
+
     </form>
 </body>
 

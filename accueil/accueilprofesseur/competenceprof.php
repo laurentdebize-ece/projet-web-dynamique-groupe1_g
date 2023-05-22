@@ -1,21 +1,43 @@
 <?php
-//connectez-vous dans BDD. ATTENTION $database="books" ici va s appeler $dbname = 'omnesmyskillsfinal';
-
 require_once '../../BDD/init.php';
-//ajouter de style css
+
 $fichierCSS = "competenceprof.css";
 echo "<link rel='stylesheet' type='text/css' href='$fichierCSS'>";
-//saisir les données du formulaire
+
 $id = isset($_POST["id"]) ? $_POST["id"] : "";
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
 $datecreation = isset($_POST["datecreation"]) ? $_POST["datecreation"] : "";
 $datelimite = isset($_POST["datelimite"]) ? $_POST["datelimite"] : "";
 $statut = isset($_POST["statut"]) ? $_POST["statut"] : "";
+$ecole = isset($_POST["ecole"]) ? $_POST["ecole"] : "";
 
+
+
+echo "<h2>Voici les compétences actuelles afin que vous puissiez accéder aux id des compétences pour les supprimer</h2>";
+echo "<table border='1'>";
+echo "<tr>";
+echo "<th>id</th>";
+echo "<th>nom</th>";
+echo "<th>datecreation</th>";
+echo "<th>datelimite</th>";
+echo "<th>statut</th>";
+echo "<th>ecole</th>";
+// afficher le resultat
+while ($data = mysqli_fetch_assoc($result)) {
+    echo "<tr>";
+    echo "<td>" . $data['id'] . "</td>";
+    echo "<td>" . $data['nom'] . "</td>";
+    echo "<td>" . $data['datecreation'] . "</td>";
+    echo "<td>" . $data['datelimite'] . "</td>";
+    echo "<td>" . $data['statut'] . "</td>";
+    echo "<td>" . $data['ecole'] . "</td>";
+    echo "</tr>";
+}
+echo "</table>";
 
 //*************************************
-// si bouton1  est cliqué
-if (isset($_POST["button1"])) {
+// si bouton1 est cliqué
+/*if (isset($_POST["button1"])) {
     $sql = "SELECT * FROM book";
     if ($titre != "") {
         //on recherche le livre par son titre
@@ -55,39 +77,39 @@ if (isset($_POST["button1"])) {
     }
 } else {
     echo "<p>Database not found.</p>";
-}
+}*/
 //end 
 //***********************************
-//si le bouton2  est cliqué
+//si le bouton2 est cliqué
 if (isset($_POST["button2"])) {
     if ($conn) {
         $sql = "SELECT * FROM competences WHERE id ='$id'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) != 0) {
-            echo "<p> La compétence existe déjà.</p>";
+            echo "<p>La compétence existe déjà.</p>";
         } else {
-
             $sql = "INSERT INTO competences(id, nom, datecreation, datelimite, statut)
             VALUES('$id', '$nom', '$datecreation', '$datelimite', '$statut')";
-            
+
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
-                echo "<p> Voici la compétence que vous avez ajouté</p>";
-                
+                echo "<p>Voici la compétence que vous avez ajoutée</p>";
+
                 $sql = "SELECT * FROM competences WHERE id='$id'";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) != 0) {
-                    echo "<h2>" . "Informations sur la nouvelle compétence ajoutée:" . "</h2>";
+                    echo "<h2>Informations sur la nouvelle compétence ajoutée :</h2>";
                     echo "<table border='1'>";
                     echo "<tr>";
-                    echo "<th>" . "id" . "</th>";
-                    echo "<th>" . "nom" . "</th>";
-                    echo "<th>" . "datecreation" . "</th>";
-                    echo "<th>" . "datelimite" . "</th>";
-                    echo "<th>" . "statut" . "</th>";
+                    echo "<th>id</th>";
+                    echo "<th>nom</th>";
+                    echo "<th>datecreation</th>";
+                    echo "<th>datelimite</th>";
+                    echo "<th>statut</th>";
+                    echo "<th>ecole</th>";
                     // afficher le resultat
                     while ($data = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
@@ -96,76 +118,40 @@ if (isset($_POST["button2"])) {
                         echo "<td>" . $data['datecreation'] . "</td>";
                         echo "<td>" . $data['datelimite'] . "</td>";
                         echo "<td>" . $data['statut'] . "</td>";
+                        echo "<td>" . $data['ecole'] . "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
                 }
             } else {
-                echo "<p>Erreur. Veuillez resaisir une compétence.</p>";
+                echo "<p>Erreur. Veuillez ressaisir une compétence.</p>";
             }
         }
     } else {
-        echo "<p> Base de donées introuvable.</p>";
+        echo "<p>Base de données introuvable.</p>";
     }
 }
 
-
-
 //*************************************
-//si le bouton3  est cliqué
+//si le bouton3 est cliqué
 if (isset($_POST["button3"])) {
     if ($conn) {
         $sql = "SELECT * FROM competences WHERE id ='$id'";
         $result = mysqli_query($conn, $sql);
+
         if (mysqli_num_rows($result) == 0) {
-            echo "<p> La compétence n'a pas été trouvé.</p>";
+            echo "<p>La compétence n'existe pas.</p>";
         } else {
-        //on supprime cet item
-        while ($data = mysqli_fetch_assoc($result)) {
-            $id = $data['id'];
-        }
-        //on supprime cet item par son ID
-        $sql = "DELETE FROM competences WHERE id = '$id'";
-        $result = mysqli_query($conn, $sql);
-        $sql1 = "SELECT * FROM competences WHERE id ='$id'";
-        if($result){
-            echo "<p>la compétence a bien été supprimé.</p>";
-        }
-        else {
-            echo"non non ";
-        }
-        //on affiche le reste des livres dans notre BDD
-        $sql = "SELECT * FROM competences";
-        $result = mysqli_query($conn, $sql);
-        
-            echo "<h2>" . "Les compétences restantes sont:" . "</h2>";
-            echo "<table border='1'>";
-            echo "<tr>";
-            echo "<th>" . "id" . "</th>";
-            echo "<th>" . "nom" . "</th>";
-            echo "<th>" . "datecreation" . "</th>";
-            echo "<th>" . "datelimite" . "</th>";
-            echo "<th>" . "statut" . "</th>";
-            // afficher le resultat
-            while ($data = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $data['id'] . "</td>";
-                echo "<td>" . $data['nom'] . "</td>";
-                echo "<td>" . $data['datecreation'] . "</td>";
-                echo "<td>" . $data['datelimite'] . "</td>";
-                echo "<td>" . $data['statut'] . "</td>";
-                echo "</tr>";
+            $sql = "DELETE FROM competences WHERE id = '$id'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                echo "Vous avez supprimé une compétences";
+            } else {
+                echo "<p>Erreur. Veuillez ressaisir une compétence.</p>";
             }
-            echo "</table>";
-        
         }
-    } else {
-    echo "<p>erreur.</p>";
     }
 }
 
-//fermer la connexion
 mysqli_close($conn);
-?>
-
-

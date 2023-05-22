@@ -93,5 +93,60 @@
     </tr>
   </table>
 </form>
+
+<h2>Professeur</h2>
+<form action="ajouter_professeur.php" method="post">
+  <table>
+    <tr>
+      <th>Nom</th>
+      <td><input type="text" name="nom"></td>
+    </tr>
+    <tr>
+      <th>Prénom</th>
+      <td><input type="text" name="prenom"></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><input type="text" name="emailprof"></td>
+    </tr>
+    <tr>
+      <th>Mot de passe</th>
+      <td><input type="password" name="motdepasse"></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" name="modifier" value="Modifier">
+        <input type="submit" name="ajouter" value="Ajouter">
+        <input type="submit" name="supprimer" value="Supprimer">
+      </td>
+    </tr>
+  </table>
+</form>
+
+<h2>Matières</h2>
+<form action="ajouter_matiere.php" method="post">
+  <table>
+    <tr>
+      <th>Nom de la matière</th>
+      <td><input type="text" name="nommatiere"></td>
+    </tr>
+    <tr>
+      <th>numero de la matière</th>
+      <td><input type="text" name="numeromatiere"></td>
+    </tr>
+    <tr>
+      <th>volume horaire</th>
+      <td><input type="text" name="volumehoraire"></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" name="modifier" value="Modifier">
+        <input type="submit" name="ajouter" value="Ajouter">
+        <input type="submit" name="supprimer" value="Supprimer">
+      </td>
+    </tr>
+  </table>
+</form>
+
 </body>
 </html>

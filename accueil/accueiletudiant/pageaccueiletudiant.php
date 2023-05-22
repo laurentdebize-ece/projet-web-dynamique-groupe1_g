@@ -1,52 +1,53 @@
 <?php
 session_start();
 
-// Connexion à la base de données
-$host = "localhost"; // Remplacez par l'adresse de votre serveur de base de données
-$utilisateur = "root"; // Remplacez par votre nom d'utilisateur
-$motDePasse = "root"; // Remplacez par votre mot de passe
-$nomBaseDeDonnees = "omnesmyskillsfinal"; // Remplacez par le nom de votre base de données
-
-$connexion = new PDO("mysql:host=$host;dbname=$nomBaseDeDonnees;charset=utf8", $utilisateur, $motDePasse);
-
-// Requête SQL pour récupérer l'e-mail du professeur
-$requete = $connexion->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = :emaileleve");
-$requete->bindParam(":emaileleve", $_SESSION['emaileleve']);
+require_once '../../BDD/init.php';
+// Requête SQL pour récupérer l'e-mail de l'étudiant
+$requete = $conn->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = ?");
+$requete->bind_param("s", $_SESSION['emaileleve']);
 $requete->execute();
+$requete->store_result();
 
-// Requête SQL pour récupérer le nom et le prénom du professeur
-$requeteEtudiant = $connexion->prepare("SELECT nom, prenom FROM etudiant WHERE emaileleve = :emaileleve");
-$requeteEtudiant->bindParam(":emaileleve", $_SESSION['emaileleve']);
+// Requête SQL pour récupérer le nom et le prénom de l'étudiant
+$requeteEtudiant = $conn->prepare("SELECT nom, prenom FROM etudiant WHERE emaileleve = ?");
+$requeteEtudiant->bind_param("s", $_SESSION['emaileleve']);
 $requeteEtudiant->execute();
+$requeteEtudiant->store_result();
 
 // Vérification de la réussite de la requête
-if ($requete->rowCount() > 0) {
+if ($requete->num_rows > 0) {
     // Récupération de l'e-mail de l'étudiant
-    $donneesEtudiant = $requete->fetch(PDO::FETCH_ASSOC);
+    $requete->bind_result($emaileleve);
+    $requete->fetch();
 
     // Stockage de l'e-mail dans la variable de session
-    $_SESSION['emaileleve'] = $donneesEtudiant['emaileleve'];
+    $_SESSION['emaileleve'] = $emaileleve;
 } else {
     // Gestion de l'erreur si aucun étudiant n'est trouvé
     $_SESSION['emaileleve'] = '';
 }
 
 // Vérification de la réussite de la requête pour le nom et le prénom de l'étudiant
-if ($requeteEtudiant->rowCount() > 0) {
+if ($requeteEtudiant->num_rows > 0) {
     // Récupération du nom et du prénom de l'étudiant
-    $donneesEtudiant = $requeteEtudiant->fetch(PDO::FETCH_ASSOC);
+    $requeteEtudiant->bind_result($nom, $prenom);
+    $requeteEtudiant->fetch();
 
     // Stockage du nom et du prénom dans les variables de session
-    $_SESSION['nomEtudiant'] = $donneesEtudiant['nom'];
-    $_SESSION['prenomEtudiant'] = $donneesEtudiant['prenom'];
+    $_SESSION['nomEtudiant'] = $nom;
+    $_SESSION['prenomEtudiant'] = $prenom;
 } else {
     // Gestion de l'erreur si aucun étudiant n'est trouvé
     $_SESSION['nomEtudiant'] = '';
     $_SESSION['prenomEtudiant'] = '';
 }
 
+// Fermeture de la requête
+$requete->close();
+$requeteEtudiant->close();
+
 // Fermeture de la connexion à la base de données
-$connexion = null;
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>

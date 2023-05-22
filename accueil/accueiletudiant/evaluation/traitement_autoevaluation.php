@@ -4,7 +4,7 @@ session_start();
 // Informations de connexion à la base de données
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "omnesmyskillsfinal";
 
 // Vérifier si l'utilisateur est connecté et si son e-mail est disponible dans $_SESSION

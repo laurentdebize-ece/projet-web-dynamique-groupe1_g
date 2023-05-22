@@ -1,13 +1,7 @@
 <?php
 session_start();
 
-// Connexion à la base de données
-$host = "localhost"; // Remplacez par l'adresse de votre serveur de base de données
-$utilisateur = "root"; // Remplacez par votre nom d'utilisateur
-$motDePasse = "root"; // Remplacez par votre mot de passe
-$nomBaseDeDonnees = "omnesmyskillsfinal"; // Remplacez par le nom de votre base de données
-
-$connexion = new PDO("mysql:host=$host;dbname=$nomBaseDeDonnees;charset=utf8", $utilisateur, $motDePasse);
+require_once '../../BDD/init.php';
 
 // Requête SQL pour récupérer l'e-mail du professeur
 $requete = $connexion->prepare("SELECT emaileleve FROM etudiant WHERE emaileleve = :emaileleve");

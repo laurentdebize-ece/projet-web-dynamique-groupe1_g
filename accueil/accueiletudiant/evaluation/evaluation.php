@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Autoévaluation</title>
+    <title>Auto-évaluation</title>
+    <link rel="stylesheet" type="text/css" href="evaluation.css">
 </head>
 <body>
     <h1>Autoévaluation</h1>

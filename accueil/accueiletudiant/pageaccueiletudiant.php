@@ -89,13 +89,7 @@ mysqli_close($conn);
     
      <table>
        <th>Noms des compétences:</th>
-       <?php while ($donnees= mysqli_fetch_assoc($requete)){
-         ?>
-            <th> 
-                <td> 
-                    <?php echo $donnees['nom']; ?> </td>
-        </th> 
-        <?php } ?>
+      
      </table>
         
     <h3>Dernières compétences ajoutées</h3>

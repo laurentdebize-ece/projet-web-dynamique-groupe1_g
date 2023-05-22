@@ -29,6 +29,7 @@ prevBtn.addEventListener("click", prevSlide);
 nextBtn.addEventListener("click", nextSlide);
 
 setInterval(nextSlide, 5000);
+
 // JavaScript pour afficher le pop-up
 document.addEventListener("DOMContentLoaded", function() {
   var popupOverlay = document.querySelector(".popup-overlay");

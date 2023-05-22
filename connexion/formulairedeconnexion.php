@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
         // Vérification si la connexion est réussie pour l'une des tables
         if ($result_admin && mysqli_num_rows($result_admin) == 1) {
             // Redirection vers la page d'accueil après connexion réussie pour l'administrateur
-            header("Location: ../accueil/accueiladmin/pageaccueiladmin.html");
+            header("Location: ../accueil/accueiladmin/pageaccueiladmin.php");
             exit;
         } elseif ($result_etudiant && mysqli_num_rows($result_etudiant) == 1) {
             // Récupération des données de l'étudiant

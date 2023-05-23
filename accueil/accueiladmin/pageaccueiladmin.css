@@ -5,12 +5,12 @@ body {
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #333333;
-    background-color: hsl(24, 15%, 50%);
+    background-color: #d9cece;
   }
   
   /* Style pour le header */
   header {
-    background-color: #573a2a;
+    background-color: #74599b;
     color: #ffffff;
     padding: 30px;
     display: flex;
@@ -181,11 +181,10 @@ body {
   
   /* Style pour le pied de page */
   footer {
-    background-color: #573a2a;
+    background-color: #74599b;
     color: #fff;
     padding: 10px;
     text-align: center;
-    width: 100%;
   }
   
   /* Style du pop-up */

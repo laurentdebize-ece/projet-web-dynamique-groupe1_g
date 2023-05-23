@@ -99,7 +99,7 @@ mysqli_close($conn);
       <br> En résumé, Omnes Skills est bien plus qu'une simple plateforme de gestion de compétences. En tant qu'étudiant, Omnes Skills est là pour vous aider à atteindre vos objectifs.</br>
     </p>
     <h2> Ici, vous pouvez trouver les différentes compétences pour vous améliorer</h2>
-    <h3>Compétences populaires</h3>
+    
 
     <table>
       <th>Noms des compétences:</th>

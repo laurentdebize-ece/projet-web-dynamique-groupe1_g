@@ -1,3 +1,62 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h3 {
+        color: #6a1b9a;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f3e5f5;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+</style>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        color: #6a1b9a;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f3e5f5;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+</style>
 <?php
 require_once '../../../BDD/init.php';
 
@@ -16,13 +75,13 @@ $volumehoraire = isset($_POST["volumehoraire"]) ? $_POST["volumehoraire"] : "";
 // POUR ETUDIANT
 if (isset($_POST["ajouter1"])) {
     if ($conn) {
-        // Vérifier si l'étudiant existe déjà dans la base de données
+        // Etudiant dans la base de donnée ? 
         $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) != 0) {
             echo "<p> l'éleve existe déjà.</p>";
         } else {
-            // Ajouter l'étudiant à la base de données
+            // Ajout Etudiant 
             $sql = "INSERT INTO etudiant(nom, prenom, emaileleve, motdepasse, numeroclasse, ecole)
               VALUES('$nom', '$prenom', '$emaileleve', '$motdepasse', '$numeroclasse', '$ecole')";
             $result = mysqli_query($conn, $sql);
@@ -30,7 +89,8 @@ if (isset($_POST["ajouter1"])) {
             if ($result) {
                 echo "<p>Ajout réussi.</p>";
 
-                // Afficher les informations de l'étudiant ajouté
+                // Affichage des infos 
+
                 $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
                 $result = mysqli_query($conn, $sql);
 
@@ -71,21 +131,21 @@ if (isset($_POST["ajouter1"])) {
 if (isset($_POST["ajouter2"])) {
    
     if ($conn) {
-        // Vérifier si le professeur existe déjà dans la base de données
+        // Prof dans la base de données?
         $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) != 0) {
             echo "<p>Le professeur existe déjà.</p>";
         } else {
-            // Ajouter le professeur à la base de données
+            // Ajouter prof
             $sql = "INSERT INTO professeur(nom, prenom, emailprof, motdepasse) VALUES ('$nom', '$prenom', '$emailprof', '$motdepasse')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 echo "<p>Ajout réussi.</p>";
 
-                // Afficher les informations sur le nouveau professeur ajouté
+                // Affichage infos 
                 $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
                 $result = mysqli_query($conn, $sql);
 
@@ -123,21 +183,21 @@ if (isset($_POST["ajouter2"])) {
 //POUR MATIERES
 if (isset($_POST["ajouter3"])) {
     if ($conn) {
-        // Vérifier si la matiere existe déjà dans la base de données
+        // Matiere dans la base de données ? 
         $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) != 0) {
             echo "<p>La matiere existe déjà.</p>";
         } else {
-            // Ajouter matiere à la base de données
+            // Ajout matiere 
             $sql = "INSERT INTO matieres(nom, numeromatiere, volumehoraire) VALUES ('$nom', '$numeromatiere', '$volumehoraire')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 echo "<p>Ajout réussi.</p>";
 
-                // Afficher les informations sur la nouvelle matière ajouté
+                // Affichage infos
                 $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
                 $result = mysqli_query($conn, $sql);
 
@@ -168,19 +228,30 @@ if (isset($_POST["ajouter3"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+
 // POUR ETUDIANT
 if (isset($_POST["supprimer1"])) {
     if ($conn) {
-        // Vérifier si l'étudiant existe dans la base de données
+        // Etudiant existe dans la base de données ? 
         $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) != 0) {
-            // Supprimer l'étudiant de la base de données
+            // Supprimer l'étudiant 
             $sql = "DELETE FROM etudiant WHERE emaileleve = '$emaileleve'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 echo "<p>Suppression réussie.</p>";
+      // Afficher les étudiants restants dans la base de données
+        $sql = "SELECT * FROM etudiant";
+        $result = mysqli_query($conn, $sql);
+        echo "<h3>Étudiants restants :</h3>";
+        echo "<table>";
+        echo "<tr><th>Nom</th><th>Email</th><th>Numéro de classe</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>".$row['nom']."</td><td>".$row['emaileleve']."</td><td>".$row['numeroclasse']."</td></tr>";
+        }
+        echo "</table>";
             } else {
                 echo "<p>Une erreur est survenue lors de la suppression de l'étudiant.</p>";
             }
@@ -195,17 +266,27 @@ if (isset($_POST["supprimer1"])) {
 // POUR PROF
 if (isset($_POST["supprimer2"])) {
     if ($conn) {
-        // Vérifier si le professeur existe dans la base de données
+        // Prof existe dans la base de données ?
         $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) != 0) {
-            // Supprimer le professeur de la base de données
+            // Supprimer le prof
             $sql = "DELETE FROM professeur WHERE emailprof = '$emailprof'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 echo "<p>Suppression réussie.</p>";
+        // Afficher les professeurs restants dans la base de données
+        $sql = "SELECT * FROM professeur";
+        $result = mysqli_query($conn, $sql);
+        echo "<h3>Professeurs restants :</h3>";
+        echo "<table>";
+        echo "<tr><th>Nom</th><th>Email</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>".$row['nom']."</td><td>".$row['emailprof']."</td></tr>";
+        }
+        echo "</table>";
             } else {
                 echo "<p>Une erreur est survenue lors de la suppression du professeur.</p>";
             }
@@ -220,17 +301,27 @@ if (isset($_POST["supprimer2"])) {
 // POUR MATIERES
 if (isset($_POST["supprimer3"])) {
     if ($conn) {
-        // Vérifier si la matière existe dans la base de données
+        
         $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) != 0) {
-            // Supprimer la matière de la base de données
+            
             $sql = "DELETE FROM matieres WHERE numeromatiere = '$numeromatiere'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 echo "<p>Suppression réussie.</p>";
+        // Afficher les matières restantes dans la base de données
+        $sql = "SELECT * FROM matieres";
+        $result = mysqli_query($conn, $sql);
+        echo "<h3>Matières restantes :</h3>";
+        echo "<table>";
+        echo "<tr><th>Nom</th><th>Numéro de matière</th><th>Volume horaire</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>".$row['nom']."</td><td>".$row['numeromatiere']."</td><td>".$row['volumehoraire']."</td></tr>";
+        }
+        echo "</table>";
             } else {
                 echo "<p>Une erreur est survenue lors de la suppression de la matière.</p>";
             }
@@ -241,13 +332,14 @@ if (isset($_POST["supprimer3"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+
 if (isset($_POST["modifier1"])) {
     if ($conn) {
-        // Vérifier si l'étudiant existe déjà dans la base de données
+        
         $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) != 0) {
-           // echo "<p> l'éleve existe vous pouvez le modifier.</p>";
+          
             header("Location: modifier.php");
         }  else {
                 echo "<p>Cette elève n'existe pas dans la base de donnée. Veuillez saisir un autre email.</p>";
@@ -259,11 +351,11 @@ if (isset($_POST["modifier1"])) {
 }
 if (isset($_POST["modifier2"])) {
     if ($conn) {
-        // Vérifier si le prof existe déjà dans la base de données
+        
         $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) != 0) {
-           // echo "<p> l'éleve existe vous pouvez le modifier.</p>";
+           
             header("Location: modifier.php");
         }  else {
                 echo "<p>Ce prof n'existe pas dans la base de donnée. Veuillez saisir un autre email.</p>";
@@ -276,11 +368,11 @@ if (isset($_POST["modifier2"])) {
 
 if (isset($_POST["modifier3"])) {
     if ($conn) {
-        // Vérifier si la matiere existe déjà dans la base de données
+        
         $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) != 0) {
-           // echo "<p> la matiere existe vous pouvez le modifier.</p>";
+           
             header("Location: modifier.php");
         }  else {
                 echo "<p>Cette matiere n'existe pas dans la base de donnée. Veuillez saisir un autre numero de matiere.</p>";

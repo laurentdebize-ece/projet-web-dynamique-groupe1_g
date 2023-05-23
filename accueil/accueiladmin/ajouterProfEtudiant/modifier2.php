@@ -12,12 +12,12 @@ $volumehoraire = isset($_POST["volumehoraire"]) ? $_POST["volumehoraire"] : "";
 
 if (isset($_POST["valider1"])) {
     if ($conn) {
-        // Vérifier si l'étudiant existe dans la base de données
+        // Etudiant dans la base ? 
         $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) != 0) {
-            // Effectuer la modification de l'étudiant dans la base de données
+            // Modif 
             $sql = "UPDATE etudiant SET nom = '$nom', prenom = '$prenom', motdepasse = '$motdepasse', numeroclasse = '$numeroclasse', ecole = '$ecole' WHERE emaileleve = '$emaileleve'";
             $result = mysqli_query($conn, $sql);
 
@@ -36,12 +36,12 @@ if (isset($_POST["valider1"])) {
 
 if (isset($_POST["valider2"])) {
     if ($conn) {
-        // Vérifier si le prof existe dans la base de données
+        // Vérif 
         $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) != 0) {
-            // Effectuer la modification de l'étudiant dans la base de données
+            // Modif
             $sql = "UPDATE professeur SET nom = '$nom', prenom = '$prenom', motdepasse = '$motdepasse' WHERE emailprof = '$emailprof'";
             $result = mysqli_query($conn, $sql);
 
@@ -60,12 +60,12 @@ if (isset($_POST["valider2"])) {
 
 if (isset($_POST["valider3"])) {
     if ($conn) {
-    // Vérifier si la matiere existe dans la base de données
+    // Vérif
         $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) != 0) {
-            // Effectuer la modification de la matiere dans la base de données
+            // Modif
             $sql = "UPDATE matieres SET nom = '$nom', volumehoraire = '$volumehoraire' WHERE numeromatiere = '$numeromatiere'";
             $result = mysqli_query($conn, $sql);
 

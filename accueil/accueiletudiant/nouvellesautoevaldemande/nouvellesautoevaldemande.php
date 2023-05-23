@@ -11,13 +11,7 @@
   <div class="container">
     <?php
       session_start();
-      
-      $servername = "localhost";
-      $username = "root";
-      $password = "root";
-      $dbname = "omnesmyskillsfinal";
-      
-      $conn = new mysqli($servername, $username, $password, $dbname);
+      require_once '../../../BDD/init.php'; 
       
       if ($conn->connect_error) {
           die("Erreur de connexion à la base de données : " . $conn->connect_error);

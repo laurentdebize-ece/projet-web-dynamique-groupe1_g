@@ -87,7 +87,7 @@ mysqli_close($conn);
     <p class="article"><br>
 
       Omnes Skills est une plateforme en ligne qui révolutionne la façon dont les individus développent et présentent leurs compétences.</br>
-      <br> Omnes Skills est l'outil idéal pour mettre en avant vos talents et voir dnas quelles matières vous performer le plus.
+      <br> Omnes Skills est l'outil idéal pour mettre en avant vos talents et voir dans quelles matières vous performer le plus.
 
       Grâce à Omnes Skills, vous pouvez mettre en évidence vos compétences clés. La plateforme propose une large gamme de catégories, allant des compétences techniques telles que la programmation ou la gestion de projet, aux compétences interpersonnelles comme la communication et le travail en groupe.
 

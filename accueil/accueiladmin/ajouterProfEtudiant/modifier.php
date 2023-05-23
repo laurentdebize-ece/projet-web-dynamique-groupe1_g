@@ -61,6 +61,7 @@
 <body>
     <!-- Modif d'un étudiant -->
     <h2>Modifier un étudiant</h2>
+    <p>l'email doit etre inchangé car c'est une clé primaire</p>
     <form action="modifier2.php" method="post">
         <table>
             <tr>
@@ -97,6 +98,7 @@
 
     <!-- Modif d'un prof -->
     <h2>Modifier un professeur</h2>
+    <p>l'email doit etre inchangé car c'est une clé primaire</p>
     <form action="modifier2.php" method="post">
         <table>
             <tr>
@@ -125,6 +127,7 @@
 
     <!-- Modif d'une matière -->
     <h2>Modifier une matière</h2>
+    <p>le numéro de matière doit etre inchangé car c'est une clé primaire</p>
     <form action="modifier2.php" method="post">
         <table>
             <tr>

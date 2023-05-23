@@ -181,6 +181,16 @@ if (isset($_POST["supprimer1"])) {
 
             if ($result) {
                 echo "<p>Suppression réussie.</p>";
+      // Afficher les étudiants restants dans la base de données
+        $sql = "SELECT * FROM etudiant";
+        $result = mysqli_query($conn, $sql);
+        echo "<h3>Étudiants restants :</h3>";
+        echo "<table>";
+        echo "<tr><th>Nom</th><th>Email</th><th>Numéro de classe</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>".$row['nom']."</td><td>".$row['emaileleve']."</td><td>".$row['numeroclasse']."</td></tr>";
+        }
+        echo "</table>";
             } else {
                 echo "<p>Une erreur est survenue lors de la suppression de l'étudiant.</p>";
             }
@@ -206,6 +216,16 @@ if (isset($_POST["supprimer2"])) {
 
             if ($result) {
                 echo "<p>Suppression réussie.</p>";
+        // Afficher les professeurs restants dans la base de données
+        $sql = "SELECT * FROM professeur";
+        $result = mysqli_query($conn, $sql);
+        echo "<h3>Professeurs restants :</h3>";
+        echo "<table>";
+        echo "<tr><th>Nom</th><th>Email</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>".$row['nom']."</td><td>".$row['emailprof']."</td></tr>";
+        }
+        echo "</table>";
             } else {
                 echo "<p>Une erreur est survenue lors de la suppression du professeur.</p>";
             }
@@ -231,6 +251,16 @@ if (isset($_POST["supprimer3"])) {
 
             if ($result) {
                 echo "<p>Suppression réussie.</p>";
+        // Afficher les matières restantes dans la base de données
+        $sql = "SELECT * FROM matieres";
+        $result = mysqli_query($conn, $sql);
+        echo "<h3>Matières restantes :</h3>";
+        echo "<table>";
+        echo "<tr><th>Nom</th><th>Numéro de matière</th><th>Volume horaire</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>".$row['nom']."</td><td>".$row['numeromatiere']."</td><td>".$row['volumehoraire']."</td></tr>";
+        }
+        echo "</table>";
             } else {
                 echo "<p>Une erreur est survenue lors de la suppression de la matière.</p>";
             }
@@ -241,6 +271,7 @@ if (isset($_POST["supprimer3"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+
 if (isset($_POST["modifier1"])) {
     if ($conn) {
         // Vérifier si l'étudiant existe déjà dans la base de données

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Vérifier si l'utilisateur est un professeur
+// Vérif si l'utilisateur est un professeur
 if (!isset($_SESSION['emailprof'])) {
     echo "Accès non autorisé";
     exit;
@@ -9,15 +9,15 @@ if (!isset($_SESSION['emailprof'])) {
 
 require_once '../../../BDD/init.php';
 
-// Vérifier la connexion
+// Vérif la connexion
 if ($conn->connect_error) {
     die("Erreur de connexion à la base de données : " . $conn->connect_error);
 }
 
-// Récupérer l'email du professeur
+// Récup l'email du professeur
 $emailProfesseur = $_SESSION['emailprof'];
 
-// Récupérer les données d'évaluation de la table evaluations
+// Récup les données d'évaluation de la table evaluations
 $query = "SELECT * FROM evaluations WHERE emailprof = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $emailProfesseur);
@@ -33,7 +33,7 @@ if ($result && $result->num_rows > 0) {
         $idCompetence = $row['id'];
         $evaluation = $row['evaluation'];
        
-        // Afficher les données de l'évaluation
+        // Affichage des données de l'évaluation
         echo "Numéro d'évaluation: $numEval<br>";
         echo "Email de l'élève: $emailEleve<br>";
         echo "Numéro de niveau d'évaluation: $numNiveauEval<br>";

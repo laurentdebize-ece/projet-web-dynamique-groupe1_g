@@ -1,18 +1,18 @@
 <?php
 require_once '../../../BDD/init.php';
 
-// Vérifier la connexion
+// Vérif la connexion
 if ($conn->connect_error) {
     die("La connexion a échoué : " . $conn->connect_error);
 }
 
-// Requête pour récupérer les compétences avec le nom de l'école
+// Récupérer les compétences avec le nom de l'école
 $query = "SELECT c.nom, c.ecole FROM competences c";
 
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {
-    // Créer un tableau pour stocker les compétences
+    
     $competences = array();
 
     // Parcourir les résultats de la requête et ajouter les compétences au tableau
@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
         $competences[] = $competence;
     }
 
-    // Convertir le tableau en JSON
+   
     $response = array(
         "status" => "success",
         "data" => $competences

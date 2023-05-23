@@ -12,13 +12,13 @@ if (isset($_GET['matiere'])) {
     // Récupération du nom de la matière depuis la requête GET
     $matiere = $_GET['matiere'];
 
-    // Requête pour récupérer les compétences associées à la matière
+    // Récupérer les compétences associées à la matière
     $query = "SELECT c.nom FROM competences c INNER JOIN competences_matieres cm ON c.id = cm.id INNER JOIN matieres m ON cm.numeromatiere = m.numeromatiere WHERE m.nom = '$matiere'";
     $result = mysqli_query($conn, $query);
 
-    // Vérification si la requête s'est exécutée avec succès
+    // Vérif si la requête s'est exécutée avec succès
     if ($result) {
-        // Vérification si des compétences ont été trouvées
+        // Vérif si des compétences ont été trouvées
         if (mysqli_num_rows($result) > 0) {
             echo "<h3>Compétences de la matière : $matiere</h3>";
             echo "<ul>";
@@ -78,7 +78,7 @@ ul li {
 </head>
 <body>
     <?php
-    // Votre code PHP ici pour afficher les compétences par matière
+    
     ?>
 </body>
 </html>

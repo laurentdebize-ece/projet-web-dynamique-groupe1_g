@@ -68,7 +68,7 @@
 </form>
 <!-- Formulaire de modification d'une matière -->
 <h2>Modifier une matière</h2>
-<form action="modifer2.php" method="post">
+<form action="modifier2.php" method="post">
   <table>
     <tr>
       <th>Nom de la matière</th>

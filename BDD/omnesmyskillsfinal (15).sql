@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : lun. 22 mai 2023 à 16:45
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Hôte : localhost:8889
+-- Généré le : mar. 23 mai 2023 à 12:05
+-- Version du serveur : 5.7.39
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,13 +27,11 @@ SET time_zone = "+00:00";
 -- Structure de la table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`email`)
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -49,12 +47,10 @@ INSERT INTO `admin` (`nom`, `prenom`, `mdp`, `email`) VALUES
 -- Structure de la table `classe`
 --
 
-DROP TABLE IF EXISTS `classe`;
-CREATE TABLE IF NOT EXISTS `classe` (
+CREATE TABLE `classe` (
   `numeroclasse` int(50) NOT NULL,
   `promo` int(50) NOT NULL,
-  `ecole` varchar(255) NOT NULL,
-  PRIMARY KEY (`numeroclasse`)
+  `ecole` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -72,15 +68,13 @@ INSERT INTO `classe` (`numeroclasse`, `promo`, `ecole`) VALUES
 -- Structure de la table `competences`
 --
 
-DROP TABLE IF EXISTS `competences`;
-CREATE TABLE IF NOT EXISTS `competences` (
+CREATE TABLE `competences` (
   `id` int(50) NOT NULL,
   `nom` varchar(200) NOT NULL,
   `statut` varchar(200) NOT NULL,
   `datecreation` date DEFAULT NULL,
   `datelimite` date DEFAULT NULL,
-  `ecole` varchar(255) NOT NULL DEFAULT 'ECE',
-  PRIMARY KEY (`id`)
+  `ecole` varchar(255) NOT NULL DEFAULT 'ECE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -105,12 +99,9 @@ INSERT INTO `competences` (`id`, `nom`, `statut`, `datecreation`, `datelimite`, 
 -- Structure de la table `competences_matieres`
 --
 
-DROP TABLE IF EXISTS `competences_matieres`;
-CREATE TABLE IF NOT EXISTS `competences_matieres` (
+CREATE TABLE `competences_matieres` (
   `numeromatiere` int(50) DEFAULT NULL,
-  `id` int(50) DEFAULT NULL,
-  KEY `numeromatiere` (`numeromatiere`),
-  KEY `id` (`id`)
+  `id` int(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -131,19 +122,27 @@ INSERT INTO `competences_matieres` (`numeromatiere`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `demandes_autoeval`
+--
+
+CREATE TABLE `demandes_autoeval` (
+  `id` int(11) NOT NULL,
+  `competence_id` int(11) DEFAULT NULL,
+  `prof_email` varchar(255) DEFAULT NULL,
+  `eleve_email` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `enseigner`
 --
 
-DROP TABLE IF EXISTS `enseigner`;
-CREATE TABLE IF NOT EXISTS `enseigner` (
+CREATE TABLE `enseigner` (
   `emailprof` varchar(255) NOT NULL,
   `numeroclasse` int(50) NOT NULL,
   `numeromatiere` int(50) NOT NULL,
-  `emaileleve` varchar(255) NOT NULL,
-  KEY `fk_numeroclasse` (`numeroclasse`),
-  KEY `fk_numeromatiere` (`numeromatiere`),
-  KEY `fk_emailprof` (`emailprof`),
-  KEY `fk_emaileleve` (`emaileleve`)
+  `emaileleve` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -174,15 +173,13 @@ INSERT INTO `enseigner` (`emailprof`, `numeroclasse`, `numeromatiere`, `emailele
 -- Structure de la table `etudiant`
 --
 
-DROP TABLE IF EXISTS `etudiant`;
-CREATE TABLE IF NOT EXISTS `etudiant` (
+CREATE TABLE `etudiant` (
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `emaileleve` varchar(255) NOT NULL,
   `motdepasse` varchar(255) NOT NULL,
   `numeroclasse` int(50) NOT NULL,
-  `ecole` varchar(255) NOT NULL,
-  PRIMARY KEY (`emaileleve`)
+  `ecole` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -208,21 +205,15 @@ INSERT INTO `etudiant` (`nom`, `prenom`, `emaileleve`, `motdepasse`, `numeroclas
 -- Structure de la table `evaluations`
 --
 
-DROP TABLE IF EXISTS `evaluations`;
-CREATE TABLE IF NOT EXISTS `evaluations` (
+CREATE TABLE `evaluations` (
   `emaileleve` varchar(200) NOT NULL,
   `numniveval` int(50) DEFAULT NULL,
   `id` int(50) NOT NULL,
   `evaluation` varchar(255) DEFAULT NULL,
   `emailprof` varchar(255) DEFAULT NULL,
   `avis_prof` varchar(255) DEFAULT NULL,
-  `numeval` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`numeval`),
-  KEY `fk_emaileleve` (`emaileleve`),
-  KEY `fk_numniveval` (`numniveval`),
-  KEY `fk_id` (`id`),
-  KEY `fk_emailprof` (`emailprof`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `numeval` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `evaluations`
@@ -238,12 +229,10 @@ INSERT INTO `evaluations` (`emaileleve`, `numniveval`, `id`, `evaluation`, `emai
 -- Structure de la table `matieres`
 --
 
-DROP TABLE IF EXISTS `matieres`;
-CREATE TABLE IF NOT EXISTS `matieres` (
+CREATE TABLE `matieres` (
   `nom` varchar(200) NOT NULL,
   `numeromatiere` int(50) NOT NULL,
-  `volumehoraire` int(50) NOT NULL,
-  PRIMARY KEY (`numeromatiere`)
+  `volumehoraire` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -263,10 +252,8 @@ INSERT INTO `matieres` (`nom`, `numeromatiere`, `volumehoraire`) VALUES
 -- Structure de la table `niveval`
 --
 
-DROP TABLE IF EXISTS `niveval`;
-CREATE TABLE IF NOT EXISTS `niveval` (
-  `numeval` int(50) NOT NULL,
-  PRIMARY KEY (`numeval`)
+CREATE TABLE `niveval` (
+  `numeval` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -275,13 +262,11 @@ CREATE TABLE IF NOT EXISTS `niveval` (
 -- Structure de la table `professeur`
 --
 
-DROP TABLE IF EXISTS `professeur`;
-CREATE TABLE IF NOT EXISTS `professeur` (
+CREATE TABLE `professeur` (
   `emailprof` varchar(255) NOT NULL,
   `motdepasse` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  PRIMARY KEY (`emailprof`)
+  `prenom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -293,6 +278,100 @@ INSERT INTO `professeur` (`emailprof`, `motdepasse`, `nom`, `prenom`) VALUES
 ('debize@edu.ece.fr', 'blabla', 'Debize', 'Laurent'),
 ('Dedecker@edu.ece.fr', 'roro', 'Dedecker', 'Samira'),
 ('mazioua@edu.ece.fr', 'baba', 'mazioua', 'amirouche');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Index pour la table `classe`
+--
+ALTER TABLE `classe`
+  ADD PRIMARY KEY (`numeroclasse`);
+
+--
+-- Index pour la table `competences`
+--
+ALTER TABLE `competences`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `competences_matieres`
+--
+ALTER TABLE `competences_matieres`
+  ADD KEY `numeromatiere` (`numeromatiere`),
+  ADD KEY `id` (`id`);
+
+--
+-- Index pour la table `demandes_autoeval`
+--
+ALTER TABLE `demandes_autoeval`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `enseigner`
+--
+ALTER TABLE `enseigner`
+  ADD KEY `fk_numeroclasse` (`numeroclasse`),
+  ADD KEY `fk_numeromatiere` (`numeromatiere`),
+  ADD KEY `fk_emailprof` (`emailprof`),
+  ADD KEY `fk_emaileleve` (`emaileleve`);
+
+--
+-- Index pour la table `etudiant`
+--
+ALTER TABLE `etudiant`
+  ADD PRIMARY KEY (`emaileleve`);
+
+--
+-- Index pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  ADD PRIMARY KEY (`numeval`),
+  ADD KEY `fk_emaileleve` (`emaileleve`),
+  ADD KEY `fk_numniveval` (`numniveval`),
+  ADD KEY `fk_id` (`id`),
+  ADD KEY `fk_emailprof` (`emailprof`);
+
+--
+-- Index pour la table `matieres`
+--
+ALTER TABLE `matieres`
+  ADD PRIMARY KEY (`numeromatiere`);
+
+--
+-- Index pour la table `niveval`
+--
+ALTER TABLE `niveval`
+  ADD PRIMARY KEY (`numeval`);
+
+--
+-- Index pour la table `professeur`
+--
+ALTER TABLE `professeur`
+  ADD PRIMARY KEY (`emailprof`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `demandes_autoeval`
+--
+ALTER TABLE `demandes_autoeval`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  MODIFY `numeval` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

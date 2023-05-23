@@ -67,6 +67,7 @@ mysqli_close($conn);
       <div><a href="#">Compétences Transverses</a></div>
       <div><a href="../accueiletudiant/toutescompetences/toutescompetences.html">Toutes les compétences</a></div>
       <div><a href="../accueiletudiant/evaluation/evaluation.php">Evaluation</a></div>
+      <div><a href="../accueiletudiant/nouvellesautoevaldemande/nouvellesautoevaldemande.php">Nouvelles auto eval demande</a></div>
     </div>
     <div class="flex-container1">
       <div><button id="open-popup">Mon Compte Etudiant</button></div>

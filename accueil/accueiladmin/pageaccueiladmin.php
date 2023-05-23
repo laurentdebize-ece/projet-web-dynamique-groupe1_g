@@ -8,7 +8,7 @@ $requete->bind_param("s", $_SESSION['email']);
 $requete->execute();
 $requete->store_result();
 
-// Requête SQL pour récupérer le nom et le prénom de l'étudiant
+// Requête SQL pour récupérer le nom et le prénom de l'admin
 $requeteAdmin = $conn->prepare("SELECT nom, prenom FROM admin WHERE email = ?");
 $requeteAdmin->bind_param("s", $_SESSION['email']);
 $requeteAdmin->execute();
@@ -16,20 +16,20 @@ $requeteAdmin->store_result();
 
 // Vérification de la réussite de la requête
 if ($requete->num_rows > 0) {
-    // Récupération de l'e-mail de l'étudiant
+    // Récupération de l'e-mail de l'administrateur
     $requete->bind_result($email);
     $requete->fetch();
 
     // Stockage de l'e-mail dans la variable de session
     $_SESSION['email'] = $email;
 } else {
-    // Gestion de l'erreur si aucun étudiant n'est trouvé
+    // Gestion de l'erreur si aucun administrateur n'est trouvé
     $_SESSION['email'] = '';
 }
 
-// Vérification de la réussite de la requête pour le nom et le prénom de l'étudiant
+// Vérification de la réussite de la requête pour le nom et le prénom de l'administrateur
 if ($requeteAdmin->num_rows > 0) {
-    // Récupération du nom et du prénom de l'étudiant
+    // Récupération du nom et du prénom de l'administrateur
     $requeteAdmin->bind_result($nom, $prenom);
     $requeteAdmin->fetch();
 
@@ -37,7 +37,7 @@ if ($requeteAdmin->num_rows > 0) {
     $_SESSION['nomAdmin'] = $nom;
     $_SESSION['prenomAdmin'] = $prenom;
 } else {
-    // Gestion de l'erreur si aucun étudiant n'est trouvé
+    // Gestion de l'erreur si aucun administrateur n'est trouvé
     $_SESSION['nomAdmin'] = '';
     $_SESSION['prenomAdmin'] = '';
 }
@@ -135,9 +135,9 @@ mysqli_close($conn);
       <h2><span class="texte-color">Mon Compte Admin</span></h2>
       <p>
         <ul>
-          <li><span class="texte-color">Nom:</span> <?php echo $_SESSION['nomAdmin']; ?></li>
-          <li><span class="texte-color">Prénom:</span> <?php echo $_SESSION['prenomAdmin']; ?></li>
-          <li><span class="texte-color">E-mail:</span> <?php echo $_SESSION['email']; ?></li>
+          <li><p class="texte-color">Nom: <?php echo $_SESSION['nomAdmin']; ?></p> </li>
+          <li><p class="texte-color">Prénom: <?php echo $_SESSION['prenomAdmin']; ?></p> </li>
+          <li><p class="texte-color">E-mail: <?php echo $_SESSION['email']; ?></p> </li>
         </ul>
       </p>
       <button id="close-popup">Fermer</button>

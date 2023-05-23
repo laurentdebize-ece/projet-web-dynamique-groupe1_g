@@ -241,5 +241,36 @@ if (isset($_POST["supprimer3"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
-
+if (isset($_POST["modifier1"])) {
+    if ($conn) {
+        // Vérifier si l'étudiant existe déjà dans la base de données
+        $sql = "SELECT * FROM etudiant WHERE emaileleve = '$emaileleve'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) != 0) {
+           // echo "<p> l'éleve existe vous pouvez le modifier.</p>";
+            header("Location: modifier.php");
+        }  else {
+                echo "<p>Cette elève n'existe pas dans la base de donnée. Veuillez saisir un autre email.</p>";
+            }
+        }
+     else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
+if (isset($_POST["modifier2"])) {
+    if ($conn) {
+        // Vérifier si le prof existe déjà dans la base de données
+        $sql = "SELECT * FROM professeur WHERE emailprof = '$emailprof'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) != 0) {
+           // echo "<p> l'éleve existe vous pouvez le modifier.</p>";
+            header("Location: modifier.php");
+        }  else {
+                echo "<p>Ce prof n'existe pas dans la base de donnée. Veuillez saisir un autre email.</p>";
+            }
+        }
+     else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
 ?>

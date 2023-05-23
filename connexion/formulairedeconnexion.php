@@ -24,6 +24,15 @@ if (isset($_POST['submit'])) {
 
         // Vérification si la connexion est réussie pour l'une des tables
         if ($result_admin && mysqli_num_rows($result_admin) == 1) {
+            // Récupération des données de l'admin
+            $row_admin = mysqli_fetch_assoc($result_admin);
+            
+            // Récupération de l'e-mail de l'admin
+            $email = $row_admin['email'];
+        
+            // Stockage de l'e-mail dans la variable de session
+            $_SESSION['email'] = $email;
+
             // Redirection vers la page d'accueil après connexion réussie pour l'administrateur
             header("Location: ../accueil/accueiladmin/pageaccueiladmin.php");
             exit;

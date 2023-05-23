@@ -57,7 +57,7 @@ mysqli_close($conn);
 <head>
   <meta charset="utf-8">
   <title>Omnes MySkills - Accueil</title>
-  <link rel="stylesheet" type="text/css" href="pageaccueiladmin2.css">
+  <link rel="stylesheet" type="text/css" href="pageaccueiladmin.css">
   
 </head>
 
@@ -84,51 +84,19 @@ mysqli_close($conn);
       </div>
     </div>
 
-    <h2> Ici, vous pouvez trouver les différentes compétences pour vous améliorer</h2>
-    <h3>Compétences populaires</h3>
+    <p class="article"><br>
 
-    <table>
-      <tr>
-        <td> Compétence1</td>
-        <td> vvbfb </td>
-        <td> vfbrbr </td>
+      Omnes Skills est une plateforme en ligne qui révolutionne la façon dont les individus développent et présentent leurs compétences.</br>
+      <br> Omnes Skills est l'outil idéal pour mettre en avant vos talents et voir dnas quelles matières vous performer le plus.
 
-      </tr>
-      <tr>
-        <td> Compétence 2 </td>
-        <td> bbrbrfe </td>
-        <td> grvefe </td>
+      Grâce à Omnes Skills, vous pouvez mettre en évidence vos compétences clés. La plateforme propose une large gamme de catégories, allant des compétences techniques telles que la programmation ou la gestion de projet, aux compétences interpersonnelles comme la communication et le travail en groupe.
 
-      </tr>
-      <tr>
-        <td> Compétence 3 </td>
-        <td> feefev </td>
-        <td> vrvrrb </td>
-      </tr>
-    </table>
+      Ce qui rend Omnes Skills vraiment unique, c'est sa fonctionnalité de validation des compétences. Les utilisateurs peuvent demander à leurs collègues, superviseurs ou clients de témoigner de leurs compétences spécifiques. Ces validations fournissent une preuve tangible de vos aptitudes.</br>
 
-    <h3>Dernières compétences ajoutées</h3>
+      <br> En résumé, Omnes Skills est bien plus qu'une simple plateforme de gestion de compétences. En tant qu'étudiant, Omnes Skills est là pour vous aider à atteindre vos objectifs.</br>
+    </p>
 
-    <table>
-      <tr>
-        <td> Compétence 4</td>
-        <td> vvbfb </td>
-        <td> vfbrbr </td>
-
-      </tr>
-      <tr>
-        <td> Compétence 5 </td>
-        <td> bbrbrfe </td>
-        <td> grvefe </td>
-
-      </tr>
-      <tr>
-        <td> Compétence 6 </td>
-        <td> feefev </td>
-        <td> vrvrrb </td>
-      </tr>
-    </table>
-  </main>
+    
 
   <div class="popup-overlay">
     <div class="popup-content">
@@ -146,6 +114,7 @@ mysqli_close($conn);
       </form>
     </div>
   </div>
+  </main>
 
 
   <footer>

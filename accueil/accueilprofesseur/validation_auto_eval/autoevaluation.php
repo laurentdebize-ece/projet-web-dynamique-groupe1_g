@@ -38,21 +38,10 @@ if ($result && $result->num_rows > 0) {
         echo "Email de l'élève: $emailEleve<br>";
         echo "Numéro de niveau d'évaluation: $numNiveauEval<br>";
         echo "ID de compétence: $idCompetence<br>";
-        echo "Évaluation: $evaluation<br>";
+        echo "Évaluation: $evaluation<br><br><br>";
+        
        
-        // Formulaire pour l'avis du professeur
-        echo '<form action="evaluation.php" method="post">';
-        echo '<input type="hidden" name="numEval" value="' . $numEval . '">';
-        echo '<input type="hidden" name="emailEleve" value="' . $emailEleve . '">';
-        echo 'Avis du professeur: ';
-        echo '<select name="avis">';
-        echo '<option value="accord">D\'accord</option>';
-        echo '<option value="pas_accord">Pas d\'accord</option>';
-        echo '</select>';
-        echo '<input type="submit" name="submit" value="Envoyer">';
-        echo '</form>';
-       
-        echo '<hr>';
+
     }
 } else {
     echo "Aucune donnée trouvée.";

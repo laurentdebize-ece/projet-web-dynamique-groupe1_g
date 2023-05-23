@@ -73,8 +73,7 @@
         </select>
 
         <br><br>
-        <label for="avis_prof">Avis du professeur :</label>
-        <textarea name="avis_prof" id="avis_prof"></textarea>
+       
 
 
         <input type="submit" value="Envoyer">

@@ -61,7 +61,7 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <input type="submit" name="modifier2" value="Valider">
+        <input type="submit" name="valider2" value="Valider">
       </td>
     </tr>
   </table>
@@ -84,7 +84,7 @@
     </tr>
     <tr>
       <td colspan="2" align="center">
-        <input type="submit" name="modifier3" value="Valider">
+        <input type="submit" name="valider3" value="Valider">
       </td>
     </tr>
   </table>

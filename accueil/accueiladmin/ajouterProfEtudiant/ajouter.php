@@ -273,4 +273,21 @@ if (isset($_POST["modifier2"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+
+if (isset($_POST["modifier3"])) {
+    if ($conn) {
+        // Vérifier si la matiere existe déjà dans la base de données
+        $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) != 0) {
+           // echo "<p> la matiere existe vous pouvez le modifier.</p>";
+            header("Location: modifier.php");
+        }  else {
+                echo "<p>Cette matiere n'existe pas dans la base de donnée. Veuillez saisir un autre numero de matiere.</p>";
+            }
+        }
+     else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
 ?>

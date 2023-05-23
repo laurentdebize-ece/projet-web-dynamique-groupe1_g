@@ -57,4 +57,28 @@ if (isset($_POST["valider2"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+
+if (isset($_POST["valider3"])) {
+    if ($conn) {
+    // Vérifier si la matiere existe dans la base de données
+        $sql = "SELECT * FROM matieres WHERE numeromatiere = '$numeromatiere'";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) != 0) {
+            // Effectuer la modification de la matiere dans la base de données
+            $sql = "UPDATE matieres SET nom = '$nom', volumehoraire = '$volumehoraire' WHERE numeromatiere = '$numeromatiere'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                echo "<p>Modification réussie.</p>";
+            } else {
+                echo "<p>Une erreur est survenue lors de la modification de la matiere.</p>";
+            }
+        } else {
+            echo "<p>La matiere n'existe pas.</p>";
+        }
+    } else {
+        echo "<p>Base de données introuvable.</p>";
+    }
+}
 ?>

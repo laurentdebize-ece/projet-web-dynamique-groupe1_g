@@ -1,3 +1,62 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h3 {
+        color: #6a1b9a;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f3e5f5;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+</style>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        color: #6a1b9a;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f3e5f5;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+</style>
 <?php
 require_once '../../../BDD/init.php';
 
@@ -169,6 +228,7 @@ if (isset($_POST["ajouter3"])) {
         echo "<p>Base de données introuvable.</p>";
     }
 }
+
 // POUR ETUDIANT
 if (isset($_POST["supprimer1"])) {
     if ($conn) {

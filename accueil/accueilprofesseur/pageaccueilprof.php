@@ -62,7 +62,7 @@ mysqli_close($conn);
   <header>
     <div class="flex-container">
       <div><a href="#">Accueil</a></div>
-      <div><a href="competenceprof.html">Compétences</a></div>
+      <div><a href="competenceprof.php">Compétences</a></div>
       <div><a href="demanderautoevaluation/demanderautoevaluation.php">demander une autoevaluation</a></div>
       <div><a href="validation_auto_eval/autoevaluation.php">Auto évaluation</a></div>
     </div>

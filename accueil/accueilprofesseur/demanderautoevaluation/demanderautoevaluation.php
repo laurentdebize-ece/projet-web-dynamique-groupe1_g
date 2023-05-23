@@ -32,6 +32,7 @@ $conn->close();
 <html>
 <head>
     <title>Demander une auto-évaluation</title>
+    <link rel="stylesheet" type="text/css" href="demanderautoeval.css">
 </head>
 <body>
     <h1>Demander une auto-évaluation</h1>

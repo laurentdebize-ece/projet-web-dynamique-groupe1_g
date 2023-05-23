@@ -33,6 +33,7 @@ if (isset($_POST["button1"])){
     <title>Modifier</title>
     <body>
     <form action="competenceprof2.php" method="post">
+        <h3>Vous ne pouvez pas modifier l'id de la compétence</h3>
 
         <table class="competences-table">
             <tr>
@@ -66,9 +67,8 @@ if (isset($_POST["button1"])){
             </tr>
         </table>
     </form>
-        
 
-    </form>
+
 </body>
 
 </html>
@@ -85,6 +85,8 @@ if (isset($_POST["valider"])) {
 
             if($result){
                 echo "<p>Modification réussi.</p>";
+             
+
             }else {
                 echo "<p>Erreur.</p>";
             }

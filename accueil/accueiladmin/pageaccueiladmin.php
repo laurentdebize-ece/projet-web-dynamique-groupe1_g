@@ -2,34 +2,34 @@
 session_start();
 
 require_once '../../BDD/init.php';
-// Requête SQL pour récupérer l'e-mail de l'admin
+// Recup l'e-mail de l'admin
 $requete = $conn->prepare("SELECT email FROM admin WHERE email = ?");
 $requete->bind_param("s", $_SESSION['email']);
 $requete->execute();
 $requete->store_result();
 
-// Requête SQL pour récupérer le nom et le prénom de l'admin
+// Recup nom et le prénom de l'admin
 $requeteAdmin = $conn->prepare("SELECT nom, prenom FROM admin WHERE email = ?");
 $requeteAdmin->bind_param("s", $_SESSION['email']);
 $requeteAdmin->execute();
 $requeteAdmin->store_result();
 
-// Vérification de la réussite de la requête
+// Vérif
 if ($requete->num_rows > 0) {
-    // Récupération de l'e-mail de l'administrateur
+    // Récup de l'e-mail de l'administrateur
     $requete->bind_result($email);
     $requete->fetch();
 
     // Stockage de l'e-mail dans la variable de session
     $_SESSION['email'] = $email;
 } else {
-    // Gestion de l'erreur si aucun administrateur n'est trouvé
+    // en cas d'erreur
     $_SESSION['email'] = '';
 }
 
-// Vérification de la réussite de la requête pour le nom et le prénom de l'administrateur
+// Vérif
 if ($requeteAdmin->num_rows > 0) {
-    // Récupération du nom et du prénom de l'administrateur
+    // Récup du nom et du prénom de l'administrateur
     $requeteAdmin->bind_result($nom, $prenom);
     $requeteAdmin->fetch();
 
@@ -37,7 +37,7 @@ if ($requeteAdmin->num_rows > 0) {
     $_SESSION['nomAdmin'] = $nom;
     $_SESSION['prenomAdmin'] = $prenom;
 } else {
-    // Gestion de l'erreur si aucun administrateur n'est trouvé
+    // En cas d'erreur
     $_SESSION['nomAdmin'] = '';
     $_SESSION['prenomAdmin'] = '';
 }
@@ -87,7 +87,7 @@ mysqli_close($conn);
     <p class="article"><br>
 
       Omnes Skills est une plateforme en ligne qui révolutionne la façon dont les individus développent et présentent leurs compétences.</br>
-      <br> Omnes Skills est l'outil idéal pour mettre en avant vos talents et voir dnas quelles matières vous performer le plus.
+      <br> Omnes Skills est l'outil idéal pour mettre en avant vos talents et voir dans quelles matières vous performer le plus.
 
       Grâce à Omnes Skills, vous pouvez mettre en évidence vos compétences clés. La plateforme propose une large gamme de catégories, allant des compétences techniques telles que la programmation ou la gestion de projet, aux compétences interpersonnelles comme la communication et le travail en groupe.
 

@@ -5,12 +5,12 @@ if ($conn->connect_error) {
     die('Erreur de connexion à la base de données : ' . $conn->connect_error);
 }
 
-// Récupérer les paramètres de tri (s'ils sont présents)
+// Récupérer les paramètres de tri 
 $tri = isset($_GET['tri']) ? $_GET['tri'] : 'nom';
 $ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
-$ecole = isset($_GET['ecole']) ? $_GET['ecole'] : 'ECE'; // Valeur par défaut : 'ECE'
+$ecole = isset($_GET['ecole']) ? $_GET['ecole'] : 'ECE'; 
 
-// Construction de la requête SQL en fonction des paramètres de tri
+
 
 $sql = "SELECT c.nom, c.datecreation, c.datelimite, c.statut, m.nom AS matiere
         FROM competences AS c

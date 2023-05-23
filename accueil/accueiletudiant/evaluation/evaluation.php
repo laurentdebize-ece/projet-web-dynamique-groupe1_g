@@ -13,16 +13,16 @@
             <?php
             require_once '../../../BDD/init.php';
 
-            // Vérifier la connexion
+            // Vérif connexion
             if ($conn->connect_error) {
                 die("Erreur de connexion à la base de données : " . $conn->connect_error);
             }
 
-            // Récupérer les compétences depuis la base de données
+            // Récupérer les compétences 
             $queryCompetences = "SELECT id, nom FROM competences";
             $resultCompetences = $conn->query($queryCompetences);
 
-            // Vérifier s'il y a des résultats
+            // Vérif
             if ($resultCompetences->num_rows > 0) {
                 // Afficher les options de compétences
                 while ($row = $resultCompetences->fetch_assoc()) {
@@ -34,7 +34,7 @@
             ?>
         </select>
 
-        <!-- Champ caché pour l'ID de la compétence -->
+        <!-- Champ caché pour l'ID compétence -->
         <input type="hidden" name="competence_id" value="">
 
         <br><br>
@@ -56,11 +56,11 @@
         <label for="destinataire">Choisissez un destinataire :</label>
         <select name="destinataire" id="destinataire">
             <?php
-            // Requête pour récupérer les professeurs depuis la base de données
+            // Recup les professeurs depuis la base de données
             $queryProfesseur = "SELECT emailprof, Nom FROM professeur";
             $resultProfesseur = $conn->query($queryProfesseur);
 
-            // Vérifier s'il y a des résultats
+            // Vérif
             if ($resultProfesseur->num_rows > 0) {
                 // Afficher les options des professeurs
                 while ($row = $resultProfesseur->fetch_assoc()) {
@@ -73,8 +73,7 @@
         </select>
 
         <br><br>
-        <label for="avis_prof">Avis du professeur :</label>
-        <textarea name="avis_prof" id="avis_prof"></textarea>
+       
 
 
         <input type="submit" value="Envoyer">

@@ -59,7 +59,7 @@
     </style>
 </head>
 <body>
-    <!-- Formulaire de modification d'un étudiant -->
+    <!-- Modif d'un étudiant -->
     <h2>Modifier un étudiant</h2>
     <form action="modifier2.php" method="post">
         <table>
@@ -95,7 +95,7 @@
         </table>
     </form>
 
-    <!-- Formulaire de modification d'un prof -->
+    <!-- Modif d'un prof -->
     <h2>Modifier un professeur</h2>
     <form action="modifier2.php" method="post">
         <table>
@@ -123,7 +123,7 @@
         </table>
     </form>
 
-    <!-- Formulaire de modification d'une matière -->
+    <!-- Modif d'une matière -->
     <h2>Modifier une matière</h2>
     <form action="modifier2.php" method="post">
         <table>
